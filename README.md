@@ -14,7 +14,7 @@ Traditional BDI agent architectures often suffer from slow response times in rea
 - Failure severity perception
 - Runtime monitoring
 - Optional integration with PX4/Ardupilot failsafes
-- User-facing configuration tools
+- User interface
 
 The goal is to improve agent responsiveness and decision-making in safety-critical UAV missions without relying solely on preconfigured flight stack behaviors.
 
