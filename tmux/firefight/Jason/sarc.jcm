@@ -28,7 +28,7 @@ mas sarc {
       ag-arch: embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch
     }
 
-    agent uav2 : uav.asl{   //agent uav2
+    /*agent uav2 : uav.asl{   //agent uav2
       beliefs: my_number(2) 
                my_frame_id("world")
       
