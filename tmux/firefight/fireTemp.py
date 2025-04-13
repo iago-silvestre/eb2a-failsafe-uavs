@@ -51,20 +51,8 @@ class FireTempNode:
         self.path_pub.publish(0)
 
     def odom_callback(self, msg):
-        if not self.waypoints:
-            return
-
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
-
-        # Waypoint tracking
-        for i, (wp_x, wp_y) in enumerate(self.waypoints):
-            distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
-            if distance < self.threshold:
-                self.last_waypoint_index = i + 1
-                self.path_pub.publish(i + 1)
-                break
-
 
         try:
             rospy.loginfo("[DEBUG] Calling get_model_state for 'tree_red'")
@@ -82,6 +70,18 @@ class FireTempNode:
             self.temp_pub.publish(temperature)
         except rospy.ServiceException as e:
             rospy.logerr(f"[ERROR] Failed to call get_model_state: {e}")
+
+        if not self.waypoints:
+            return
+
+        # Waypoint tracking
+        for i, (wp_x, wp_y) in enumerate(self.waypoints):
+            distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
+            if distance < self.threshold:
+                self.last_waypoint_index = i + 1
+                self.path_pub.publish(i + 1)
+                break
+
         # Fire temperature estimation based on distance to tree_red_1
         #try:
         #    model_state = self.get_model_state("tree_red", "")
