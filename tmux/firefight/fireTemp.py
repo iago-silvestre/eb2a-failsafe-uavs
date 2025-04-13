@@ -67,7 +67,7 @@ class FireTempNode:
 
         # Fire temperature estimation based on distance to tree_red_1
         try:
-            model_state = self.get_model_state("tree_red_1", "")
+            model_state = self.get_model_state("tree_red", "")
             tree_x = model_state.pose.position.x
             tree_y = model_state.pose.position.y
             fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
