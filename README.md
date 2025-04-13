@@ -29,7 +29,7 @@ You can run this setup using Docker. For [Windows](https://docs.docker.com/deskt
 
 2. **Build the Docker image**:
    ```bash
-   docker build -t px4_jason .
+   docker build -t eb2a .
    ```
 ---
 
@@ -45,7 +45,7 @@ Set the `DISPLAY` to point to the host machine’s X11 server:
 
 3. **Run the container**:
    ```bash
-   docker run -it --rm --env DISPLAY=host.docker.internal:0 --volume /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1 --net host px4_jason
+   docker run -it --rm --env DISPLAY=host.docker.internal:0 --volume /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1 --net host eb2a
    ```
 
 ---
@@ -59,7 +59,7 @@ Set the `DISPLAY` to point to the host machine’s X11 server:
 
 2. **Run the container**:
    ```bash
-   docker run -it --rm --env DISPLAY=$DISPLAY --volume /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1 --net host px4_jason
+   docker run -it --rm --env DISPLAY=$DISPLAY --volume /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1 --net host eb2a
    ```
    
 
