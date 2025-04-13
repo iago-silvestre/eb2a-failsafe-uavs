@@ -17,10 +17,16 @@ RUN apt-get update && apt-get install -y \
     python3-rosinstall-generator \
     python3-wstool \
     ros-noetic-rosbridge-suite \
-    openjdk-21-jdk \
+    openjdk-17-jdk \
     x11-xserver-utils \
     && rm -rf /var/lib/apt/lists/*
-
+	
+# Install Jason BDI
+WORKDIR /root
+RUN git clone https://github.com/LeandroBecker/CBSjason.git ~/jason && \
+    cd ~/jason && \
+    ./gradlew config
+	
 # Install GeographicLib datasets for MAVROS
 RUN wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh \
     && chmod +x install_geographiclib_datasets.sh \
@@ -33,12 +39,6 @@ RUN mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src && \
 # Build catkin workspace
 WORKDIR /root/catkin_ws
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin_make"
-
-# Install Jason BDI
-WORKDIR /root
-RUN git clone https://github.com/LeandroBecker/CBSjason.git ~/jason && \
-    cd ~/jason && \
-    ./gradlew config
 
 # Update bashrc with required environment variables
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
@@ -59,5 +59,5 @@ RUN apt-get update && apt-get install -y ros-noetic-mrs-uav-system-full
 ENV DISPLAY=:0
 
 # Set working directory and source environment at container startup
-WORKDIR /root/catkin_ws/src/search-rescue-px4
+WORKDIR /root/catkin_ws/src/eb2a-failsafe-uavs
 ENTRYPOINT ["/bin/bash", "-c", "git pull && source ~/.bashrc && exec bash"]
