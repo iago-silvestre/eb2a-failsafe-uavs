@@ -65,16 +65,33 @@ class FireTempNode:
                 self.path_pub.publish(i + 1)
                 break
 
-        # Fire temperature estimation based on distance to tree_red_1
+
         try:
+            rospy.loginfo("[DEBUG] Calling get_model_state for 'tree_red'")
             model_state = self.get_model_state("tree_red", "")
             tree_x = model_state.pose.position.x
             tree_y = model_state.pose.position.y
+            rospy.loginfo(f"[DEBUG] Tree position: x={tree_x:.2f}, y={tree_y:.2f}")
+
+            rospy.loginfo(f"[DEBUG] UAV position: x={x:.2f}, y={y:.2f}")
             fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
+            rospy.loginfo(f"[DEBUG] Distance to fire: {fire_distance:.2f}")
+
             temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
+            rospy.loginfo(f"[DEBUG] Estimated temperature: {temperature:.2f}")
             self.temp_pub.publish(temperature)
         except rospy.ServiceException as e:
-            rospy.logerr("Failed to get model state: %s", e)
+            rospy.logerr(f"[ERROR] Failed to call get_model_state: {e}")
+        # Fire temperature estimation based on distance to tree_red_1
+        #try:
+        #    model_state = self.get_model_state("tree_red", "")
+        #    tree_x = model_state.pose.position.x
+        #    tree_y = model_state.pose.position.y
+        #    fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
+        #    temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
+        #    self.temp_pub.publish(temperature)
+        #except rospy.ServiceException as e:
+        #    rospy.logerr("Failed to get model state: %s", e)
 
     def image_callback(self, msg):
         try:
