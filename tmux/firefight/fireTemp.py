@@ -1,0 +1,127 @@
+#!/usr/bin/env python
+
+import rospy
+import random
+import numpy as np
+from gazebo_msgs.srv import DeleteModel, GetModelState
+from geometry_msgs.msg import Pose
+from std_msgs.msg import Int32, Float64, Int8
+from nav_msgs.msg import Odometry
+from mrs_msgs.msg import Path
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
+import cv2
+
+class FireTempNode:
+    def __init__(self):
+        rospy.init_node('fireTemp', anonymous=True)
+
+        self.threshold = 1.0
+        self.fireSize = 4
+        self.count = 0
+        self.auxcount = 0
+        self.teste = 0
+        self.battery_level = 100.0
+        self.waypoints = []
+        self.last_waypoint_index = 0
+
+        self.bridge = CvBridge()
+
+        self.fire_size_pub = rospy.Publisher("fireSize", Int8, queue_size=1)
+        self.subscriber_del = rospy.Subscriber('/fightFire', Int32, self.del_callback)
+
+        self.path_pub = rospy.Publisher('/uav1/lastWP', Int32, queue_size=1)
+        self.battery_pub = rospy.Publisher('/battery_uav1', Float64, queue_size=1)
+        self.fire_detection_pub = rospy.Publisher('/uav1/fire_detection', Int32, queue_size=1)
+        self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
+
+        rospy.Subscriber('/uav1/trajectory_generation/path', Path, self.path_callback)
+        rospy.Subscriber('/uav1/ground_truth', Odometry, self.odom_callback)
+        rospy.Subscriber('/uav1/bluefox_optflow/image_raw', Image, self.image_callback)
+        rospy.Subscriber('/recharge_battery', Int8, self.recharge_battery_callback)
+
+        rospy.wait_for_service('/gazebo/get_model_state')
+        self.get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+
+        rospy.Timer(rospy.Duration(1), self.update_battery)
+
+    def path_callback(self, msg):
+        self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
+        self.last_waypoint_index = 0
+        self.path_pub.publish(0)
+
+    def odom_callback(self, msg):
+        if not self.waypoints:
+            return
+
+        x = msg.pose.pose.position.x
+        y = msg.pose.pose.position.y
+
+        # Waypoint tracking
+        for i, (wp_x, wp_y) in enumerate(self.waypoints):
+            distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
+            if distance < self.threshold:
+                self.last_waypoint_index = i + 1
+                self.path_pub.publish(i + 1)
+                break
+
+        # Fire temperature estimation based on distance to tree_red_1
+        try:
+            model_state = self.get_model_state("tree_red_1", "")
+            tree_x = model_state.pose.position.x
+            tree_y = model_state.pose.position.y
+            fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
+            temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
+            self.temp_pub.publish(temperature)
+        except rospy.ServiceException as e:
+            rospy.logerr("Failed to get model state: %s", e)
+
+    def image_callback(self, msg):
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "rgb8")
+        except CvBridgeError as e:
+            rospy.logerr("CvBridge Error: %s", e)
+            return
+
+        lower_red = np.array([150, 0, 0])
+        upper_red = np.array([255, 100, 100])
+        red_mask = cv2.inRange(cv_image, lower_red, upper_red)
+        red_pixel_count = np.sum(red_mask == 255)
+        self.fire_detection_pub.publish(red_pixel_count)
+
+    def update_battery(self, event):
+        self.battery_level -= 0.1
+        self.battery_pub.publish(self.battery_level)
+        self.fire_size_pub.publish(self.fireSize)
+
+    def recharge_battery_callback(self, msg):
+        if msg.data == 1:
+            self.battery_level = 100.0
+            self.battery_pub.publish(self.battery_level)
+            rospy.loginfo("Recharged battery of UAV1 to 100")
+
+    def del_callback(self, msg):
+        if msg.data != 0:
+            model_name = "tree_red_" + str(self.count)
+            rospy.loginfo("Deleting model: %s", model_name)
+            self.auxcount += 1
+            probability = random.random()
+            if self.auxcount != -2:
+                if probability <= 0.75:
+                    try:
+                        self.count += 1
+                        self.fireSize -= 1
+                        delete_model = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
+                        response = delete_model(model_name)
+                        rospy.loginfo("Model deletion response: %s", response.status_message)
+                        self.fire_size_pub.publish(self.fireSize)
+                    except rospy.ServiceException as e:
+                        rospy.logerr("Service call failed: %s", e)
+            self.teste += 1
+
+if __name__ == '__main__':
+    try:
+        FireTempNode()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
