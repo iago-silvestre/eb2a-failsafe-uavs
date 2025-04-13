@@ -60,4 +60,6 @@ ENV DISPLAY=:0
 
 # Set working directory and source environment at container startup
 WORKDIR /root/catkin_ws/src/eb2a-failsafe-uavs
-ENTRYPOINT ["/bin/bash", "-c", "git pull && source ~/.bashrc && exec bash"]
+#ENTRYPOINT ["/bin/bash", "-c", "git pull && source ~/.bashrc && exec bash"]
+#ENTRYPOINT ["/bin/bash", "-c", "cp /catkin_ws/src/eb2a-failsafe-uavs/worlds/fireTree.world /opt/ros/noetic/share/mrs_gazebo_common_resources/worlds/ && git -C /catkin_ws/src/eb2a-failsafe-uavs pull && source ~/.bashrc && exec bash"]
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
