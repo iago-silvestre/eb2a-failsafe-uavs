@@ -81,8 +81,8 @@ class FireTempNode:
         temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
         self.temp_pub.publish(temperature)
 
-        if not self.waypoints:
-            return
+        #if not self.waypoints:
+        #    return
 
         # Waypoint tracking
         for i, (wp_x, wp_y) in enumerate(self.waypoints):
