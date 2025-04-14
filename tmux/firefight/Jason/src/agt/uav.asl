@@ -40,6 +40,9 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 !start.
 
++cb0 
+   <- .print(" critJason test").  
+
 +fireSize(0)
    : current_mission(combat_fire)
    <- !mm::stop_mission(combat_fire,"Fire is Extinguished").

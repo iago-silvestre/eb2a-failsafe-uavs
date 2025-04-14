@@ -5,6 +5,9 @@
       className: DefaultRos4EmbeddedMas  
       connectionString: ws://localhost:9090    
   perceptionTopics:
+      - topicName: uav1/failure #topico do rospy
+        topicType: std_msgs/Int8 #type do rospy
+        beliefName: critical_percept
       - topicName: uav1_lastWP
         topicType: std_msgs/Int8
       - topicName: uav1/ground_truth

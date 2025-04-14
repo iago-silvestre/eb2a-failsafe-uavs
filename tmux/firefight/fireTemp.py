@@ -34,6 +34,7 @@ class FireTempNode:
         self.battery_pub = rospy.Publisher('/battery_uav1', Float64, queue_size=1)
         self.fire_detection_pub = rospy.Publisher('/uav1/fire_detection', Int32, queue_size=1)
         self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
+        self.failure_pub = rospy.Publisher('/uav1/failure', Int8, queue_size=1)
 
         rospy.Subscriber('/uav1/trajectory_generation/path', Path, self.path_callback)
         rospy.Subscriber('/uav1/ground_truth', Odometry, self.odom_callback)
@@ -44,6 +45,10 @@ class FireTempNode:
         self.get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
 
         rospy.Timer(rospy.Duration(1), self.update_battery)
+        # Immediately publish failure = 1
+        rospy.sleep(0.5)  # Short delay to ensure publisher is registered
+        self.failure_pub.publish(Int8(data=1))
+        rospy.loginfo("[DEBUG] Published failure message: 1")
 
     def path_callback(self, msg):
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
