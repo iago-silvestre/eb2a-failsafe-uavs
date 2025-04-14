@@ -66,9 +66,12 @@ class FireTempNode:
 
     def path_callback(self, msg):
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
+        rospy.loginfo(f"[DEBUG] Received path with {len(self.waypoints)} waypoints:")
+        for i, (x, y) in enumerate(self.waypoints):
+            rospy.loginfo(f"  Waypoint {i}: ({x:.2f}, {y:.2f})")
         self.last_waypoint_index = 0
         self.path_pub.publish(0)
-        
+
 
     def odom_callback(self, msg):
         x = msg.pose.pose.position.x
