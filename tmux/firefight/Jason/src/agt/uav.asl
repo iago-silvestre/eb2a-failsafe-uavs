@@ -40,6 +40,8 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 !start.
 
++cp0 [cr]: true <- .print(" critJason test"). 
+
 +!testCB
    <- .print(" critJason test").  
 
