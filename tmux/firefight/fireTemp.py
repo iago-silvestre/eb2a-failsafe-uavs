@@ -82,7 +82,7 @@ class FireTempNode:
         self.temp_pub.publish(temperature)
         for i, (wp_x, wp_y) in enumerate(self.waypoints):
             distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
-            rospy.loginfo(f"[DEBUG] Checking waypoint {i}: ({wp_x}, {wp_y}) | Distance: {distance:.2f}")
+            #rospy.loginfo(f"[DEBUG] Checking waypoint {i}: ({wp_x}, {wp_y}) | Distance: {distance:.2f}")
             if distance < self.threshold:
                 self.last_waypoint_index = i + 1
                 self.path_pub.publish(i + 1)
