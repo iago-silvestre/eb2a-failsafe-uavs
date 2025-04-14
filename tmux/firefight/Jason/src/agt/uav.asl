@@ -29,6 +29,9 @@ combat_traj(CT) :- wind_speed(WS) & WS >=0.0 & fire_pos(CX,CY) & std_altitude(Z)
 combat_traj(CT) :- wind_speed(WS) & WS < 0.0 & fire_pos(CX,CY) & std_altitude(Z)  & my_number(N) 
                   & CT= [[CX-2,CY-2,Z+N],[CX+2,CY-2,Z+N],[CX+2,CY+2,Z+N],[CX-2,CY+2,Z+N]].
 
+severity_cp0(SEV) :- temperature(T)  & T >= 50.0 & T < 70.0 
+                  & SEV= "Marginal".
+
 
 my_ap(AP) :- my_number(N)
             & .term2string(N, S) & .concat("autopilot",S,AP).
@@ -37,13 +40,17 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +fire_detection(N) : N>=22000 <- !found_fire.
 +battery(B) : B<=30.0 & not(low_batt) <- !low_battery.
-
-!start.
++temperature(T) : T>= 50.0 <- !high_temp.
 
 +cp0 [cr]: true <- .print(" critJason test"). 
 
-+!testCB
-   <- .print(" critJason test").  
+
++!high_temp
+   : severity_cp0(SEV) & SEV=="Marginal"
+   <- .print(" Marginal Test").
+
+
+!start.
 
 +fireSize(0)
    : current_mission(combat_fire)
