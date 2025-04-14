@@ -49,6 +49,19 @@ class FireTempNode:
         rospy.sleep(0.5)  # Short delay to ensure publisher is registered
         self.failure_pub.publish(Int8(data=1))
         rospy.loginfo("[DEBUG] Published failure message: 1")
+        
+        rospy.wait_for_service('/gazebo/get_model_state')
+        self.get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+
+        try:
+            model_state = self.get_model_state("tree_red", "")
+            self.tree_x = model_state.pose.position.x
+            self.tree_y = model_state.pose.position.y
+            rospy.loginfo(f"[DEBUG] Tree position initialized at ({self.tree_x}, {self.tree_y})")
+        except rospy.ServiceException as e:
+            rospy.logerr(f"[ERROR] Failed to get initial tree position: {e}")
+            self.tree_x = 0.0
+            self.tree_y = 0.0
 
     def path_callback(self, msg):
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
@@ -59,16 +72,9 @@ class FireTempNode:
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
 
-        try:
-            model_state = self.get_model_state("tree_red", "")
-            tree_x = model_state.pose.position.x
-            tree_y = model_state.pose.position.y
-            fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
-
-            temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
-            self.temp_pub.publish(temperature)
-        except rospy.ServiceException as e:
-            rospy.logerr(f"[ERROR] Failed to call get_model_state: {e}")
+        fire_distance = ((x - self.tree_x) ** 2 + (y - self.tree_y) ** 2) ** 0.5
+        temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
+        self.temp_pub.publish(temperature)
 
         if not self.waypoints:
             return
