@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update package list and install additional dependencies
 RUN apt-get update && apt-get install -y \
     git \
+	nano \
     wget \
     curl \
     unzip \
@@ -23,7 +24,7 @@ RUN apt-get update && apt-get install -y \
 	
 # Install Jason BDI
 WORKDIR /root
-RUN git clone https://github.com/LeandroBecker/CBSjason.git ~/jason && \
+RUN git clone https://github.com/iago-silvestre/CBSJason ~/jason && \
     cd ~/jason && \
     ./gradlew config
 	

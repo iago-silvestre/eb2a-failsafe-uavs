@@ -60,7 +60,7 @@ class FireTempNode:
         y = msg.pose.pose.position.y
 
         try:
-            rospy.loginfo("[DEBUG] Calling get_model_state for 'tree_red'")
+            #rospy.loginfo("[DEBUG] Calling get_model_state for 'tree_red'")
             model_state = self.get_model_state("tree_red", "")
             tree_x = model_state.pose.position.x
             tree_y = model_state.pose.position.y
