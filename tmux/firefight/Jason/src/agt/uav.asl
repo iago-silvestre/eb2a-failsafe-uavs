@@ -80,7 +80,7 @@ severity_cp0(SEV) :- temperature(T)  & T >= 70.0
    <- !mm::create_mission(search, 10, []); 
       +mm::mission_plan(search,L); 
       !mm::create_mission(rtl, 10, []); 
-      +mm::mission_plan(rtl,[[LAX,LAY,Z]]);
+      +mm::mission_plan(rtl,[[0,0,Z]]);
       !mm::run_mission(search).
 
 +!my_missions
