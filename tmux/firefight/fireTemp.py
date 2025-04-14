@@ -31,7 +31,7 @@ class FireTempNode:
         self.fire_size_pub = rospy.Publisher("fireSize", Int8, queue_size=1)
         self.subscriber_del = rospy.Subscriber('/fightFire', Int32, self.del_callback)
 
-        self.path_pub = rospy.Publisher('/uav1/lastWP', Int32, queue_size=1)
+        self.path_pub = rospy.Publisher('/uav1_lastWP', Int8, queue_size=1)
         self.battery_pub = rospy.Publisher('/battery_uav1', Float64, queue_size=1)
         self.fire_detection_pub = rospy.Publisher('/uav1/fire_detection', Int32, queue_size=1)
         self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
