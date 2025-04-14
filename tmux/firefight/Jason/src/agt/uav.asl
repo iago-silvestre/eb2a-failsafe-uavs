@@ -30,12 +30,6 @@ combat_traj(CT) :- wind_speed(WS) & WS >=0.0 & fire_pos(CX,CY) & std_altitude(Z)
 combat_traj(CT) :- wind_speed(WS) & WS < 0.0 & fire_pos(CX,CY) & std_altitude(Z)  & my_number(N) 
                   & CT= [[CX-2,CY-2,Z+N],[CX+2,CY-2,Z+N],[CX+2,CY+2,Z+N],[CX-2,CY+2,Z+N]].
 
-severity_cp0(SEV) :- temperature(T)  & T >= 50.0 & T < 70.0 
-                  & SEV= "Marginal".
-
-severity_cp0(SEV) :- temperature(T)  & T >= 70.0
-                  & SEV= "Critical".
-
 my_ap(AP) :- my_number(N)
             & .term2string(N, S) & .concat("autopilot",S,AP).
 
@@ -43,18 +37,24 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +fire_detection(N) : N>=22000 <- !found_fire.
 +battery(B) : B<=30.0 & not(low_batt) <- !low_battery.
-+temperature(T) : T>= 50.0 <- !high_temp.
-
 +cp0 [cr]: true <- .print(" critJason test"). 
 
+severity_cp0(SEV) :- temperature(T)  & T >= 50.0 & T < 70.0       //Rules for Severity Detection
+                  & SEV= "Marginal".
 
-+!high_temp
-   : severity_cp0(SEV) & SEV=="Marginal"
+severity_cp0(SEV) :- temperature(T)  & T >= 70.0
+                  & SEV= "Critical".
+
++temperature(T) : T>= 50.0 <- !high_temp.  //Placeholder - this will be done by external monitor
+
++!high_temp                                        //Plans for reaction depending on severity
+   : severity_cp0(SEV) & SEV=="Marginal"    
    <- .print(" Marginal Test").
 
 +!high_temp
    : severity_cp0(SEV) & SEV=="Critical"
-   <- .print("Critical Test").
+   <- .print("Critical Test");
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","land",[]).
 
 !start.
 
