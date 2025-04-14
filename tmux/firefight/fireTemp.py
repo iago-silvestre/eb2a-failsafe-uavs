@@ -80,11 +80,6 @@ class FireTempNode:
         fire_distance = ((x - self.tree_x) ** 2 + (y - self.tree_y) ** 2) ** 0.5
         temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
         self.temp_pub.publish(temperature)
-
-        #if not self.waypoints:
-        #    return
-
-        # Waypoint tracking
         for i, (wp_x, wp_y) in enumerate(self.waypoints):
             distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
             rospy.loginfo(f"[DEBUG] Checking waypoint {i}: ({wp_x}, {wp_y}) | Distance: {distance:.2f}")
@@ -92,17 +87,11 @@ class FireTempNode:
                 self.last_waypoint_index = i + 1
                 self.path_pub.publish(i + 1)
                 break
+        #if not self.waypoints:
+        #    return
 
-        # Fire temperature estimation based on distance to tree_red_1
-        #try:
-        #    model_state = self.get_model_state("tree_red", "")
-        #    tree_x = model_state.pose.position.x
-        #    tree_y = model_state.pose.position.y
-        #    fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
-        #    temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
-        #    self.temp_pub.publish(temperature)
-        #except rospy.ServiceException as e:
-        #    rospy.logerr("Failed to get model state: %s", e)
+        # Waypoint tracking
+        
 
     def image_callback(self, msg):
         try:
