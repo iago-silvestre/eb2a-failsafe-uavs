@@ -60,18 +60,12 @@ class FireTempNode:
         y = msg.pose.pose.position.y
 
         try:
-            #rospy.loginfo("[DEBUG] Calling get_model_state for 'tree_red'")
             model_state = self.get_model_state("tree_red", "")
             tree_x = model_state.pose.position.x
             tree_y = model_state.pose.position.y
-            #rospy.loginfo(f"[DEBUG] Tree position: x={tree_x:.2f}, y={tree_y:.2f}")
-
-            #rospy.loginfo(f"[DEBUG] UAV position: x={x:.2f}, y={y:.2f}")
             fire_distance = ((x - tree_x) ** 2 + (y - tree_y) ** 2) ** 0.5
-            #rospy.loginfo(f"[DEBUG] Distance to fire: {fire_distance:.2f}")
 
             temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
-            #rospy.loginfo(f"[DEBUG] Estimated temperature: {temperature:.2f}")
             self.temp_pub.publish(temperature)
         except rospy.ServiceException as e:
             rospy.logerr(f"[ERROR] Failed to call get_model_state: {e}")
@@ -109,7 +103,9 @@ class FireTempNode:
         upper_red = np.array([255, 100, 100])
         red_mask = cv2.inRange(cv_image, lower_red, upper_red)
         red_pixel_count = np.sum(red_mask == 255)
-        self.fire_detection_pub.publish(red_pixel_count)
+        disableFireDetect = 0
+        #self.fire_detection_pub.publish(red_pixel_count)
+        self.fire_detection_pub.publish(disableFireDetect)
 
     def update_battery(self, event):
         self.battery_level -= 0.1
