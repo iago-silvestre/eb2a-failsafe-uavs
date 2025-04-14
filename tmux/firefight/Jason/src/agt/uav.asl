@@ -15,8 +15,8 @@ landing_x(0.0).
 landing_y(0.0).
 wind_speed(-20.0).
 fire_pos(0.0,0.0).
-//firetemp_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
-firetemp_list([[20.0,5.0,6.25],[40.0,5.0,6.25]]).
+firetemp_list([[0.0,5.0,10.25],[20.0,5.0,10.25],[40.0,5.0,10.25]]).
+//firetemp_list([[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 
 current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & my_number(1) & uav1_ground_truth(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & my_number(2) & uav2_ground_truth(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
@@ -33,6 +33,8 @@ combat_traj(CT) :- wind_speed(WS) & WS < 0.0 & fire_pos(CX,CY) & std_altitude(Z)
 severity_cp0(SEV) :- temperature(T)  & T >= 50.0 & T < 70.0 
                   & SEV= "Marginal".
 
+severity_cp0(SEV) :- temperature(T)  & T >= 70.0
+                  & SEV= "Critical".
 
 my_ap(AP) :- my_number(N)
             & .term2string(N, S) & .concat("autopilot",S,AP).
@@ -45,13 +47,14 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +cp0 [cr]: true <- .print(" critJason test"). 
 
-+!high_temp
-   <- .print(" High temp").
 
 +!high_temp
    : severity_cp0(SEV) & SEV=="Marginal"
    <- .print(" Marginal Test").
 
++!high_temp
+   : severity_cp0(SEV) & SEV=="Critical"
+   <- .print("Critical Test").
 
 !start.
 
