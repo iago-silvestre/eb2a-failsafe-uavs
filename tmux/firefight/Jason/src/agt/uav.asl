@@ -44,6 +44,8 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +cp0 [cr]: true <- .print(" critJason test"). 
 
++!high_temp
+   <- .print(" High temp").
 
 +!high_temp
    : severity_cp0(SEV) & SEV=="Marginal"
