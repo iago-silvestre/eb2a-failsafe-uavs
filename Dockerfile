@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /root
 RUN git clone https://github.com/iago-silvestre/CBSJason ~/jason && \
     cd ~/jason && \
+    chmod +x gradlew && \
     ./gradlew config
 	
 # Install GeographicLib datasets for MAVROS
