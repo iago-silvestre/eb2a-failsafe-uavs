@@ -68,7 +68,7 @@ class FireTempNode:
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
         self.last_waypoint_index = 0
         self.path_pub.publish(0)
-        return path_callback
+        
 
     def odom_callback(self, msg):
         x = msg.pose.pose.position.x
