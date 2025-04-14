@@ -54,7 +54,7 @@ severity_cp0(SEV) :- temperature(T)  & T >= 70.0
 +!high_temp
    : severity_cp0(SEV) & SEV=="Critical"
    <- .print("Critical Test");
-      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","land",[]).
+      !mm::run_mission(rtl).
 
 !start.
 
@@ -74,10 +74,13 @@ severity_cp0(SEV) :- temperature(T)  & T >= 70.0
       !calculate_trajectory;
       !my_missions.
 
+
 +!my_missions
-   :  firetemp_list(L) & my_number(N) 
+   :  firetemp_list(L) & my_number(N) & my_landing_position(LAX, LAY) & std_altitude(Z)
    <- !mm::create_mission(search, 10, []); 
       +mm::mission_plan(search,L); 
+      !mm::create_mission(rtl, 10, []); 
+      +mm::mission_plan(rtl,[[LAX,LAY,Z]]);
       !mm::run_mission(search).
 
 +!my_missions
@@ -248,6 +251,10 @@ all_proposals_received(CNPId,NP) :-
 
 +mm::mission_state(goto_land,finished) 
    <- .print(" Arrived at landing point, landing!");
+       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","land",[]).
+
++mm::mission_state(rtl,finished) 
+   <- .print(" Returned to Launch, landing!");
        embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","land",[]).
 
 +!calculate_trajectory
