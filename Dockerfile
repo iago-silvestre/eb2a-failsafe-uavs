@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
 	
 # Install Jason BDI
 WORKDIR /root
-RUN git clone https://github.com/iago-silvestre/CBSJason ~/jason && \
+RUN git clone https://github.com/LeandroBecker/CBSJason ~/jason && \
     cd ~/jason && \
     chmod +x gradlew && \
     ./gradlew config
