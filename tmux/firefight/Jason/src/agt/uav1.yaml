@@ -7,7 +7,7 @@
   perceptionTopics:
       - topicName: uav1/failure #topico do rospy
         topicType: std_msgs/Int8 #type do rospy
-        beliefName: cp0
+        beliefName: critical_percept
       - topicName: uav1/fire_temperature #topico do rospy
         topicType: std_msgs/Float64 #type do rospy
         beliefName: temperature
