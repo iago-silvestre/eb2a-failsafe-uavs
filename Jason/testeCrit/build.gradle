@@ -70,9 +70,9 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir "${System.getProperty('user.home')}/critical-embedded-mas/src/main/java/embedded/mas/"
+            srcDir '/root/critical-embedded-mas/src/main/java/embedded/mas/'
             srcDir 'src/java'
-            srcDir "${System.getProperty('user.home')}/jason/build/libs"
+            srcDir 'root/jason/build/libs'
         }
         // srcDirs 'src/main/java', 'external-project'
         resources {
