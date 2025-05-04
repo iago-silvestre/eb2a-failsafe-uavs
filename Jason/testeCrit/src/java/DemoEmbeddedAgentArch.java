@@ -16,7 +16,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 	}
 				
     @Override
-	public Boolean[] perceiveCBS() { //v0: Still not generic, works only for the hand-coded perception "value2"
+	public Boolean[] perceiveCP() { //v0: Still not generic, works only for the hand-coded perception "value2"
 		Boolean[] percepts = new Boolean[8];
 		for(int i=0; i<8; i++)
 			percepts[i] = Boolean.FALSE;
