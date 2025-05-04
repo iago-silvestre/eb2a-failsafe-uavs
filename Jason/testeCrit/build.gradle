@@ -63,7 +63,7 @@ dependencies {
 //    implementation 'com.google.guava:guava:28.2-jre'
 
     implementation('org.jason:jason:3.1')
-    implementation('embedded-mas:embedded-mas:0.055-SNAPSHOT')
+    //implementation('embedded-mas:embedded-mas:0.055-SNAPSHOT')
 }
 
 //LB: this way it works adding the source files from embedded-mas
