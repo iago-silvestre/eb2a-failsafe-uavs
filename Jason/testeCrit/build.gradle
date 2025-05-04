@@ -43,6 +43,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/java'
+            srcDir '/root/jason/build/libs'
         }
         resources {
             srcDir 'src/resources'
