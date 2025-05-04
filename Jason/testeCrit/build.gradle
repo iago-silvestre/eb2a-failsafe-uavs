@@ -18,17 +18,15 @@ version '1.0'
 
 
 repositories {
-    
-
-    //maven { url "https://raw.githubusercontent.com/jacamo-lang/mvn-repo/master" }
+    mavenCentral()
     maven { url "https://jade.tilab.com/maven/" }
     maven { url "https://raw.github.com/embedded-mas/embedded-mas-mvn-repo/master" }
 
     //flatDir { dirs '/home/leandro/jason/build/libs'}
-    flatDir { dirs '/home/ctc_das/CBSjason/build/libs',
+    flatDir { dirs "${System.getProperty('user.home')}/CBSjason/build/libs",
     //               '/home/ctc_das/critical-embedded-mas/src/main/java/embedded/mas/bridges/jacamo'
     }
-    mavenCentral()
+    
 //                   '/home/leandro/critical-embedded-mas/examples/lbbROS1examples/LBB-ROSinterfAnalysis/src/java'
 //            }      
 }
