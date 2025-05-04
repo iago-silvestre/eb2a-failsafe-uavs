@@ -23,9 +23,8 @@ repositories {
     maven { url "https://raw.github.com/embedded-mas/embedded-mas-mvn-repo/master" }
 
     //flatDir { dirs '/home/leandro/jason/build/libs'}
-    flatDir { dirs "${System.getProperty('user.home')}/CBSjason/build/libs",
-    //               '/home/ctc_das/critical-embedded-mas/src/main/java/embedded/mas/bridges/jacamo'
-    }
+    flatDir { dirs "${System.getProperty('user.home')}/CBSjason/build/libs"}//,
+    //               '/home/ctc_das/critical-embedded-mas/src/main/java/embedded/mas/bridges/jacamo'    }
     
 //                   '/home/leandro/critical-embedded-mas/examples/lbbROS1examples/LBB-ROSinterfAnalysis/src/java'
 //            }      
