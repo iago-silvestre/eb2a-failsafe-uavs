@@ -58,7 +58,8 @@ diff(1).
 +!detected_failure
    <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","adf",N).
 
-+cb0 [cr]: true <- .print("cp0 critical percept"). 
+//+cb0 [cr]: true <- .print("cp0 critical percept"). 
++cb0 [cr]: true <- .print("teste"). 
 
 +cr0Per(_) : true <- .print("cp0 critical percept").
 
