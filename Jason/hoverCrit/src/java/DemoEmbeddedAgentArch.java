@@ -8,6 +8,7 @@ import embedded.mas.exception.PerceivingException;
 import jason.asSyntax.Literal;
 import jason.asSyntax.Trigger;
 import jason.asSemantics.Circumstance;
+import jason.asSyntax.LiteralImpl;
 
 
 public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
