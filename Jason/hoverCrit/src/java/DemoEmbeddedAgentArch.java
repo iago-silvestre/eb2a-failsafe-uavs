@@ -9,6 +9,8 @@ import jason.asSyntax.Literal;
 import jason.asSyntax.Trigger;
 import jason.asSemantics.Circumstance;
 import jason.asSyntax.LiteralImpl;
+import jason.asSyntax.Trigger.TEOperator;
+import jason.asSyntax.Trigger.TEType;
 
 
 public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
