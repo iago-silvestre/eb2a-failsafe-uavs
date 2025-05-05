@@ -32,6 +32,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 							if(value != lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
+								System.out.println("critical perception changed");
 							}
 							// else
 							// 	percepts[0] = Boolean.FALSE;
