@@ -6,6 +6,9 @@ import embedded.mas.bridges.jacamo.IDevice;
 import java.util.Collection;
 import embedded.mas.exception.PerceivingException;
 import jason.asSyntax.Literal;
+import jason.asSyntax.Trigger;
+import jason.asSemantics.Circumstance;
+
 
 public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 
@@ -18,6 +21,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
     @Override
 	public Boolean[] perceiveCP() { //v0: Still not generic, works only for the hand-coded perception "value2"
 		Boolean[] percepts = new Boolean[8];
+		Circumstance C = getTS().getC();
 		for(int i=0; i<8; i++)
 			percepts[i] = Boolean.FALSE;
 		
@@ -32,6 +36,9 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 							if(value != lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
+								Literal percept = new LiteralImpl("cb0"); 
+                				Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                				C.CPM.put(te.getPredicateIndicator(), true);
 							}
 							// else
 							// 	percepts[0] = Boolean.FALSE;
