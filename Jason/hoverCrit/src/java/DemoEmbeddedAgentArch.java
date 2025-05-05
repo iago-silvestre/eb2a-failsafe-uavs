@@ -9,7 +9,7 @@ import jason.asSyntax.Literal;
 
 public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 
-	private int lastCPval = -12345; //LBB: this is temporary, requires a better implementation
+	private int lastCPval = 1; //LBB: this is temporary, requires a better implementation
 
     public DemoEmbeddedAgentArch() {
 		super();
@@ -29,7 +29,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 						String functor = l.getFunctor();
 						if(functor.contains("critical_percept")){
 							int value = Integer.parseInt(l.getTerm(0).toString());
-							if(value != lastCPval){
+							if(value == lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
 								System.out.println("critical perception changed");
