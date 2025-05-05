@@ -30,7 +30,6 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 						if(functor.contains("critical_percept")){
 							int value = Integer.parseInt(l.getTerm(0).toString());
 							if(value == lastCPval){
-								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
 								System.out.println("critical perception changed");
 							}
