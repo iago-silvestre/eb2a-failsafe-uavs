@@ -25,6 +25,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 	public Boolean[] perceiveCP() { //v0: Still not generic, works only for the hand-coded perception "value2"
 		Boolean[] percepts = new Boolean[8];
 		Circumstance C = getTS().getC();
+		C.CPM.clear();
 		for(int i=0; i<8; i++)
 			percepts[i] = Boolean.FALSE;
 		
