@@ -7,7 +7,7 @@ import java.util.Collection;
 import embedded.mas.exception.PerceivingException;
 import jason.asSyntax.Literal;
 
-public class DemoEmbeddedAgentArch extends LocalAgArch{
+public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 
 	private int lastCPval = -12345; //LBB: this is temporary, requires a better implementation
 

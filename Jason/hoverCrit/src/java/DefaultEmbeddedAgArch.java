@@ -10,7 +10,7 @@ import jason.asSyntax.Literal;
 import static jason.asSyntax.ASSyntax.createLiteral;
 
 
-public class DefaultEmbeddedAgArch extends LocalAgArch{
+public class DefaultEmbeddedAgArch extends AgArch{
 
 
 	protected Collection <DefaultDevice> devices = null;
