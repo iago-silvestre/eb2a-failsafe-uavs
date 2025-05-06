@@ -98,7 +98,7 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
 +!comm_failure                                        //Plans for reaction depending on severity
    : severity_cp1(SEV) & SEV=="Critical" & battery(B) & B<30.0
    <- .print(" Critical Motor Failure low batt");
-      !find_safe_spot.
+      !mm::run_mission(rtl).
 
 
 
