@@ -43,7 +43,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/java'
-            srcDir '/root/jason/build/libs'
+            srcDir "${System.getProperty('user.home')}/jason/build/libs"
         }
         resources {
             srcDir 'src/resources'

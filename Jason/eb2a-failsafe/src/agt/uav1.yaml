@@ -1,0 +1,60 @@
+- device_id: sample_roscore 
+  className:  MyRosMaster
+  microcontroller: 
+      id: ros1 
+      className: DefaultRos4EmbeddedMas  
+      connectionString: ws://localhost:9090    
+  perceptionTopics:
+      - topicName: uav1/failure #topico do rospy
+        topicType: std_msgs/Int8 #type do rospy
+        beliefName: critical_percept
+      - topicName: uav1/fire_temperature #topico do rospy
+        topicType: std_msgs/Float64 #type do rospy
+        beliefName: temperature
+      - topicName: uav1/fire_direction
+        topicType: std_msgs/String
+        beliefName: fire_direction
+      - topicName: uav1/oppos_fire_dir
+        topicType: std_msgs/String
+        beliefName: oppos_fire_dir
+      - topicName: uav1_lastWP
+        topicType: std_msgs/Int8
+      - topicName: uav1/ground_truth
+        topicType: nav_msgs/Odometry
+      - topicName: fireExt
+        topicType: std_msgs/Int8
+      - topicName: fireSize
+        topicType: std_msgs/Int8
+      - topicName: uav1/fire_detection
+        topicType: std_msgs/Int32
+        beliefName: fire_detection
+      - topicName: battery_uav1
+        topicType: std_msgs/Float64
+        beliefName: battery
+      - topicName: uav1/comm_failure
+        topicType: std_msgs/Int32
+        beliefName: comm_failure
+      - topicName: uav1/time_since_comm_failure
+        topicType: std_msgs/Float64
+        beliefName: timesincecommfailure
+        #beliefName: time_since_comm_failure
+  actions:       
+    topicWritingActions:          
+      - actionName: fightFire              
+        topicName: /fightFire
+        topicType: std_msgs/Int32       
+      - actionName: recharge_battery               
+        topicName: /recharge_battery 
+        topicType: std_msgs/Int32      
+      
+    serviceRequestActions:
+      - actionName: land 
+        serviceName: /uav1/uav_manager/land 
+      - actionName: hover 
+        serviceName: /uav1/control_manager/hover
+      - actionName: goto_altitude #action name (from agent's perspective)
+        serviceName: /uav1/control_manager/goto_altitude #service called to execute the action
+        params: #parameters
+          - goal
+
+

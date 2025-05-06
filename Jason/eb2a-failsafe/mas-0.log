@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-05-06T12:50:06.643667316Z</date>
+  <millis>1746535806643</millis>
+  <nanos>667316</nanos>
+  <sequence>0</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>generateGoalDeletionFromEvent</method>
+  <thread>44</thread>
+  <message>No fail event was generated for +!mm::resume("None")[source(self)]</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:06.651914145Z</date>
+  <millis>1746535806651</millis>
+  <nanos>914145</nanos>
+  <sequence>1</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>generateGoalDeletionFromEvent</method>
+  <thread>44</thread>
+  <message>
+intention 3: 
+    +comm_failure(0)[device(sample_roscore),source(percept)] &lt;- ... !mm::resume(CM) / {CM="None"}
+</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:06.654134961Z</date>
+  <millis>1746535806654</millis>
+  <nanos>134961</nanos>
+  <sequence>2</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>applyRelApplPlRule2</method>
+  <thread>44</thread>
+  <message>Found a goal for which there is no applicable plan: +!mm::resume("None")[source(self)]</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.451694434Z</date>
+  <millis>1746535807451</millis>
+  <nanos>694434</nanos>
+  <sequence>3</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Started![[-2,-2,7.25],[2,-2,7.25],[2,2,7.25],[-2,2,7.25]]</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.452904863Z</date>
+  <millis>1746535807452</millis>
+  <nanos>904863</nanos>
+  <sequence>4</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating landing position</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.457284494Z</date>
+  <millis>1746535807457</millis>
+  <nanos>284494</nanos>
+  <sequence>5</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating area</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.462262480Z</date>
+  <millis>1746535807462</millis>
+  <nanos>262480</nanos>
+  <sequence>6</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.463690530Z</date>
+  <millis>1746535807463</millis>
+  <nanos>690530</nanos>
+  <sequence>7</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.464990449Z</date>
+  <millis>1746535807464</millis>
+  <nanos>990449</nanos>
+  <sequence>8</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.467092584Z</date>
+  <millis>1746535807467</millis>
+  <nanos>92584</nanos>
+  <sequence>9</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Finished calculating waypoints</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:07.468591835Z</date>
+  <millis>1746535807468</millis>
+  <nanos>591835</nanos>
+  <sequence>10</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Waypoints list: [[-47.5,-47.5,6.25],[-47.5,-2.5,6.25],[-42.5,-2.5,6.25],[-42.5,-47.5,6.25],[-37.5,-47.5,6.25],[-37.5,-2.5,6.25],[-32.5,-2.5,6.25],[-32.5,-47.5,6.25],[-27.5,-47.5,6.25],[-27.5,-2.5,6.25],[-22.5,-2.5,6.25],[-22.5,-47.5,6.25]]</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:18.885341283Z</date>
+  <millis>1746535818885</millis>
+  <nanos>341283</nanos>
+  <sequence>11</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:19.889882713Z</date>
+  <millis>1746535819889</millis>
+  <nanos>882713</nanos>
+  <sequence>12</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:20.892336520Z</date>
+  <millis>1746535820892</millis>
+  <nanos>336520</nanos>
+  <sequence>13</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:21.894160264Z</date>
+  <millis>1746535821894</millis>
+  <nanos>160264</nanos>
+  <sequence>14</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:22.896018919Z</date>
+  <millis>1746535822896</millis>
+  <nanos>18919</nanos>
+  <sequence>15</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:23.897722884Z</date>
+  <millis>1746535823897</millis>
+  <nanos>722884</nanos>
+  <sequence>16</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:24.899843553Z</date>
+  <millis>1746535824899</millis>
+  <nanos>843553</nanos>
+  <sequence>17</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:25.901692682Z</date>
+  <millis>1746535825901</millis>
+  <nanos>692682</nanos>
+  <sequence>18</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:26.903472543Z</date>
+  <millis>1746535826903</millis>
+  <nanos>472543</nanos>
+  <sequence>19</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:27.906397932Z</date>
+  <millis>1746535827906</millis>
+  <nanos>397932</nanos>
+  <sequence>20</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:28.908162864Z</date>
+  <millis>1746535828908</millis>
+  <nanos>162864</nanos>
+  <sequence>21</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Marginal severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:29.910125639Z</date>
+  <millis>1746535829910</millis>
+  <nanos>125639</nanos>
+  <sequence>22</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> Critical severity comm failure</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:29.911232007Z</date>
+  <millis>1746535829911</millis>
+  <nanos>232007</nanos>
+  <sequence>23</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>generateGoalDeletionFromEvent</method>
+  <thread>44</thread>
+  <message>No fail event was generated for +!mm::run_mission(rtl)[source(self)]</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:29.911739121Z</date>
+  <millis>1746535829911</millis>
+  <nanos>739121</nanos>
+  <sequence>24</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>generateGoalDeletionFromEvent</method>
+  <thread>44</thread>
+  <message>
+intention 4: 
+    +!comm_failure[source(self)] &lt;- ... !mm::run_mission(rtl) / {SEV="Critical"}
+    +comm_failure(1)[device(sample_roscore),source(percept)] &lt;- ... !comm_failure / {}
+</message>
+</record>
+<record>
+  <date>2025-05-06T12:50:29.912252844Z</date>
+  <millis>1746535829912</millis>
+  <nanos>252844</nanos>
+  <sequence>25</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>WARNING</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>applyRelApplPlRule2</method>
+  <thread>44</thread>
+  <message>Found a goal for which there is no applicable plan: +!mm::run_mission(rtl)[source(self)]</message>
+</record>
+</log>

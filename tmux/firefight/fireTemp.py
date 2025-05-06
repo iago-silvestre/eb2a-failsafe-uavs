@@ -3,9 +3,10 @@
 import rospy
 import random
 import numpy as np
+import math
 from gazebo_msgs.srv import DeleteModel, GetModelState
 from geometry_msgs.msg import Pose
-from std_msgs.msg import Int32, Float64, Int8
+from std_msgs.msg import Int32, Float64, Int8, String
 from nav_msgs.msg import Odometry
 from mrs_msgs.srv import PathSrv,PathSrvRequest
 from mrs_msgs.msg import Reference,Path
@@ -26,6 +27,10 @@ class FireTempNode:
         self.waypoints = []
         self.last_waypoint_index = 0
 
+        self.last_odom_time = rospy.Time.now()
+        self.comm_failure = False
+        self.start_time = None
+
         self.bridge = CvBridge()
 
         self.fire_size_pub = rospy.Publisher("fireSize", Int8, queue_size=1)
@@ -37,10 +42,18 @@ class FireTempNode:
         self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
         self.failure_pub = rospy.Publisher('/uav1/failure', Int8, queue_size=1)
 
+        self.fire_direction_pub = rospy.Publisher("/uav1/fire_direction", String, queue_size=1)
+        self.oppos_fire_dir_pub = rospy.Publisher("/uav1/oppos_fire_dir", String, queue_size=1)
+        self.time_pub = rospy.Publisher('/uav1/time_since_comm_failure', Float64, queue_size=1)
+
+
         rospy.Subscriber('/uav1/trajectory_generation/path', Path, self.path_callback)
         rospy.Subscriber('/uav1/ground_truth', Odometry, self.odom_callback)
         rospy.Subscriber('/uav1/bluefox_optflow/image_raw', Image, self.image_callback)
         rospy.Subscriber('/recharge_battery', Int8, self.recharge_battery_callback)
+
+        rospy.Subscriber('/uav1/comm_failure', Int32, self.comm_failure_callback)
+        self.publish_timer = rospy.Timer(rospy.Duration(0.5), self.publish_elapsed_time)
 
         rospy.wait_for_service('/gazebo/get_model_state')
         self.get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
@@ -48,8 +61,8 @@ class FireTempNode:
         rospy.Timer(rospy.Duration(1), self.update_battery)
         # Immediately publish failure = 1
         rospy.sleep(0.5)  # Short delay to ensure publisher is registered
-        self.failure_pub.publish(Int8(data=1))
-        rospy.loginfo("[DEBUG] Published failure message: 1")
+        #self.failure_pub.publish(Int8(data=1))
+        #rospy.loginfo("[DEBUG] Published failure message: 1")
         
         rospy.wait_for_service('/gazebo/get_model_state')
         self.get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
@@ -58,11 +71,29 @@ class FireTempNode:
             model_state = self.get_model_state("tree_red", "")
             self.tree_x = model_state.pose.position.x
             self.tree_y = model_state.pose.position.y
+            self.tree_z = 5.0
             rospy.loginfo(f"[DEBUG] Tree position initialized at ({self.tree_x}, {self.tree_y})")
         except rospy.ServiceException as e:
             rospy.logerr(f"[ERROR] Failed to get initial tree position: {e}")
             self.tree_x = 0.0
             self.tree_y = 0.0
+            self.tree_z = 0.0
+
+    def comm_failure_callback(self, msg):
+        if msg.data == 1 and not self.comm_failure:
+            self.comm_failure = True
+            self.start_time = rospy.Time.now()
+            rospy.loginfo("Comm failure started.")
+        elif msg.data == 0 and self.comm_failure:
+            self.comm_failure = False
+            self.start_time = None
+            rospy.loginfo("Comm failure cleared. Timer reset.")
+            self.time_pub.publish(0.0)  # Optional: reset value
+    
+    def publish_elapsed_time(self, event):
+        if self.comm_failure and self.start_time is not None:
+            elapsed = (rospy.Time.now() - self.start_time).to_sec()
+            self.time_pub.publish(Float64(data=elapsed))
 
     def path_callback(self, msg):
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
@@ -72,25 +103,59 @@ class FireTempNode:
         self.last_waypoint_index = 0
         self.path_pub.publish(0)
 
+    def angle_to_direction(self, angle_deg):
+        """Convert angle in degrees to compass direction string."""
+        directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+        idx = int(((angle_deg + 22.5) % 360) / 45)
+        return directions[idx]
 
     def odom_callback(self, msg):
+        current_time = rospy.Time.now()
+        if (current_time - self.last_odom_time).to_sec() < 0.5:
+            return  # Skip this message
+
+        self.last_odom_time = current_time  # Update the last processed time
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
+        z = msg.pose.pose.position.z 
 
-        fire_distance = ((x - self.tree_x) ** 2 + (y - self.tree_y) ** 2) ** 0.5
-        temperature = max(0.0, 100.0 - fire_distance * 10.0)  # basic decay model
+        fire_distance = ((x - self.tree_x) ** 2 + (y - self.tree_y) ** 2 + (z - self.tree_z) ** 2) ** 0.5
+        temperature = max(0.0, 100.0 - fire_distance * 10.0)
         self.temp_pub.publish(temperature)
+
+        # If temperature is too low, publish "none"
+        if temperature < 10.0:
+            msg = String()
+            msg.data = "none"
+            self.fire_direction_pub.publish(msg)
+        else:
+            # Calculate angle from UAV to fire in radians
+            dx = self.tree_x - x
+            dy = self.tree_y - y
+            angle_rad = math.atan2(dy, dx)  # Bearing in radians
+            angle_deg = math.degrees(angle_rad)  # Optional: convert to degrees
+            directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+            oppositeD =  ['S', 'SW', 'W', 'NW', 'N', 'NE', 'E', 'SE']
+            idx = int(((angle_deg + 22.5) % 360) / 45)
+            fire_direction_str = directions[idx]
+            oppos_fire_dir_str = oppositeD[idx]
+            #fire_direction_str = self.angle_to_direction(angle_deg)
+
+            msg = String()
+            msg.data = fire_direction_str
+            self.fire_direction_pub.publish(msg)
+
+            msg2 = String()
+            msg2.data = oppos_fire_dir_str
+            self.oppos_fire_dir_pub.publish(msg2)
+
+        # Waypoint tracking
         for i, (wp_x, wp_y) in enumerate(self.waypoints):
             distance = ((x - wp_x) ** 2 + (y - wp_y) ** 2) ** 0.5
-            #rospy.loginfo(f"[DEBUG] Checking waypoint {i}: ({wp_x}, {wp_y}) | Distance: {distance:.2f}")
             if distance < self.threshold:
                 self.last_waypoint_index = i + 1
                 self.path_pub.publish(i + 1)
                 break
-        #if not self.waypoints:
-        #    return
-
-        # Waypoint tracking
         
 
     def image_callback(self, msg):
@@ -110,7 +175,8 @@ class FireTempNode:
 
     def update_battery(self, event):
         self.battery_level -= 0.1
-        self.battery_pub.publish(self.battery_level)
+        #self.battery_pub.publish(self.battery_level)
+        self.battery_pub.publish(100.0)
         self.fire_size_pub.publish(self.fireSize)
 
     def recharge_battery_callback(self, msg):

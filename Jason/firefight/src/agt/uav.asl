@@ -15,7 +15,8 @@ landing_x(0.0).
 landing_y(0.0).
 wind_speed(-20.0).
 fire_pos(0.0,0.0).
-firetemp_list([[0.0,5.0,10.25],[20.0,5.0,10.25],[40.0,5.0,10.25]]).
+critical_p(2).
+firetemp_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 //firetemp_list([[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 
 current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & my_number(1) & uav1_ground_truth(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
@@ -37,7 +38,24 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +fire_detection(N) : N>=22000 <- !found_fire.
 +battery(B) : B<=30.0 & not(low_batt) <- !low_battery.
-+cp0 [cr]: true <- .print(" critJason test"). 
+
++cb0 [cr]: true <- .print("teste"). 
+
++critical_percept(CP)[source(percept), device(sample_roscore)]<- +r_critical_percept(CP).
+
+//+cb0 [cr]: severity_cb0(SEV) & SEV=="Marginal"  <- .print(" severity= marginal critJason test"). 
+
+//+cb0 [cr]: severity_cb0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). //[device(sample_roscore),source(percept)]
+
++cb0 [cr]: severity_cb0(SEV) & SEV=="Marginal" & my_number(N) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","goto_altitude",[10.5]).
+
++cb0 [cr]: severity_cb0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
+
+severity_cb0(SEV) :- critical_p(C) & C >= 0 & C <= 5       //Rules for Severity Detection
+                  & SEV= "Marginal".
+
+severity_cb0(SEV) :- critical_p(C) & C > 5
+                  & SEV= "Critical".
 
 severity_cp0(SEV) :- temperature(T)  & T >= 50.0 & T < 70.0       //Rules for Severity Detection
                   & SEV= "Marginal".
@@ -49,14 +67,27 @@ severity_cp0(SEV) :- temperature(T)  & T >= 70.0
 
 +!high_temp                                        //Plans for reaction depending on severity
    : severity_cp0(SEV) & SEV=="Marginal"    
-   <- .print(" Marginal Test").
-
+   <- .print(" Marginal Test");
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","hover",[]);
+      .wait(500);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","goto_altitude",[10.0]).
+      
 +!high_temp
    : severity_cp0(SEV) & SEV=="Critical"
    <- .print("Critical Test");
       !mm::run_mission(rtl).
 
 !start.
+
++!start
+   : my_ap(AP) & my_number(N) & combat_traj(CT) & firetemp_list(L)
+    <- .wait(2000);
+      +mm::my_ap(AP);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","path",[N,L] );
+      //embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("sample_roscore","goto_altitude",[10.5]);
+      .print("Started!",CT);
+      !calculate_trajectory;
+      !my_missions.
 
 +fireSize(0)
    : current_mission(combat_fire)
@@ -65,14 +96,6 @@ severity_cp0(SEV) :- temperature(T)  & T >= 70.0
 +fireSize(0)
    : current_mission(goto_fire)
    <- !mm::stop_mission(goto_fire,"Fire is Extinguished").
-
-+!start
-   : my_ap(AP) & my_number(N) & combat_traj(CT)
-    <- .wait(2000);
-      +mm::my_ap(AP);
-      .print("Started!",CT);
-      !calculate_trajectory;
-      !my_missions.
 
 
 +!my_missions
