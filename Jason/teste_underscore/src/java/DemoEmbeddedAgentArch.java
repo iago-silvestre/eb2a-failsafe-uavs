@@ -35,7 +35,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 				if(p!=null) {
 					for(Literal l:p) {
 						String functor = l.getFunctor();
-						if(functor.contains("critical_percept")){
+						if(functor.contains("criticalpercept")){
 							int value = Integer.parseInt(l.getTerm(0).toString());
 							if(value != lastCPval){
 								lastCPval = value;
