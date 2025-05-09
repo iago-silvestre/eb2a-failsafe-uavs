@@ -52,8 +52,7 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 
 +cb0 [cr]: severity_cb0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
 
-//+cb0 [cr]: critical_percept(CP) & CP ==1  <- .print(" severity= critical critJason test"). 
-+cb0 [cr]: true  <- .print(" severity= critical critJason test"). 
++cb0 [cr]: critical_percept(CP) & CP ==1  <- .print(" severity= critical critJason test"). 
 
 severity_cb0(SEV) :- critical_p(C) & C >= 0 & C <= 5       //Rules for Severity Detection
                   & SEV= "Marginal".
