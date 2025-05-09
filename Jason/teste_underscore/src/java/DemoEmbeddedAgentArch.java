@@ -35,11 +35,13 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 				if(p!=null) {
 					for(Literal l:p) {
 						String functor = l.getFunctor();
-						if(functor.contains("criticalpercept")){
+						if(functor.contains("critical_percept")){
 							int value = Integer.parseInt(l.getTerm(0).toString());
 							if(value != lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
+								Literal cp0Percept = Literal.parseLiteral("cp0(" + value + ")");
+								C.addBel(cp0Percept);
 								Literal percept = new LiteralImpl("cb0"); 
                 				Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                 				C.CPM.put(te.getPredicateIndicator(), true);
