@@ -8,7 +8,7 @@ std_heading(0.0).
 land_point(-102.0, -111.0).
 land_radius(10.0).
 diff(1).
-teste_underscore(1)[device(sample_roscore),source(percept)].
+//teste_underscore(1)[device(sample_roscore),source(percept)].
 
 //pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW))))
 //////////////// Rules
@@ -45,6 +45,7 @@ teste_underscore(1)[device(sample_roscore),source(percept)].
 +!hover
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
       .wait(1000);
+      .print("teste");
       //.print("hovering");
       !hover.
 
