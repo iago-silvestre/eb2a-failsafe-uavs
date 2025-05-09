@@ -40,7 +40,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 							if(value != lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
-								Literal cp0Percept = Literal.parseLiteral("cp0(" + value + ")");
+								Literal cp0Percept = Literal.parseLiteral("critical_percept(" + value + ")");
 								getTS().getAg().getBB().add(cp0Percept);
 								Literal percept = new LiteralImpl("cb0"); 
                 				Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
