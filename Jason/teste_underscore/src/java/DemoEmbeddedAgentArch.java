@@ -35,14 +35,14 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 				if(p!=null) {
 					for(Literal l:p) {
 						String functor = l.getFunctor();
-						if(functor.contains("critical_percept")){
+						if(functor.contains("critical_percept")){ //This needs to be adjusted to support multiple critical percepts
 							int value = Integer.parseInt(l.getTerm(0).toString());
 							if(value != lastCPval){
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
-								Literal cp0Percept = Literal.parseLiteral("critical_percept(" + value + ")");
+								Literal cp0Percept = Literal.parseLiteral("critical_percept(" + value + ")"); // This needs to be adjusted to use variable name
 								getTS().getAg().getBB().add(cp0Percept);
-								Literal percept = new LiteralImpl("cb0"); 
+								Literal percept = new LiteralImpl("cb0");  // This needs to be adjusted to use variable name
                 				Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                 				C.CPM.put(te.getPredicateIndicator(), true);
 							}
