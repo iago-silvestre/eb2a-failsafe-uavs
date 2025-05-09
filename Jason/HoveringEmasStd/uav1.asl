@@ -19,7 +19,11 @@ diff(1).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav10_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav11_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav12_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
+severity_cp0(SEV) :- teste_underscore(T)  & T >= 1 //& T < 70.0       //Rules for Severity Detection
+                  & SEV= "Marginal".
 
+severity_cp0(SEV) :- teste_underscore(T)  & T == 0
+                  & SEV= "Critical".
 
 +failure_uav1(N) <- !detected_failure.
 
@@ -37,7 +41,7 @@ diff(1).
 
 //////////////// Calculating land position
 +!hover
-   :  teste_underscore(1)
+   :  severity_cp0(SEV) & SEV=="Marginal" 
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
       .wait(1000);
       .print("teste_underscore");
