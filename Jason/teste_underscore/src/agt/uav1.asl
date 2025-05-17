@@ -23,12 +23,16 @@ severity_cp0(SEV) :- critical_percept(T)  & T == 0 //& T < 70.0       //Rules fo
                   & SEV= "Marginal".
 
 severity_cp0(SEV) :- critical_percept(T)  & T == 1
+                  & SEV= "Severe".
+
+severity_cp0(SEV) :- critical_percept(T)  & T == 2
                   & SEV= "Critical".
 
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Marginal"  <- .print(" severity= marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Marginal")  <- .print(" severity= marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Critical")  <- .print(" severity= critical critJason test"). 
++cb0 [cr]: severity_cp0("Marginal")  <- .print(" severity= Marginal critJason test"). 
++cb0 [cr]: severity_cp0("Severe")  <- .print(" severity= Severe critJason test"). 
++cb0 [cr]: severity_cp0("Critical")  <- .print(" severity= Critical critJason test"). 
 //+cb0 [cr]: true  <- .print(" severity= critical critJason test"). 
 +failure_uav1(N) <- !detected_failure.
 

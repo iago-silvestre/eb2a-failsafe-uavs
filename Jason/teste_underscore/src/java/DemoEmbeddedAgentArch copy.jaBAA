@@ -39,16 +39,42 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch{
 						if(functor.contains("critical_percept")){ //This needs to be adjusted to support multiple critical percepts
 							int value = Integer.parseInt(l.getTerm(0).toString());
 							if(value != lastCPval){
-								Literal cpToRemove = Literal.parseLiteral("critical_percept(" + lastCPval + ")[device(roscore1),source(percept)]"); //Remove the old belief
-								getTS().getAg().getBB().remove(cpToRemove); //this is done to avoid triggering critical reactions based on old beliefs
+								
+								try {
+									getTS().getAg().delBel(Literal.parseLiteral("critical_percept(" + lastCPval + ")"));
+
+									System.out.println("Current critical_percept beliefs:");
+									for (Literal b : getTS().getAg().getBB()) {
+										if (b.getFunctor().equals("critical_percept")) {
+											System.out.println("  " + b);
+										}
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								lastCPval = value;
 								percepts[0] = Boolean.TRUE;
-								Literal cp0Percept = Literal.parseLiteral("critical_percept(" + value + ")[device(roscore1),source(percept)]"); // This needs to be adjusted to use variable name
-								getTS().getAg().getBB().add(cp0Percept);       // adds the belief to be used in context of estimating the severity of the event
+								Literal cp0Percept = Literal.parseLiteral("critical_percept(" + value + ")"); // This needs to be adjusted to use variable name
+								//cp0Percept.addAnn(Literal.parseLiteral("source(critical_percept)"));
+								//cp0Percept.addAnnotation(new Annotation("source", "critical_percept"));
+								if (cp0Percept.getAnnots() == null) {
+									cp0Percept.setAnnots(new jason.asSyntax.ListTermImpl());
+								}
+								cp0Percept.getAnnots().add(Literal.parseLiteral("source(critical_percept)"));
+								getTS().getAg().getBB().add(cp0Percept);
+
+								System.out.println("Current critical_percept beliefs:");
+									for (Literal b : getTS().getAg().getBB()) {
+										if (b.getFunctor().equals("critical_percept")) {
+											System.out.println("  " + b);
+										}
+									}
 								Literal percept = new LiteralImpl("cb0");  // This needs to be adjusted to use variable name
                 				Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                 				C.CPM.put(te.getPredicateIndicator(), true);
 							}
+							// else
+							// 	percepts[0] = Boolean.FALSE;
 						}
 							
 					}
