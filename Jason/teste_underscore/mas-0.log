@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-17T22:11:32.713678852Z</date>
-  <millis>1747519892713</millis>
-  <nanos>678852</nanos>
+  <date>2025-05-17T22:52:04.220161911Z</date>
+  <millis>1747522324220</millis>
+  <nanos>161911</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Started!</message>
 </record>
 <record>
-  <date>2025-05-17T22:11:33.263179439Z</date>
-  <millis>1747519893263</millis>
-  <nanos>179439</nanos>
+  <date>2025-05-17T22:52:09.869939117Z</date>
+  <millis>1747522329869</millis>
+  <nanos>939117</nanos>
   <sequence>1</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -26,22 +26,10 @@
   <message> severity= Marginal critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T22:11:39.787800618Z</date>
-  <millis>1747519899787</millis>
-  <nanos>800618</nanos>
+  <date>2025-05-17T22:52:16.279239749Z</date>
+  <millis>1747522336279</millis>
+  <nanos>239749</nanos>
   <sequence>2</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>INFO</level>
-  <class>jason.stdlib.println</class>
-  <method>execute</method>
-  <thread>34</thread>
-  <message> severity= Severe critJason test</message>
-</record>
-<record>
-  <date>2025-05-17T22:11:46.304915442Z</date>
-  <millis>1747519906304</millis>
-  <nanos>915442</nanos>
-  <sequence>3</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
@@ -49,3 +37,4 @@
   <thread>34</thread>
   <message> severity= Critical critJason test</message>
 </record>
+</log>
