@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-17T19:37:27.121210021Z</date>
-  <millis>1747510647121</millis>
-  <nanos>210021</nanos>
+  <date>2025-05-17T20:06:31.853918111Z</date>
+  <millis>1747512391853</millis>
+  <nanos>918111</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Started!</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:36.685976955Z</date>
-  <millis>1747510656685</millis>
-  <nanos>976955</nanos>
+  <date>2025-05-17T20:07:09.564011413Z</date>
+  <millis>1747512429564</millis>
+  <nanos>11413</nanos>
   <sequence>1</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message> severity= marginal critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:38.193111495Z</date>
-  <millis>1747510658193</millis>
-  <nanos>111495</nanos>
+  <date>2025-05-17T20:07:11.078295867Z</date>
+  <millis>1747512431078</millis>
+  <nanos>295867</nanos>
   <sequence>2</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:39.195324416Z</date>
-  <millis>1747510659195</millis>
-  <nanos>324416</nanos>
+  <date>2025-05-17T20:07:12.090854483Z</date>
+  <millis>1747512432090</millis>
+  <nanos>854483</nanos>
   <sequence>3</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:40.197329052Z</date>
-  <millis>1747510660197</millis>
-  <nanos>329052</nanos>
+  <date>2025-05-17T20:07:13.103265987Z</date>
+  <millis>1747512433103</millis>
+  <nanos>265987</nanos>
   <sequence>4</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -62,9 +62,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:41.199384337Z</date>
-  <millis>1747510661199</millis>
-  <nanos>384337</nanos>
+  <date>2025-05-17T20:07:14.115594338Z</date>
+  <millis>1747512434115</millis>
+  <nanos>594338</nanos>
   <sequence>5</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -74,9 +74,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:42.201609650Z</date>
-  <millis>1747510662201</millis>
-  <nanos>609650</nanos>
+  <date>2025-05-17T20:07:15.127826977Z</date>
+  <millis>1747512435127</millis>
+  <nanos>826977</nanos>
   <sequence>6</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -86,46 +86,34 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:42.611467613Z</date>
-  <millis>1747510662611</millis>
-  <nanos>467613</nanos>
+  <date>2025-05-17T20:07:16.139968458Z</date>
+  <millis>1747512436139</millis>
+  <nanos>968458</nanos>
   <sequence>7</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message> severity= marginal critJason test</message>
+  <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:37:42.613371700Z</date>
-  <millis>1747510662613</millis>
-  <nanos>371700</nanos>
+  <date>2025-05-17T20:07:17.150500073Z</date>
+  <millis>1747512437150</millis>
+  <nanos>500073</nanos>
   <sequence>8</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message> severity= critical critJason test</message>
-</record>
-<record>
-  <date>2025-05-17T19:37:43.213580284Z</date>
-  <millis>1747510663213</millis>
-  <nanos>580284</nanos>
-  <sequence>9</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>INFO</level>
-  <class>jason.stdlib.println</class>
-  <method>execute</method>
-  <thread>34</thread>
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:20.350411403Z</date>
-  <millis>1747510700350</millis>
-  <nanos>411403</nanos>
-  <sequence>10</sequence>
+  <date>2025-05-17T20:07:17.661723913Z</date>
+  <millis>1747512437661</millis>
+  <nanos>723913</nanos>
+  <sequence>9</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
@@ -134,10 +122,10 @@
   <message> severity= marginal critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:20.352530840Z</date>
-  <millis>1747510700352</millis>
-  <nanos>530840</nanos>
-  <sequence>11</sequence>
+  <date>2025-05-17T20:07:17.664465157Z</date>
+  <millis>1747512437664</millis>
+  <nanos>465157</nanos>
+  <sequence>10</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
@@ -146,33 +134,45 @@
   <message> severity= critical critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:22.255600814Z</date>
-  <millis>1747510702255</millis>
-  <nanos>600814</nanos>
+  <date>2025-05-17T20:07:18.162441867Z</date>
+  <millis>1747512438162</millis>
+  <nanos>441867</nanos>
+  <sequence>11</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>34</thread>
+  <message>teste_underscore</message>
+</record>
+<record>
+  <date>2025-05-17T20:07:37.024844761Z</date>
+  <millis>1747512457024</millis>
+  <nanos>844761</nanos>
   <sequence>12</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message>teste_underscore</message>
+  <message> severity= marginal critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:23.257514441Z</date>
-  <millis>1747510703257</millis>
-  <nanos>514441</nanos>
+  <date>2025-05-17T20:07:37.026157821Z</date>
+  <millis>1747512457026</millis>
+  <nanos>157821</nanos>
   <sequence>13</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message>teste_underscore</message>
+  <message> severity= critical critJason test</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:24.259392184Z</date>
-  <millis>1747510704259</millis>
-  <nanos>392184</nanos>
+  <date>2025-05-17T20:07:38.333360377Z</date>
+  <millis>1747512458333</millis>
+  <nanos>360377</nanos>
   <sequence>14</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -182,9 +182,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:25.261322055Z</date>
-  <millis>1747510705261</millis>
-  <nanos>322055</nanos>
+  <date>2025-05-17T20:07:39.366222204Z</date>
+  <millis>1747512459366</millis>
+  <nanos>222204</nanos>
   <sequence>15</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -194,9 +194,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:26.263135940Z</date>
-  <millis>1747510706263</millis>
-  <nanos>135940</nanos>
+  <date>2025-05-17T20:07:40.378104428Z</date>
+  <millis>1747512460378</millis>
+  <nanos>104428</nanos>
   <sequence>16</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -206,9 +206,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:27.264750704Z</date>
-  <millis>1747510707264</millis>
-  <nanos>750704</nanos>
+  <date>2025-05-17T20:07:41.379936550Z</date>
+  <millis>1747512461379</millis>
+  <nanos>936550</nanos>
   <sequence>17</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -218,9 +218,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:28.266559301Z</date>
-  <millis>1747510708266</millis>
-  <nanos>559301</nanos>
+  <date>2025-05-17T20:07:42.391719871Z</date>
+  <millis>1747512462391</millis>
+  <nanos>719871</nanos>
   <sequence>18</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -230,9 +230,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:29.268394340Z</date>
-  <millis>1747510709268</millis>
-  <nanos>394340</nanos>
+  <date>2025-05-17T20:07:43.393597793Z</date>
+  <millis>1747512463393</millis>
+  <nanos>597793</nanos>
   <sequence>19</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -242,9 +242,9 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:30.270259985Z</date>
-  <millis>1747510710270</millis>
-  <nanos>259985</nanos>
+  <date>2025-05-17T20:07:44.405550380Z</date>
+  <millis>1747512464405</millis>
+  <nanos>550380</nanos>
   <sequence>20</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -254,34 +254,58 @@
   <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:30.577785846Z</date>
-  <millis>1747510710577</millis>
-  <nanos>785846</nanos>
+  <date>2025-05-17T20:07:45.407431818Z</date>
+  <millis>1747512465407</millis>
+  <nanos>431818</nanos>
   <sequence>21</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message> severity= marginal critJason test</message>
+  <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:30.579731611Z</date>
-  <millis>1747510710579</millis>
-  <nanos>731611</nanos>
+  <date>2025-05-17T20:07:46.409322540Z</date>
+  <millis>1747512466409</millis>
+  <nanos>322540</nanos>
   <sequence>22</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
   <thread>34</thread>
-  <message> severity= critical critJason test</message>
+  <message>teste_underscore</message>
 </record>
 <record>
-  <date>2025-05-17T19:38:31.282273715Z</date>
-  <millis>1747510711282</millis>
-  <nanos>273715</nanos>
+  <date>2025-05-17T20:07:47.411315742Z</date>
+  <millis>1747512467411</millis>
+  <nanos>315742</nanos>
   <sequence>23</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>34</thread>
+  <message>teste_underscore</message>
+</record>
+<record>
+  <date>2025-05-17T20:07:48.413294939Z</date>
+  <millis>1747512468413</millis>
+  <nanos>294939</nanos>
+  <sequence>24</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>34</thread>
+  <message>teste_underscore</message>
+</record>
+<record>
+  <date>2025-05-17T20:07:49.415096807Z</date>
+  <millis>1747512469415</millis>
+  <nanos>96807</nanos>
+  <sequence>25</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>

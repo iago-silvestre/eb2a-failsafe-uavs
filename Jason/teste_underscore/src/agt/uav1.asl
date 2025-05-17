@@ -49,7 +49,7 @@ severity_cp0(SEV) :- critical_percept(T)  & T == 1
    :  severity_cp0(SEV) & SEV=="Marginal" 
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
       .wait(1000);
-      .print("teste_underscore");
+      //.print("teste_underscore");
       !hover.
 +!hover
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
