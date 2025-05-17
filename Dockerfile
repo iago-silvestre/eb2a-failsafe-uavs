@@ -52,7 +52,7 @@ RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
     echo "export GAZEBO_MODEL_PATH=\$GAZEBO_MODEL_PATH:~/catkin_ws/src/eb2a-failsafe-uavs/models" >> ~/.bashrc
 
 # Add the stable PPA for MRS UAV System
-RUN curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash
+RUN curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash || true
 
 # Install the MRS UAV System package
 RUN apt-get update && apt-get install -y ros-noetic-mrs-uav-system-full
