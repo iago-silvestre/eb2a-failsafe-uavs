@@ -7,9 +7,9 @@
   perceptionTopics:
       - topicName: failure_uav1 #topico do rospy
         topicType: std_msgs/Int8 #type do rospy
-      - topicName: teste_underscore #topico do rospy
+      - topicName: teste_cp #topico do rospy
         topicType: std_msgs/Int8 #type do rospy
-        beliefName: critical_percept
+        beliefName: cp0
       - topicName: uav1/odometry/gps_local_odom
         topicType: nav_msgs/Odometry
       - topicName: landing_x
@@ -18,8 +18,12 @@
         topicType: std_msgs/Float64
   actions:       
     serviceRequestActions: #this example has only service-based actions
-        - actionName: land #action name (from agent's perspective)
-          serviceName: /uav1/uav_manager/land #service called to execute the action
+        #- actionName: land #action name (from agent's perspective)
+        #  serviceName: /uav1/uav_manager/land #service called to execute the action
+        - actionName: goto_altitude #action name (from agent's perspective)
+          serviceName: /uav1/control_manager/goto_altitude #service called to execute the action
+          params: #parameters
+            - goal
     topicWritingActions:          
       # - actionName: update_value1
       #   topicName: /value1

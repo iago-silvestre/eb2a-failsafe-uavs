@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-17T22:52:04.220161911Z</date>
-  <millis>1747522324220</millis>
-  <nanos>161911</nanos>
+  <date>2025-05-18T19:42:20.723743627Z</date>
+  <millis>1747597340723</millis>
+  <nanos>743627</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -13,28 +13,3 @@
   <thread>34</thread>
   <message>Started!</message>
 </record>
-<record>
-  <date>2025-05-17T22:52:09.869939117Z</date>
-  <millis>1747522329869</millis>
-  <nanos>939117</nanos>
-  <sequence>1</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>INFO</level>
-  <class>jason.stdlib.println</class>
-  <method>execute</method>
-  <thread>34</thread>
-  <message> severity= Marginal critJason test</message>
-</record>
-<record>
-  <date>2025-05-17T22:52:16.279239749Z</date>
-  <millis>1747522336279</millis>
-  <nanos>239749</nanos>
-  <sequence>2</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>INFO</level>
-  <class>jason.stdlib.println</class>
-  <method>execute</method>
-  <thread>34</thread>
-  <message> severity= Critical critJason test</message>
-</record>
-</log>
