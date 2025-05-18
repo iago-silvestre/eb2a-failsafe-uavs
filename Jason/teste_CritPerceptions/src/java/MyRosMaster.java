@@ -30,9 +30,15 @@ public class MyRosMaster extends RosMaster{
           
 		// The action "update_value" is realized through the writing in 2 topics */
 		if(actionName.equals("teste2")){	
+
+			Atom myAtom = new Atom("land");
+			Object[] newArgs = new Object[]{};  // or 10.1d, depending on what's expected
+			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call
+			/*
 			Atom myAtom = new Atom("goto_altitude");
 			Object[] newArgs = new Object[]{10.1f};  // or 10.1d, depending on what's expected
-			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call			
+			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call	
+			*/		
 		   //((DefaultRos4EmbeddedMas) this.getMicrocontroller()).rosWrite("/teste","std_msgs/String",(String)args[0]);
 		}
 		

@@ -24,6 +24,8 @@
           serviceName: /uav1/control_manager/goto_altitude #service called to execute the action
           params: #parameters
             - goal
+        - actionName: land 
+          serviceName: /uav1/uav_manager/land
     topicWritingActions:          
       # - actionName: update_value1
       #   topicName: /value1
