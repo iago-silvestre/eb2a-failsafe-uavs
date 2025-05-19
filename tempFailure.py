@@ -30,7 +30,8 @@ class TempFailureTest:
             rospy.loginfo(f"Reaction received. Delay: {delay_ms:.2f} ms")
 
     def run(self):
-        for i in range(10):
+        rospy.sleep(1.0)
+        for i in range(20):
             if rospy.is_shutdown():
                 break
 
@@ -43,7 +44,7 @@ class TempFailureTest:
             self.waiting_for_reaction = True
             start = time.perf_counter()
             while not rospy.is_shutdown() and not self.reaction_received and time.perf_counter() - start < 10:
-                rospy.sleep(0.1)
+                rospy.sleep(0.01)
             self.waiting_for_reaction = False
 
             # Publish 0.0 to reset

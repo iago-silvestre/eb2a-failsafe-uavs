@@ -24,9 +24,9 @@ public class MyRosMaster extends RosMaster{
     @Override
 	public boolean execEmbeddedAction(String actionName, Object[] args, Unifier un) {		
 		//execute the actions configured in the yaml file
-		System.out.println("actionName: " +actionName);
-		System.out.println("args: " +Arrays.toString(args));
-		System.out.println("un: " +un);
+		//System.out.println("actionName: " +actionName);
+		//System.out.println("args: " +Arrays.toString(args));
+		//System.out.println("un: " +un);
         super.execEmbeddedAction(actionName, args, un);  // <- do not delete this line
 
 		//Execute a customized actions 

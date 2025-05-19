@@ -7,7 +7,7 @@
   perceptionTopics:
       - topicName: teste_cp #topico do rospy
         topicType: std_msgs/Int8 #type do rospy
-        beliefName: testecp0
+        beliefName: teste_cp0
       - topicName: uav1/fire_temperature #topico do rospy
         topicType: std_msgs/Float64 #type do rospy
         beliefName: cp0

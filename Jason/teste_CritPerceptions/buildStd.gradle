@@ -20,8 +20,8 @@ repositories {
     mavenCentral()
     maven { url "https://jade.tilab.com/maven/" }
     maven { url "https://raw.github.com/embedded-mas/embedded-mas-mvn-repo/master" }
-
-    flatDir { dirs "${System.getProperty('user.home')}/jason/build/libs"}
+    maven { url "https://raw.githubusercontent.com/jacamo-lang/mvn-repo/master" }
+    //flatDir { dirs "${System.getProperty('user.home')}/jason/build/libs"}
 }
 
 dependencies {
@@ -37,7 +37,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/java'
-            srcDir "${System.getProperty('user.home')}/jason/build/libs"
+            //srcDir "${System.getProperty('user.home')}/jason/build/libs"
         }
         resources {
             srcDir 'src/resources'
@@ -48,7 +48,7 @@ sourceSets {
 task run (type: JavaExec, dependsOn: 'classes') {
     description 'runs the application'
     main = 'jason.infra.local.RunLocalMAS'
-    args 'agCrit.mas2j'
+    args 'agStd.mas2j'
     classpath sourceSets.main.runtimeClasspath
 }
 
