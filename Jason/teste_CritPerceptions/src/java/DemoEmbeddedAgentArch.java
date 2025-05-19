@@ -4,6 +4,7 @@ import embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch;
 import embedded.mas.bridges.jacamo.IDevice;
 import embedded.mas.exception.PerceivingException;
 
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ import jason.asSyntax.LiteralImpl;
 import jason.asSyntax.Trigger.TEOperator;
 import jason.asSyntax.Trigger.TEType;
 import jason.asSemantics.Circumstance;
+import jason.asSemantics.TransitionSystem;
 
 public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
@@ -77,4 +79,6 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
         return percepts;
     }
+
+
 }

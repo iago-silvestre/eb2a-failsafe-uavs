@@ -13,7 +13,7 @@ my_number(1).
 
 //pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW))))
 //////////////// Rules
-
+current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & ground_truth(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav7_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav8_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav9_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
@@ -22,20 +22,20 @@ my_number(1).
 //current_position(CX, CY, CZ) :- my_frame_id(Frame_id) & uav12_odometry_gps_local_odom(header(seq(Seq),stamp(secs(Secs),nsecs(Nsecs)),frame_id(Frame_id)),child_frame_id(CFI),pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW)))),covariance(CV)),twist(twist(linear(x(LX),y(LY),z((LZ))),angular(x(AX),y((AY)),z((AZ)))),covariance(CV2))).
 my_number_string(S) :- my_number(N)
                        & .term2string(N, S).
-severity_cp0(SEV) :- cp0(T)  & T == 0 //& T < 70.0       //Rules for Severity Detection
+severity_cp0(SEV) :- cp0(T)  & T >= 40 & T <= 50 //& T < 70.0       //Rules for Severity Detection
                   & SEV= "Marginal".
 
 severity_cp0(SEV) :- cp0(T)  & T == 1
                   & SEV= "Severe".
 
-severity_cp0(SEV) :- cp0(T)  & T == 2
+severity_cp0(SEV) :- cp0(T)  & T >= 70
                   & SEV= "Critical".
 
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Marginal"  <- .print(" severity= marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Marginal")  <- .print(" severity= Marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Severe")  <- .print(" severity= Severe critJason test"). 
-+cb0 [cr]: severity_cp0("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[10.1]). 
++cb0 [cr]: severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 
++cb0 [cr]: severity_cp0("Severe")  <- .print(" cb0 severity= Severe critJason test"). 
++cb0 [cr]: severity_cp0("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
 //+cb0 [cr]: severity_cp0("Critical")  <- .print(" severity= Critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","land",[1]). 
 //+cb0 [cr]: true  <- .print(" severity= critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","goto", [1, 24.0, -23.5, 15.0, 0.0]).//
 +failure_uav1(N) <- !detected_failure.
@@ -60,8 +60,10 @@ severity_cp0(SEV) :- cp0(T)  & T == 2
       //.print("teste_underscore");
       !hover.
 +!hover
+   :  current_position(CX, CY, CZ)
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
       .wait(1000);
+      .print("CX ",CX," , CY:",CY," , CZ:",CZ);
       //.print("teste");
       //.print("hovering");
       !hover.

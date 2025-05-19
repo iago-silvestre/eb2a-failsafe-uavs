@@ -2,15 +2,1395 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-18T19:47:26.573264167Z</date>
-  <millis>1747597646573</millis>
-  <nanos>264167</nanos>
-  <sequence>0</sequence>
+  <date>2025-05-19T03:17:41.569507014Z</date>
+  <millis>1747624661569</millis>
+  <nanos>507014</nanos>
+  <sequence>122</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
   <class>jason.stdlib.println</class>
   <method>execute</method>
-  <thread>34</thread>
-  <message>Started!</message>
+  <thread>44</thread>
+  <message>CX -6.3902169023201504E-6 , CY:-0.035782482595509146 , CZ:6.31536245652885</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:42.570582166Z</date>
+  <millis>1747624662570</millis>
+  <nanos>582166</nanos>
+  <sequence>123</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0034577162230330885 , CY:-0.04534692236565749 , CZ:6.324733433579302</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:43.572581308Z</date>
+  <millis>1747624663572</millis>
+  <nanos>581308</nanos>
+  <sequence>124</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.007890624558271152 , CY:-0.0482474964422014 , CZ:6.3249778336101965</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:44.573744370Z</date>
+  <millis>1747624664573</millis>
+  <nanos>744370</nanos>
+  <sequence>125</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.007477458217481075 , CY:-0.04048959472248713 , CZ:6.315265382069504</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:45.575256035Z</date>
+  <millis>1747624665575</millis>
+  <nanos>256035</nanos>
+  <sequence>126</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.005106757744904906 , CY:-0.03357597537923007 , CZ:6.310292815119876</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:46.576349874Z</date>
+  <millis>1747624666576</millis>
+  <nanos>349874</nanos>
+  <sequence>127</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.004603692024401137 , CY:-0.036562175629586725 , CZ:6.31194736270846</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:47.577630376Z</date>
+  <millis>1747624667577</millis>
+  <nanos>630376</nanos>
+  <sequence>128</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0027202230531606446 , CY:-0.04337169533206434 , CZ:6.314970942638161</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:48.579196591Z</date>
+  <millis>1747624668579</millis>
+  <nanos>196591</nanos>
+  <sequence>129</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0038284773130964674 , CY:-0.041067709753949265 , CZ:6.3157482149066775</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:49.580186448Z</date>
+  <millis>1747624669580</millis>
+  <nanos>186448</nanos>
+  <sequence>130</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.013182869500288843 , CY:-0.03214703288598965 , CZ:6.303550157772248</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:50.581258055Z</date>
+  <millis>1747624670581</millis>
+  <nanos>258055</nanos>
+  <sequence>131</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.01362365403451689 , CY:-0.025166481482093547 , CZ:6.2732356363167385</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:51.582304393Z</date>
+  <millis>1747624671582</millis>
+  <nanos>304393</nanos>
+  <sequence>132</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.010134913672056699 , CY:-0.027073123992694452 , CZ:6.236665197075162</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:52.583351049Z</date>
+  <millis>1747624672583</millis>
+  <nanos>351049</nanos>
+  <sequence>133</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.011833938950978652 , CY:-0.028204813776774074 , CZ:6.195914337161407</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:53.584524636Z</date>
+  <millis>1747624673584</millis>
+  <nanos>524636</nanos>
+  <sequence>134</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.022207603136045 , CY:-0.026956903921904998 , CZ:6.152237501324133</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:54.585507781Z</date>
+  <millis>1747624674585</millis>
+  <nanos>507781</nanos>
+  <sequence>135</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03188569697774165 , CY:-0.02017460364972936 , CZ:6.113114514898112</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:55.586522547Z</date>
+  <millis>1747624675586</millis>
+  <nanos>522547</nanos>
+  <sequence>136</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03225583215904417 , CY:-0.012130617092504752 , CZ:6.089451023743715</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:56.587479920Z</date>
+  <millis>1747624676587</millis>
+  <nanos>479920</nanos>
+  <sequence>137</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02411430204508769 , CY:-0.01935996643730609 , CZ:6.091107602777322</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:57.588510184Z</date>
+  <millis>1747624677588</millis>
+  <nanos>510184</nanos>
+  <sequence>138</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.024852109086419386 , CY:-0.035641684509108 , CZ:6.105671752886325</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:58.589544018Z</date>
+  <millis>1747624678589</millis>
+  <nanos>544018</nanos>
+  <sequence>139</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03225417117175573 , CY:-0.03440505583510975 , CZ:6.123590147386606</message>
+</record>
+<record>
+  <date>2025-05-19T03:17:59.590560491Z</date>
+  <millis>1747624679590</millis>
+  <nanos>560491</nanos>
+  <sequence>140</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.04587068378927254 , CY:-0.0375201912108542 , CZ:6.1387557841212494</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:00.591584694Z</date>
+  <millis>1747624680591</millis>
+  <nanos>584694</nanos>
+  <sequence>141</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.047980497337886 , CY:-0.04656756400955329 , CZ:6.14874856169426</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:01.592763739Z</date>
+  <millis>1747624681592</millis>
+  <nanos>763739</nanos>
+  <sequence>142</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03974412818469409 , CY:-0.05291436900703803 , CZ:6.1432590770389774</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:02.593793461Z</date>
+  <millis>1747624682593</millis>
+  <nanos>793461</nanos>
+  <sequence>143</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02582114667718824 , CY:-0.05398256708445518 , CZ:6.118298363762564</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:03.594779682Z</date>
+  <millis>1747624683594</millis>
+  <nanos>779682</nanos>
+  <sequence>144</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.025480733188282957 , CY:-0.04594864862746907 , CZ:6.078860754825882</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:04.595821894Z</date>
+  <millis>1747624684595</millis>
+  <nanos>821894</nanos>
+  <sequence>145</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0329508397995668 , CY:-0.034817516541742685 , CZ:6.024566939059645</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:05.596820174Z</date>
+  <millis>1747624685596</millis>
+  <nanos>820174</nanos>
+  <sequence>146</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.027710612897697225 , CY:-0.02440550337347866 , CZ:5.97054576785371</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:06.597805015Z</date>
+  <millis>1747624686597</millis>
+  <nanos>805015</nanos>
+  <sequence>147</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.018643155853882494 , CY:-0.020185589235381916 , CZ:5.922630936255873</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:07.598880015Z</date>
+  <millis>1747624687598</millis>
+  <nanos>880015</nanos>
+  <sequence>148</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.014279297726210182 , CY:-0.014669914569236135 , CZ:5.883145864254541</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:08.599896205Z</date>
+  <millis>1747624688599</millis>
+  <nanos>896205</nanos>
+  <sequence>149</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.006815335085356019 , CY:-0.014335180828627274 , CZ:5.854135736373414</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:09.600920704Z</date>
+  <millis>1747624689600</millis>
+  <nanos>920704</nanos>
+  <sequence>150</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.002697042257598564 , CY:-0.018967734868743657 , CZ:5.830603792009371</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:10.601960273Z</date>
+  <millis>1747624690601</millis>
+  <nanos>960273</nanos>
+  <sequence>151</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0012149985304777528 , CY:-0.030115592692994027 , CZ:5.8072833370840815</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:11.602984172Z</date>
+  <millis>1747624691602</millis>
+  <nanos>984172</nanos>
+  <sequence>152</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -6.123574625901048E-4 , CY:-0.042146327751374654 , CZ:5.789447127853548</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:12.603949059Z</date>
+  <millis>1747624692603</millis>
+  <nanos>949059</nanos>
+  <sequence>153</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0039143330240657675 , CY:-0.041476631180579766 , CZ:5.776563457844082</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:13.605014627Z</date>
+  <millis>1747624693605</millis>
+  <nanos>14627</nanos>
+  <sequence>154</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0010095190960750313 , CY:-0.023464744285851578 , CZ:5.776303346236958</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:14.605997884Z</date>
+  <millis>1747624694605</millis>
+  <nanos>997884</nanos>
+  <sequence>155</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0011487747864641809 , CY:-0.0057815231434493455 , CZ:5.785241304953621</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:15.607031921Z</date>
+  <millis>1747624695607</millis>
+  <nanos>31921</nanos>
+  <sequence>156</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0011873681439023257 , CY:-0.009226467957368254 , CZ:5.7892047673485125</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:16.608091458Z</date>
+  <millis>1747624696608</millis>
+  <nanos>91458</nanos>
+  <sequence>157</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -5.670567101012753E-4 , CY:-0.018446011552852262 , CZ:5.781867909770233</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:17.609056533Z</date>
+  <millis>1747624697609</millis>
+  <nanos>56533</nanos>
+  <sequence>158</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0023207787495146074 , CY:-0.01553620376546294 , CZ:5.768940350927893</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:18.610035759Z</date>
+  <millis>1747624698610</millis>
+  <nanos>35759</nanos>
+  <sequence>159</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -6.031314012574976E-4 , CY:-0.01518762405492424 , CZ:5.750279238845868</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:19.611144405Z</date>
+  <millis>1747624699611</millis>
+  <nanos>144405</nanos>
+  <sequence>160</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.007376210997185757 , CY:-0.020487516470557385 , CZ:5.730153750020496</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:20.612127759Z</date>
+  <millis>1747624700612</millis>
+  <nanos>127759</nanos>
+  <sequence>161</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.00236643394795625 , CY:-0.008063420679279428 , CZ:5.707962052809862</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:21.613338546Z</date>
+  <millis>1747624701613</millis>
+  <nanos>338546</nanos>
+  <sequence>162</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.003494568311304382 , CY:-0.0049319289855057164 , CZ:5.679489649926445</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:22.614323340Z</date>
+  <millis>1747624702614</millis>
+  <nanos>323340</nanos>
+  <sequence>163</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.027245101940260124 , CY:-0.011870822048345116 , CZ:5.653942724940191</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:23.616165344Z</date>
+  <millis>1747624703616</millis>
+  <nanos>165344</nanos>
+  <sequence>164</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.04155186979395301 , CY:-0.01748438776762079 , CZ:5.634271150908478</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:24.617125006Z</date>
+  <millis>1747624704617</millis>
+  <nanos>125006</nanos>
+  <sequence>165</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0281420981966289 , CY:-0.023586529025269296 , CZ:5.616777378826472</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:25.618107808Z</date>
+  <millis>1747624705618</millis>
+  <nanos>107808</nanos>
+  <sequence>166</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.006980487868376005 , CY:-0.011713718993581602 , CZ:5.60941704138392</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:26.619065450Z</date>
+  <millis>1747624706619</millis>
+  <nanos>65450</nanos>
+  <sequence>167</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.010394396572677392 , CY:0.008222361017703449 , CZ:5.6252229579219115</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:27.620013561Z</date>
+  <millis>1747624707620</millis>
+  <nanos>13561</nanos>
+  <sequence>168</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.02738001221855364 , CY:0.024802023485924814 , CZ:5.661192671726081</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:28.620994553Z</date>
+  <millis>1747624708620</millis>
+  <nanos>994553</nanos>
+  <sequence>169</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.038076698633065814 , CY:0.02997558806889451 , CZ:5.711185728086246</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:29.621986953Z</date>
+  <millis>1747624709621</millis>
+  <nanos>986953</nanos>
+  <sequence>170</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.04833373351845226 , CY:0.027108316119256036 , CZ:5.770597311450567</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:30.623102175Z</date>
+  <millis>1747624710623</millis>
+  <nanos>102175</nanos>
+  <sequence>171</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.06567157803457564 , CY:0.0186527056833456 , CZ:5.839988598143467</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:31.624119626Z</date>
+  <millis>1747624711624</millis>
+  <nanos>119626</nanos>
+  <sequence>172</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.06348143872279673 , CY:0.018947370185958736 , CZ:5.9138945413139865</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:32.625055195Z</date>
+  <millis>1747624712625</millis>
+  <nanos>55195</nanos>
+  <sequence>173</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0401715236231389 , CY:0.02695275817657709 , CZ:5.991180473180728</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:33.626005224Z</date>
+  <millis>1747624713626</millis>
+  <nanos>5224</nanos>
+  <sequence>174</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.03639871485742694 , CY:0.0329338239204438 , CZ:6.069815379604387</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:34.626939282Z</date>
+  <millis>1747624714626</millis>
+  <nanos>939282</nanos>
+  <sequence>175</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.037842505249250376 , CY:0.03355048301159107 , CZ:6.151406000695116</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:35.627906211Z</date>
+  <millis>1747624715627</millis>
+  <nanos>906211</nanos>
+  <sequence>176</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.044057612632465507 , CY:0.02603811127041438 , CZ:6.239906546295546</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:36.629244844Z</date>
+  <millis>1747624716629</millis>
+  <nanos>244844</nanos>
+  <sequence>177</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.04055615469901501 , CY:0.01514812354205087 , CZ:6.325478165211487</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:37.630217101Z</date>
+  <millis>1747624717630</millis>
+  <nanos>217101</nanos>
+  <sequence>178</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.030058099465779423 , CY:0.008051752206515517 , CZ:6.398360445909261</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:38.631177938Z</date>
+  <millis>1747624718631</millis>
+  <nanos>177938</nanos>
+  <sequence>179</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.024687316251891897 , CY:-0.002923493792606229 , CZ:6.461557864731181</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:39.632189226Z</date>
+  <millis>1747624719632</millis>
+  <nanos>189226</nanos>
+  <sequence>180</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.01866499824243983 , CY:-0.013264731231727353 , CZ:6.5021660695615155</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:40.633125251Z</date>
+  <millis>1747624720633</millis>
+  <nanos>125251</nanos>
+  <sequence>181</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.01671100709384745 , CY:-0.022228732136114697 , CZ:6.525597710124195</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:41.634163108Z</date>
+  <millis>1747624721634</millis>
+  <nanos>163108</nanos>
+  <sequence>182</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.011105781956654619 , CY:-0.03172762381420895 , CZ:6.5414098239186265</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:42.635323836Z</date>
+  <millis>1747624722635</millis>
+  <nanos>323836</nanos>
+  <sequence>183</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.013272992970255531 , CY:-0.030377347205160287 , CZ:6.558987909928081</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:43.636275432Z</date>
+  <millis>1747624723636</millis>
+  <nanos>275432</nanos>
+  <sequence>184</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0164267791350333 , CY:-0.017117985411534763 , CZ:6.566053285164804</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:44.637910785Z</date>
+  <millis>1747624724637</millis>
+  <nanos>910785</nanos>
+  <sequence>185</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.006969028810870823 , CY:-0.015307222899088268 , CZ:6.565362432920184</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:45.639041851Z</date>
+  <millis>1747624725639</millis>
+  <nanos>41851</nanos>
+  <sequence>186</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.004617070747042272 , CY:-0.021414821317241057 , CZ:6.570366315677576</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:46.640051766Z</date>
+  <millis>1747624726640</millis>
+  <nanos>51766</nanos>
+  <sequence>187</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.015891191357617792 , CY:-0.020020101741940795 , CZ:6.583273109321307</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:47.640985919Z</date>
+  <millis>1747624727640</millis>
+  <nanos>985919</nanos>
+  <sequence>188</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.02373421675725019 , CY:-0.007856449184932135 , CZ:6.605169376701803</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:48.641945123Z</date>
+  <millis>1747624728641</millis>
+  <nanos>945123</nanos>
+  <sequence>189</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.013604332845456322 , CY:0.006822014564314475 , CZ:6.645308616682668</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:49.642958206Z</date>
+  <millis>1747624729642</millis>
+  <nanos>958206</nanos>
+  <sequence>190</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.007224196772416291 , CY:0.014136914024079955 , CZ:6.703940443382525</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:50.643951539Z</date>
+  <millis>1747624730643</millis>
+  <nanos>951539</nanos>
+  <sequence>191</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 3.1245776419485706E-4 , CY:0.016132360327087102 , CZ:6.782367058925309</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:51.645132745Z</date>
+  <millis>1747624731645</millis>
+  <nanos>132745</nanos>
+  <sequence>192</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.005776570638741615 , CY:0.013555693320371837 , CZ:6.864298714936982</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:52.646229758Z</date>
+  <millis>1747624732646</millis>
+  <nanos>229758</nanos>
+  <sequence>193</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02146838387659854 , CY:0.009765807631734033 , CZ:6.938248831469757</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:53.647239590Z</date>
+  <millis>1747624733647</millis>
+  <nanos>239590</nanos>
+  <sequence>194</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03018598962641035 , CY:0.008231185830596356 , CZ:7.012701898991088</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:54.648260452Z</date>
+  <millis>1747624734648</millis>
+  <nanos>260452</nanos>
+  <sequence>195</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.019071661588725183 , CY:0.00920704893882231 , CZ:7.091744449250213</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:55.649190822Z</date>
+  <millis>1747624735649</millis>
+  <nanos>190822</nanos>
+  <sequence>196</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.012736044847771752 , CY:-0.0028143904605623937 , CZ:7.1675444198673555</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:56.650175403Z</date>
+  <millis>1747624736650</millis>
+  <nanos>175403</nanos>
+  <sequence>197</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02064542707392087 , CY:-0.009010638022450434 , CZ:7.234490338999054</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:57.651105973Z</date>
+  <millis>1747624737651</millis>
+  <nanos>105973</nanos>
+  <sequence>198</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.023631013480986077 , CY:-0.010680746831719446 , CZ:7.302022625494149</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:58.652043952Z</date>
+  <millis>1747624738652</millis>
+  <nanos>43952</nanos>
+  <sequence>199</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02518020519634148 , CY:-0.014745464051304766 , CZ:7.3708109390481</message>
+</record>
+<record>
+  <date>2025-05-19T03:18:59.653009541Z</date>
+  <millis>1747624739653</millis>
+  <nanos>9541</nanos>
+  <sequence>200</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.025885660891671537 , CY:-0.033693654592660806 , CZ:7.434717160580922</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:00.654011151Z</date>
+  <millis>1747624740654</millis>
+  <nanos>11151</nanos>
+  <sequence>201</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02124435746402502 , CY:-0.049228201481711094 , CZ:7.492738562860256</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:01.655011990Z</date>
+  <millis>1747624741655</millis>
+  <nanos>11990</nanos>
+  <sequence>202</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.011661248425935675 , CY:-0.054317914937016806 , CZ:7.545642783147324</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:02.655981718Z</date>
+  <millis>1747624742655</millis>
+  <nanos>981718</nanos>
+  <sequence>203</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -6.107699663877907E-4 , CY:-0.04989649290416677 , CZ:7.5933657330958715</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:03.656898976Z</date>
+  <millis>1747624743656</millis>
+  <nanos>898976</nanos>
+  <sequence>204</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.015471969960716925 , CY:-0.04238395445383008 , CZ:7.635704515322805</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:04.657895493Z</date>
+  <millis>1747624744657</millis>
+  <nanos>895493</nanos>
+  <sequence>205</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.02291906668013891 , CY:-0.03960278796687299 , CZ:7.664617127692524</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:05.660626713Z</date>
+  <millis>1747624745660</millis>
+  <nanos>626713</nanos>
+  <sequence>206</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.023705055085257543 , CY:-0.03581920080408453 , CZ:7.6738854938171395</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:06.661569679Z</date>
+  <millis>1747624746661</millis>
+  <nanos>569679</nanos>
+  <sequence>207</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.013184399600341616 , CY:-0.039335620143633766 , CZ:7.675133576223683</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:07.662515626Z</date>
+  <millis>1747624747662</millis>
+  <nanos>515626</nanos>
+  <sequence>208</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.012740481919529659 , CY:-0.03733437352833931 , CZ:7.668259794668147</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:08.663456711Z</date>
+  <millis>1747624748663</millis>
+  <nanos>456711</nanos>
+  <sequence>209</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.006577721387495011 , CY:-0.023935833996292833 , CZ:7.665823086166765</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:09.664442617Z</date>
+  <millis>1747624749664</millis>
+  <nanos>442617</nanos>
+  <sequence>210</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0022061955803539244 , CY:-0.017232463523444593 , CZ:7.6680192329539745</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:10.665472123Z</date>
+  <millis>1747624750665</millis>
+  <nanos>472123</nanos>
+  <sequence>211</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.017325514353703716 , CY:-0.011934033452367192 , CZ:7.680789040922324</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:11.666445878Z</date>
+  <millis>1747624751666</millis>
+  <nanos>445878</nanos>
+  <sequence>212</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.023109767894308585 , CY:-0.004131110606369172 , CZ:7.699019558758785</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:12.667392183Z</date>
+  <millis>1747624752667</millis>
+  <nanos>392183</nanos>
+  <sequence>213</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02958136797222787 , CY:-0.0034877316884380457 , CZ:7.719312359043453</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:13.668373447Z</date>
+  <millis>1747624753668</millis>
+  <nanos>373447</nanos>
+  <sequence>214</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03483841694519582 , CY:0.005262285571586681 , CZ:7.741996244965286</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:14.669426462Z</date>
+  <millis>1747624754669</millis>
+  <nanos>426462</nanos>
+  <sequence>215</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03035087709276586 , CY:0.02894861858123752 , CZ:7.772891214409806</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:15.670459587Z</date>
+  <millis>1747624755670</millis>
+  <nanos>459587</nanos>
+  <sequence>216</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.023563458732315006 , CY:0.03080231121035219 , CZ:7.809986567608263</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:16.671393750Z</date>
+  <millis>1747624756671</millis>
+  <nanos>393750</nanos>
+  <sequence>217</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.025346945216935576 , CY:0.028201310529307043 , CZ:7.853614137887307</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:17.672357572Z</date>
+  <millis>1747624757672</millis>
+  <nanos>357572</nanos>
+  <sequence>218</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.020655972436923832 , CY:0.024327772982155174 , CZ:7.909435503671894</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:18.673304125Z</date>
+  <millis>1747624758673</millis>
+  <nanos>304125</nanos>
+  <sequence>219</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.014917715051334872 , CY:0.025796466720618767 , CZ:7.959958915500771</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:19.674240937Z</date>
+  <millis>1747624759674</millis>
+  <nanos>240937</nanos>
+  <sequence>220</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.009700781549983932 , CY:0.019825331471459335 , CZ:7.9931189418943385</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:20.675213068Z</date>
+  <millis>1747624760675</millis>
+  <nanos>213068</nanos>
+  <sequence>221</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.0047870025020343675 , CY:0.014870777189748621 , CZ:8.015448927299802</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:21.676107529Z</date>
+  <millis>1747624761676</millis>
+  <nanos>107529</nanos>
+  <sequence>222</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.004399039328915538 , CY:0.004989600704851952 , CZ:8.028869825782046</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:22.676963289Z</date>
+  <millis>1747624762676</millis>
+  <nanos>963289</nanos>
+  <sequence>223</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.006631875753418131 , CY:0.009489414737485796 , CZ:8.028327573221155</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:23.677846638Z</date>
+  <millis>1747624763677</millis>
+  <nanos>846638</nanos>
+  <sequence>224</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.004973857733934899 , CY:0.020181751973095553 , CZ:8.015735946492248</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:24.679540368Z</date>
+  <millis>1747624764679</millis>
+  <nanos>540368</nanos>
+  <sequence>225</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.009310055801691319 , CY:0.022580936138210755 , CZ:7.981877804218607</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:25.680471727Z</date>
+  <millis>1747624765680</millis>
+  <nanos>471727</nanos>
+  <sequence>226</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.02059031373445773 , CY:0.02094348277383581 , CZ:7.924789914210489</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:26.681432217Z</date>
+  <millis>1747624766681</millis>
+  <nanos>432217</nanos>
+  <sequence>227</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0317304394875309 , CY:0.019531640164996387 , CZ:7.860324032262551</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:27.682266275Z</date>
+  <millis>1747624767682</millis>
+  <nanos>266275</nanos>
+  <sequence>228</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03743088817229677 , CY:0.014151108838769131 , CZ:7.797396228882929</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:28.683178833Z</date>
+  <millis>1747624768683</millis>
+  <nanos>178833</nanos>
+  <sequence>229</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.03376582042636514 , CY:0.007348970248067643 , CZ:7.734812903317613</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:29.684158082Z</date>
+  <millis>1747624769684</millis>
+  <nanos>158082</nanos>
+  <sequence>230</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.017420311630187427 , CY:0.0016832277609247334 , CZ:7.672826065919128</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:30.685028509Z</date>
+  <millis>1747624770685</millis>
+  <nanos>28509</nanos>
+  <sequence>231</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.0055438351852809585 , CY:0.011066970647408086 , CZ:7.611905522277691</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:31.685916686Z</date>
+  <millis>1747624771685</millis>
+  <nanos>916686</nanos>
+  <sequence>232</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX -0.00393712722716009 , CY:0.02486073726535937 , CZ:7.555782798642252</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:32.686905124Z</date>
+  <millis>1747624772686</millis>
+  <nanos>905124</nanos>
+  <sequence>233</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 5.217225612337864E-4 , CY:0.03536585227117127 , CZ:7.503674668070638</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:33.687809121Z</date>
+  <millis>1747624773687</millis>
+  <nanos>809121</nanos>
+  <sequence>234</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.014523172589726359 , CY:0.03492170972582004 , CZ:7.4519383331824045</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:34.689111132Z</date>
+  <millis>1747624774689</millis>
+  <nanos>111132</nanos>
+  <sequence>235</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.03350878482003304 , CY:0.029696823859009482 , CZ:7.402983018498485</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:35.690132609Z</date>
+  <millis>1747624775690</millis>
+  <nanos>132609</nanos>
+  <sequence>236</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.04226646715562059 , CY:0.022912862223535387 , CZ:7.3624642769995665</message>
+</record>
+<record>
+  <date>2025-05-19T03:19:36.691025334Z</date>
+  <millis>1747624776691</millis>
+  <nanos>25334</nanos>
+  <sequence>237</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>CX 0.05134028486752938 , CY:0.01707377060862092 , CZ:7.332413711364332</message>
 </record>
 </log>

@@ -9,12 +9,31 @@
     Jason 2.5.1
     April 14, 2023 - 13:20:26
 */
-
+/*
 MAS teste_embedded_mas {
 
     infrastructure: Local
 
 
     agents: uav1 agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent agentArchClass embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch;
+    aslSourcePath: "src/agt";
+}*/
+/* 
+   MAS2J configuration file for UAV system
+   Converted from JCM format
+*/
+
+MAS uav {
+    infrastructure: Local
+
+    agents:
+        uav1 uav.asl [beliefs="my_number(1), my_frame_id(\"world\")"]
+            agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent
+            agentArchClass embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch;
+                      
+        autopilot1 autopilot.asl [beliefs="my_number(1)"]
+            agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent
+            agentArchClass embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch;
+
     aslSourcePath: "src/agt";
 }
