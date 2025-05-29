@@ -25,22 +25,26 @@ my_number_string(S) :- my_number(N)
                        & .term2string(N, S).
 
 
-severity_cp0(SEV) :- cp0(T)  & T >= 40 & T <= 50 //& T < 70.0       //Rules for Severity Detection
+severity_cp0(SEV) :- temp(T)  & T >= 40 & T <= 50 //& T < 70.0       //Rules for Severity Detection
                   & SEV= "Marginal".
 
-severity_cp0(SEV) :- cp0(T)  & T > 50 & T < 70 
+severity_cp0(SEV) :- temp(T)  & T > 50 & T < 70 
                   & SEV= "Severe".
 
-severity_cp0(SEV) :- cp0(T)  & T >= 70
+severity_cp0(SEV) :- temp(T)  & T >= 70
                   & SEV= "Critical".
 
-//+cb0 [cr]: severity_cp0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
-//+cb0 [cr]: severity_cp0(SEV) & SEV=="Marginal"  <- .print(" severity= marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Severe")    <- .print(" cb0 severity= Severe critJason test").
-+cb0 [cr]: severity_cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
-//+cb0 [cr]: severity_cp0("Critical")  <- .print(" severity= Critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","land",[1]). 
-//+cb0 [cr]: true  <- .print(" severity= critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","goto", [1, 24.0, -23.5, 15.0, 0.0]).//
++temp(T): severity_cp0(SEV) <- -+cp0(SEV).//.print(" cb0 severity= ", SEV). 
+
++cb0("Marginal") [cr] <- .print(" cb0 severity= Marginal critJason test"). 
++cb0("Severe") [cr]   <- .print(" cb0 severity= Severe critJason test").
++cb0("Critical") [cr] <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
+
++cb0 [cr]: true  <- .print(" teste perception being severity").
+
+//+cb0 [cr]: severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 
+//+cb0 [cr]: severity_cp0("Severe")    <- .print(" cb0 severity= Severe critJason test").
+//+cb0 [cr]: severity_cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
 
 //for Standar jason
 //+cp0(N) : severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 

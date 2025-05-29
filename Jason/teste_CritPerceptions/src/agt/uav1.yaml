@@ -10,7 +10,7 @@
         beliefName: testecp0
       - topicName: uav1/fire_temperature #topico do rospy
         topicType: std_msgs/Float64 #type do rospy
-        beliefName: cp0
+        beliefName: temp
       - topicName: uav1/fire_direction
         topicType: std_msgs/String
         beliefName: fire_direction

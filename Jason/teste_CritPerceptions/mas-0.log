@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-22T23:43:44.610150649Z</date>
-  <millis>1747957424610</millis>
-  <nanos>150649</nanos>
+  <date>2025-05-29T18:38:26.851853533Z</date>
+  <millis>1748543906851</millis>
+  <nanos>853533</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
