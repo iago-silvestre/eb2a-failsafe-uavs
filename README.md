@@ -76,6 +76,9 @@ Then you can join your container on a new terminal by entering, make sure to rep
    ```bash
    docker exec -ti container_name bash
    ```
-   
 
+You can also share folders with the docker image using additional volume commands, such as:
+   ```bash
+   docker run -it --rm --env DISPLAY=host.docker.internal:0 --volume /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1 --volume C:\eb2a-failsafe-uavs\Jason:/root/Agents --net host eb2a
+   ```
 ---
