@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 import time
+import random
 from std_msgs.msg import Float64, String
 
 class TempFailureTest:
@@ -31,7 +32,7 @@ class TempFailureTest:
 
     def run(self):
         rospy.sleep(1.0)
-        for i in range(20):
+        for i in range(10):
             if rospy.is_shutdown():
                 break
 
@@ -49,7 +50,7 @@ class TempFailureTest:
 
             # Publish 0.0 to reset
             self.publish_temperature(0.0)
-            rospy.sleep(random.uniform(2.0, 4.0))
+            rospy.sleep(random.uniform(1.0, 3.0))
 
             # Wait briefly before next round
             rospy.sleep(1.0)

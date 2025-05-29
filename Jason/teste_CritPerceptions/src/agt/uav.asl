@@ -9,6 +9,7 @@ land_point(-102.0, -111.0).
 land_radius(10.0).
 diff(1).
 my_number(1).
+status_cb0("None"). 
 //teste_underscore(1)[device(sample_roscore),source(percept)].
 
 //pose(pose(position(x(CX),y(CY),z(CZ)),orientation(x(OX),y((OY)),z((OZ)),w((OW))))
@@ -36,12 +37,12 @@ severity_cp0(SEV) :- cp0(T)  & T >= 70
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Critical"  <- .print(" severity= critical critJason test"). 
 //+cb0 [cr]: severity_cp0(SEV) & SEV=="Marginal"  <- .print(" severity= marginal critJason test"). 
 +cb0 [cr]: severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 
-+cb0 [cr]: severity_cp0("Severe")  <- .print(" cb0 severity= Severe critJason test"). 
-+cb0 [cr]: severity_cp0("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
++cb0 [cr]: severity_cp0("Severe")    <- .print(" cb0 severity= Severe critJason test").
++cb0 [cr]: severity_cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
 //+cb0 [cr]: severity_cp0("Critical")  <- .print(" severity= Critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","land",[1]). 
 //+cb0 [cr]: true  <- .print(" severity= critical critJason test"). embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","goto", [1, 24.0, -23.5, 15.0, 0.0]).//
 
-//+failure_uav1(N) <- !detected_failure.
+//for Standar jason
 //+cp0(N) : severity_cp0("Marginal")  <- .print(" cb0 severity= Marginal critJason test"). 
 //+cp0(N) : severity_cp0("Severe")  <- .print(" cb0 severity= Severe critJason test"). 
 //+cp0(N) : severity_cp0("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]). 
@@ -66,9 +67,14 @@ severity_cp0(SEV) :- cp0(T)  & T >= 70
       //.print("teste_underscore");
       !hover.
 +!hover
-//   :  current_position(CX, CY, CZ)
+   :  num_of_uavs(X)
    <- //-+status("hovering");//[device(sample_roscore),source(percept)]
-      .wait(200);
+      .wait(20000);
+      +testeDummy(X+1);
+      +testeDummy(X+2);
+      +testeDummy(X+3);
+      +testeDummy(X+4);
+      +testeDummy(X+5);
       //.print("CX ",CX," , CY:",CY," , CZ:",CZ);
       //.print("teste");
       //.print("hovering");

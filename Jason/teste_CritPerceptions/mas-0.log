@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-19T12:47:11.685376430Z</date>
-  <millis>1747658831685</millis>
-  <nanos>376430</nanos>
+  <date>2025-05-22T23:43:44.610150649Z</date>
+  <millis>1747957424610</millis>
+  <nanos>150649</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -12,44 +12,5 @@
   <method>execute</method>
   <thread>44</thread>
   <message>Started!</message>
-</record>
-<record>
-  <date>2025-05-19T12:47:11.689597359Z</date>
-  <millis>1747658831689</millis>
-  <nanos>597359</nanos>
-  <sequence>1</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>WARNING</level>
-  <class>jason.asSemantics.TransitionSystem</class>
-  <method>generateGoalDeletionFromEvent</method>
-  <thread>44</thread>
-  <message>No fail event was generated for +!hover[source(self)]</message>
-</record>
-<record>
-  <date>2025-05-19T12:47:11.690581164Z</date>
-  <millis>1747658831690</millis>
-  <nanos>581164</nanos>
-  <sequence>2</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>WARNING</level>
-  <class>jason.asSemantics.TransitionSystem</class>
-  <method>generateGoalDeletionFromEvent</method>
-  <thread>44</thread>
-  <message>
-intention 1: 
-    +!start[source(self)] &lt;- ... !hover / {}
-</message>
-</record>
-<record>
-  <date>2025-05-19T12:47:11.691358200Z</date>
-  <millis>1747658831691</millis>
-  <nanos>358200</nanos>
-  <sequence>3</sequence>
-  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>WARNING</level>
-  <class>jason.asSemantics.TransitionSystem</class>
-  <method>applyRelApplPlRule2</method>
-  <thread>44</thread>
-  <message>Found a goal for which there is no applicable plan: +!hover[source(self)]</message>
 </record>
 </log>
