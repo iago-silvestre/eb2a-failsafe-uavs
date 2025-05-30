@@ -41,20 +41,21 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             String functor = l.getFunctor();
             //System.out.println("functor: "+functor);
                 if (functor.matches("cp\\d+")) { // match cp0 to cp31
-                    //System.out.println("teste perceiveCP");
                     int cpIndex = Integer.parseInt(functor.substring(2));
                     if (cpIndex >= 0 && cpIndex < 32) {
-                        int value = Integer.parseInt(l.getTerm(0).toString());
+                        // Get string value from the first term (remove quotes if present)
+                        String value = l.getTerm(0).toString().replaceAll("^\"|\"$", "");
 
-                        Integer lastVal = lastCPvals.getOrDefault(functor, -12345);
-                        if (value != lastVal) {
+                        String lastVal = lastCPvals.getOrDefault(functor, "__no_previous__");
+                        if (!value.equals(lastVal)) {
                             // Remove the old belief
-                            String oldBeliefStr = functor + "(" + lastVal + ")[device(roscore1),source(percept)]";
+                            String oldBeliefStr = functor + "(\"" + lastVal + "\")[device(roscore1),source(percept)]";
                             Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
                             getTS().getAg().getBB().remove(oldBelief);
 
                             // Add the new belief
-                            Literal newBelief = Literal.parseLiteral(functor + "(" + value + ")[device(roscore1),source(percept)]");
+                            String newBeliefStr = functor + "(\"" + value + "\")[device(roscore1),source(percept)]";
+                            Literal newBelief = Literal.parseLiteral(newBeliefStr);
                             getTS().getAg().getBB().add(newBelief);
 
                             // Add the associated trigger to CPM

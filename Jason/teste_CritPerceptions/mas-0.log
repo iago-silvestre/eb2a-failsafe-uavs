@@ -2,15 +2,143 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-05-29T18:38:26.851853533Z</date>
-  <millis>1748543906851</millis>
-  <nanos>853533</nanos>
-  <sequence>0</sequence>
+  <date>2025-05-30T14:29:47.376033248Z</date>
+  <millis>1748615387376</millis>
+  <nanos>33248</nanos>
+  <sequence>88</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
-  <level>INFO</level>
-  <class>jason.stdlib.println</class>
-  <method>execute</method>
-  <thread>44</thread>
-  <message>Started!</message>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>45</thread>
+  <message>*** ERROR in the LBB transition system (sense). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NumberFormatException: For input string: ""Marginal""</message>
+    <frame>
+      <class>java.lang.NumberFormatException</class>
+      <method>forInputString</method>
+      <line>67</line>
+    </frame>
+    <frame>
+      <class>java.lang.Integer</class>
+      <method>parseInt</method>
+      <line>654</line>
+    </frame>
+    <frame>
+      <class>java.lang.Integer</class>
+      <method>parseInt</method>
+      <line>786</line>
+    </frame>
+    <frame>
+      <class>embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch</class>
+      <method>perceiveCP</method>
+      <line>47</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1765</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-05-30T14:29:47.477873996Z</date>
+  <millis>1748615387477</millis>
+  <nanos>873996</nanos>
+  <sequence>89</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>45</thread>
+  <message>*** ERROR in the LBB transition system (sense). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NumberFormatException: For input string: ""Marginal""</message>
+    <frame>
+      <class>java.lang.NumberFormatException</class>
+      <method>forInputString</method>
+      <line>67</line>
+    </frame>
+    <frame>
+      <class>java.lang.Integer</class>
+      <method>parseInt</method>
+      <line>654</line>
+    </frame>
+    <frame>
+      <class>java.lang.Integer</class>
+      <method>parseInt</method>
+      <line>786</line>
+    </frame>
+    <frame>
+      <class>embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch</class>
+      <method>perceiveCP</method>
+      <line>47</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1765</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
 </record>
 </log>
