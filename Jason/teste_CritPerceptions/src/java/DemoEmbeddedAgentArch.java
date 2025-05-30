@@ -40,8 +40,35 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             if (o instanceof Literal l) {
             String functor = l.getFunctor();
             //System.out.println("functor: "+functor);
-            if (functor.matches("cp\\d+")) { 
-                System.out.println("teste ");
+                if (functor.matches("cp\\d+")) { // match cp0 to cp31
+                    //System.out.println("teste perceiveCP");
+                    int cpIndex = Integer.parseInt(functor.substring(2));
+                    if (cpIndex >= 0 && cpIndex < 32) {
+                        int value = Integer.parseInt(l.getTerm(0).toString());
+
+                        Integer lastVal = lastCPvals.getOrDefault(functor, -12345);
+                        if (value != lastVal) {
+                            // Remove the old belief
+                            String oldBeliefStr = functor + "(" + lastVal + ")[device(roscore1),source(percept)]";
+                            Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
+                            getTS().getAg().getBB().remove(oldBelief);
+
+                            // Add the new belief
+                            Literal newBelief = Literal.parseLiteral(functor + "(" + value + ")[device(roscore1),source(percept)]");
+                            getTS().getAg().getBB().add(newBelief);
+
+                            // Add the associated trigger to CPM
+                            Literal percept = new LiteralImpl("cb" + cpIndex);
+                            Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                            C.CPM.put(te.getPredicateIndicator(), true);
+
+                            // Mark percept index as updated
+                            percepts[cpIndex] = Boolean.TRUE;
+
+                            // Update the last seen value
+                            lastCPvals.put(functor, value);
+                        }
+                    }
                 }
             }
         }
