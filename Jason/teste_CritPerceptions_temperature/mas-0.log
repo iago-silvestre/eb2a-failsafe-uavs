@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-06-01T02:30:43.256346458Z</date>
+  <millis>1748745043256</millis>
+  <nanos>346458</nanos>
+  <sequence>0</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Started!</message>
+</record>
+<record>
+  <date>2025-06-01T02:30:51.373694706Z</date>
+  <millis>1748745051373</millis>
+  <nanos>694706</nanos>
+  <sequence>1</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> cb0 severity= Marginal critJason test</message>
+</record>
+</log>

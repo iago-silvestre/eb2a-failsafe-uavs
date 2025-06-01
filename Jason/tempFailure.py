@@ -32,7 +32,7 @@ class TempFailureTest:
 
     def run(self):
         rospy.sleep(1.0)
-        for i in range(10):
+        for i in range(20):
             if rospy.is_shutdown():
                 break
 
@@ -50,7 +50,7 @@ class TempFailureTest:
 
             # Publish 0.0 to reset
             self.publish_temperature(0.0)
-            rospy.sleep(random.uniform(1.0, 3.0))
+            rospy.sleep(random.uniform(1.0, 10.0))
 
             # Wait briefly before next round
             rospy.sleep(1.0)

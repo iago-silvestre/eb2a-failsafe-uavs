@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-06-01T02:25:23.529428223Z</date>
+  <millis>1748744723529</millis>
+  <nanos>428223</nanos>
+  <sequence>0</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Started!</message>
+</record>
+<record>
+  <date>2025-06-01T02:25:28.192953568Z</date>
+  <millis>1748744728192</millis>
+  <nanos>953568</nanos>
+  <sequence>1</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> marg</message>
+</record>
+<record>
+  <date>2025-06-01T02:25:28.194213820Z</date>
+  <millis>1748744728194</millis>
+  <nanos>213820</nanos>
+  <sequence>2</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message> marg</message>
+</record>
+</log>
