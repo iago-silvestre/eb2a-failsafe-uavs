@@ -3,6 +3,15 @@ FROM px4io/px4-dev-ros-noetic
 
 # Set noninteractive mode for apt
 ENV DEBIAN_FRONTEND=noninteractive
+# 1. Remove broken shadow-fixed repo BEFORE update
+RUN rm -f /etc/apt/sources.list.d/ros-shadow-fixed.list
+# 2. safe to update and install tools
+RUN apt-get update && apt-get install -y curl gnupg2 lsb-release
+# 3. Remove expired GPG key (ignore error if it's already gone)
+RUN apt-key del F42ED6FBAB17C654 || true
+# 4. Add new ROS GPG key and repo
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && \
+    echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list
 
 # Update package list and install additional dependencies
 RUN apt-get update && apt-get install -y \
