@@ -1,4 +1,4 @@
-- device_id: sample_roscore 
+- device_id: roscore1 
   className:  MyRosMaster
   microcontroller: 
       id: ros1 
@@ -10,7 +10,7 @@
         beliefName: critical_percept
       - topicName: uav1/fire_temperature #topico do rospy
         topicType: std_msgs/Float64 #type do rospy
-        beliefName: temperature
+        beliefName: temp
       - topicName: uav1/fire_direction
         topicType: std_msgs/String
         beliefName: fire_direction
