@@ -122,11 +122,27 @@ public class MyRosMaster extends RosMaster {
         if(actionName.equals("path")){
             return exec_test_mrs_topic_action_light(args);           
         }
+
+        if(actionName.equals("cp0-Severe")){	
+
+			Atom myAtom = new Atom("ehover");
+			Object[] newArgs = new Object[]{};  // or 10.1d, depending on what's expected
+			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call
+            return true;
+			/*
+			Atom myAtom = new Atom("goto_altitude");
+			Object[] newArgs = new Object[]{10.1f};  // or 10.1d, depending on what's expected
+			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call	
+			*/		
+		   //((DefaultRos4EmbeddedMas) this.getMicrocontroller()).rosWrite("/teste","std_msgs/String",(String)args[0]);
+		}
+        
         if(actionName.equals("teste")){	
 
 			Atom myAtom = new Atom("land");
 			Object[] newArgs = new Object[]{};  // or 10.1d, depending on what's expected
 			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call
+            return true;
 			/*
 			Atom myAtom = new Atom("goto_altitude");
 			Object[] newArgs = new Object[]{10.1f};  // or 10.1d, depending on what's expected
@@ -138,6 +154,7 @@ public class MyRosMaster extends RosMaster {
 		
 		if (actionName.equals("teste2")) {
 			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+            return true;
 		}
         /*if(actionName.equals("goto_alt")){ //handling the action "move_turtle"
 

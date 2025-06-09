@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import rospy
 import time
 import random
@@ -9,7 +9,9 @@ class TempFailureTest:
         rospy.init_node('temp_failure_test', anonymous=True)
 
         self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
+        self.temp_sev_pub = rospy.Publisher('/uav1/fire_temperature_sev', String, queue_size=1)
         rospy.Subscriber('/agent_detected_failure_uav1', String, self.failure_callback)
+        self.fail_det_pub = rospy.Publisher('/agent_detected_failure_uav1', String, queue_size=1)
 
         self.reaction_received = False
         self.waiting_for_reaction = False
@@ -20,7 +22,15 @@ class TempFailureTest:
     def publish_temperature(self, value):
         msg = Float64(data=value)
         self.temp_pub.publish(msg)
+    
+    def publish_temperature_sev(self, value):
+        msg = String(data=value)
+        self.temp_sev_pub.publish(msg)
         #rospy.loginfo(f"Published temperature: {value}")
+
+    def publish_failure_det(self, value):
+        msg = String(data=value)
+        self.temp_sev_pub.publish(msg)
 
     def failure_callback(self, msg):
         if self.waiting_for_reaction and msg.data.strip() == "1":
@@ -29,6 +39,7 @@ class TempFailureTest:
             self.reaction_times.append((self.perception_time, reaction_time, delay_ms))
             self.reaction_received = True
             rospy.loginfo(f"Reaction received. Delay: {delay_ms:.2f} ms")
+            self.publish_failure_det("0")
 
     def run(self):
         rospy.sleep(1.0)
@@ -38,6 +49,7 @@ class TempFailureTest:
 
             # Publish 80.0
             self.publish_temperature(80.0)
+            self.publish_temperature_sev("Critical")
             self.perception_time = time.perf_counter()
 
             # Wait for reaction
@@ -50,7 +62,8 @@ class TempFailureTest:
 
             # Publish 0.0 to reset
             self.publish_temperature(0.0)
-            rospy.sleep(random.uniform(1.0, 10.0))
+            self.publish_temperature_sev("None")
+            rospy.sleep(random.uniform(2.0, 4.0))
 
             # Wait briefly before next round
             rospy.sleep(1.0)

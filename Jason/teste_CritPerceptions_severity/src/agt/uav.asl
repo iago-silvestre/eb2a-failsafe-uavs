@@ -37,7 +37,9 @@ severity_cp0(SEV) :- temp(T)  & T > 50 & T < 70
 severity_cp0(SEV) :- temp(T)  & T >= 70
                   & SEV= "Critical".
 
-+temp(T): severity_cp0(SEV) <- -+cp0(SEV).
+//+temp(T): severity_cp0(SEV) <- -+cp0(SEV).
+//+temp(T): severity_cp0("Critical")<- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
+
 //.print(" cb0 severity= ", SEV). 
 //+cb0("Marginal") [cr] <- .print(" cb0 severity= Marginal critJason test"). 
 

@@ -56,16 +56,19 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
                   & SEV= "Critical".
 
 +temp(T): severity_cp0(SEV) <- -+cp0(SEV).
+//+temp(T): severity_cp0("Critical")<- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 +oppos_fire_dir(OFD) <- -no_fire_dir_sensor.
 
 //Rules for Reaction of cb0 - Harmful Event of High Temperature
 +cb0 [cr]: cp0("Marginal") & temp(T) & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T,CX,CY]).
 
-+cb0 [cr]: cp0("Severe")  & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).  
++cb0 [cr]: cp0("Severe")  & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[[CX,CY,CZ]]).  
 
 +cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- !mm::run_mission(rtl).  
 
-+cb0 [cr]: cp0("Critical") & oppos_fire_dir(OFD) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
++cb0 [cr]: cp0("Critical") & oppos_fire_dir(OFD) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Critical-ofd",[OFD]).  
+
+//+cb0 [cr]: cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
 
 
 //Rules for Reaction of cb1 - Harmful Event of Motor Failure
@@ -185,8 +188,8 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
       +mm::my_ap(AP);
       //embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","goto_altitude",[10.5]);
       .print("Started!",CT);
-      !calculate_trajectory.
-      //!my_missions.
+      !calculate_trajectory;
+      !my_missions.
 
 +fireSize(0)
    : current_mission(combat_fire)
@@ -433,8 +436,10 @@ all_proposals_received(CNPId,NP) :-
    <- .print("Mission ",Id," state is ",S).
 
 +mm::mission_step(Id,Step)
-   : mm::mission_plan(Plan)
-   -+remaining_wp(.length(Plan)-Step).
+   :  mm::mission_plan(Plan)
+   <- L = .length(Plan);
+      R = L - Step;
+      +remaining_wp(R).
 
 +mm::current_mission(Id)
    <- -current_mission(_);

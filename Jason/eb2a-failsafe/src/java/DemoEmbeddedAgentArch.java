@@ -86,32 +86,36 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                         String functor = l.getFunctor();
                         //System.out.println("functor: "+functor);
                         if (functor.matches("cp\\d+")) { // match cp0 to cp31
-                            //System.out.println("teste perceiveCP");
                             int cpIndex = Integer.parseInt(functor.substring(2));
                             if (cpIndex >= 0 && cpIndex < 32) {
-                                int value = Integer.parseInt(l.getTerm(0).toString());
+                                // Get string value from the first term (remove quotes if present)
+                                String value = l.getTerm(0).toString().replaceAll("^\"|\"$", "");
 
-                                Integer lastVal = lastCPvals.getOrDefault(functor, -12345);
-                                if (value != lastVal) {
+                                String lastVal = lastCPvals_bb.getOrDefault(functor, "__no_previous__");
+                                if (!value.equals(lastVal)) {
                                     // Remove the old belief
-                                    String oldBeliefStr = functor + "(" + lastVal + ")[device(roscore1),source(percept)]";
+                                    String oldBeliefStr = functor + "(\"" + lastVal + "\")[device(roscore1),source(percept)]";
                                     Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
                                     getTS().getAg().getBB().remove(oldBelief);
 
                                     // Add the new belief
-                                    Literal newBelief = Literal.parseLiteral(functor + "(" + value + ")[device(roscore1),source(percept)]");
+                                    String newBeliefStr = functor + "(\"" + value + "\")[device(roscore1),source(percept)]";
+                                    Literal newBelief = Literal.parseLiteral(newBeliefStr);
                                     getTS().getAg().getBB().add(newBelief);
 
                                     // Add the associated trigger to CPM
-									Literal percept = new LiteralImpl("cb" + cpIndex);
-									Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                                    Literal percept = new LiteralImpl("cb" + cpIndex);
+                                    //percept.addTerm(ASSyntax.createString(value));
+                                    //Literal percept = new LiteralImpl("cb" + cpIndex + "(\"" + value + "\")"); //Adds a trigger for the severities
+                                    //System.out.println(percept);
+                                    Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                                     C.CPM.put(te.getPredicateIndicator(), true);
 
                                     // Mark percept index as updated
                                     percepts[cpIndex] = Boolean.TRUE;
 
                                     // Update the last seen value
-                                    lastCPvals.put(functor, value);
+                                    lastCPvals_bb.put(functor, value);
                                 }
                             }
                         }

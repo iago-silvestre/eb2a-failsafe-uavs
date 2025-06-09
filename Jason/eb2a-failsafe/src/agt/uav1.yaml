@@ -11,6 +11,9 @@
       - topicName: uav1/fire_temperature #topico do rospy
         topicType: std_msgs/Float64 #type do rospy
         beliefName: temp
+      - topicName: uav1/fire_temperature_sev #topico do rospy
+        topicType: std_msgs/String #type do rospy
+        beliefName: cp0
       - topicName: uav1/fire_direction
         topicType: std_msgs/String
         beliefName: fire_direction
@@ -52,6 +55,8 @@
         serviceName: /uav1/uav_manager/land 
       - actionName: hover 
         serviceName: /uav1/control_manager/hover
+      - actionName: ehover 
+        serviceName: /uav1/control_manager/ehover
       - actionName: goto_altitude #action name (from agent's perspective)
         serviceName: /uav1/control_manager/goto_altitude #service called to execute the action
         params: #parameters

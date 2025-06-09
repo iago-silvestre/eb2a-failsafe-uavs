@@ -8,7 +8,7 @@ MAS uav {
     infrastructure: Local
 
     agents:
-        uav1 uav.asl [beliefs="my_number(1)", beliefs="my_frame_id(\"world\")"]
+        uav1 uav.asl [beliefs="my_number(1), my_frame_id(\"world\")"]
             agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent
             agentArchClass embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch;
                       

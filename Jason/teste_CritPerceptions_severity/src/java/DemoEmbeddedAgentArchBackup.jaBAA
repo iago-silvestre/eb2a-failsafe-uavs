@@ -77,7 +77,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                 }
             }
         }
-
+        
         for (IDevice s : this.devices) {
             try {
                 Collection<Literal> p = s.getPercepts();
@@ -87,36 +87,32 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                         String functor = l.getFunctor();
                         //System.out.println("functor: "+functor);
                         if (functor.matches("cp\\d+")) { // match cp0 to cp31
+                            //System.out.println("teste perceiveCP");
                             int cpIndex = Integer.parseInt(functor.substring(2));
                             if (cpIndex >= 0 && cpIndex < 32) {
-                                // Get string value from the first term (remove quotes if present)
-                                String value = l.getTerm(0).toString().replaceAll("^\"|\"$", "");
+                                int value = Integer.parseInt(l.getTerm(0).toString());
 
-                                String lastVal = lastCPvals_bb.getOrDefault(functor, "__no_previous__");
-                                if (!value.equals(lastVal)) {
+                                Integer lastVal = lastCPvals.getOrDefault(functor, -12345);
+                                if (value != lastVal) {
                                     // Remove the old belief
-                                    String oldBeliefStr = functor + "(\"" + lastVal + "\")[device(roscore1),source(percept)]";
+                                    String oldBeliefStr = functor + "(" + lastVal + ")[device(roscore1),source(percept)]";
                                     Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
                                     getTS().getAg().getBB().remove(oldBelief);
 
                                     // Add the new belief
-                                    String newBeliefStr = functor + "(\"" + value + "\")[device(roscore1),source(percept)]";
-                                    Literal newBelief = Literal.parseLiteral(newBeliefStr);
+                                    Literal newBelief = Literal.parseLiteral(functor + "(" + value + ")[device(roscore1),source(percept)]");
                                     getTS().getAg().getBB().add(newBelief);
 
                                     // Add the associated trigger to CPM
-                                    Literal percept = new LiteralImpl("cb" + cpIndex);
-                                    //percept.addTerm(ASSyntax.createString(value));
-                                    //Literal percept = new LiteralImpl("cb" + cpIndex + "(\"" + value + "\")"); //Adds a trigger for the severities
-                                    //System.out.println(percept);
-                                    Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+									Literal percept = new LiteralImpl("cb" + cpIndex);
+									Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                                     C.CPM.put(te.getPredicateIndicator(), true);
 
                                     // Mark percept index as updated
                                     percepts[cpIndex] = Boolean.TRUE;
 
                                     // Update the last seen value
-                                    lastCPvals_bb.put(functor, value);
+                                    lastCPvals.put(functor, value);
                                 }
                             }
                         }
