@@ -63,7 +63,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 +cb0 [cr]: cp0("Severe")  & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).  
 
-+cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","rtl",[]).  
++cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- !mm::run_mission(rtl).  
 
 +cb0 [cr]: cp0("Critical") & oppos_fire_dir(OFD) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
 
@@ -71,20 +71,54 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 //Rules for Reaction of cb1 - Harmful Event of Motor Failure
 +cb1 [cr]: cp1("Marginal") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp1-Marginal",[]).
 
-+cb1 [cr]: cp1("Severe")   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","rtl",[]).  
++cb1 [cr]: cp1("Severe")   <- !mm::run_mission(rtl). 
 
 +cb1 [cr]: cp1("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","eland",[]).  
 
 //Rules for Reaction of cb2 - Harmful Event of Battery Level
+severity_cp2(SEV) :- batt(B)  & B > 50       
+                  & SEV= "None".
 
-+cb1 [cr]: cp1("Marginal") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp2-Marginal",[]).
+severity_cp2(SEV) :- batt(B)  & B >= 30 & B <= 50 
+                  & SEV= "Marginal".
 
-+cb1 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP>6  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","rtl",[]).
+severity_cp2(SEV) :- batt(B)  & B > 10 & B < 30 
+                  & SEV= "Severe".
 
-+cb1 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP<=6  <- .print(" Enough Battery to finish Mission, prioritizing completion").   
+severity_cp2(SEV) :- batt(B)  & B <= 10
+                  & SEV= "Critical".
 
-+cb1 [cr]: cp1("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","eland",[]).  
++batt(B): severity_cp2(SEV) <- -+cp2(SEV).
 
++cb2 [cr]: cp1("Marginal") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp2-Marginal",[]).
+
++cb2 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP>6  <- !mm::run_mission(rtl).
+
++cb2 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP<=6  <- .print(" Enough Battery to finish Mission, prioritizing completion").   
+
++cb2 [cr]: cp1("Critical") & distance(0,0,D) & D>10 <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","eland",[]).  
+
++cb2 [cr]: cp1("Critical") & distance(0,0,D) & D<=10 <- !mm::run_mission(rtl).  
+
+//Rules for Reaction of cb3 - Harmful Event of Comm Failure
+severity_cp3(SEV) :- comm_failure(CF)  & CF = 0        
+                  & SEV= "None".
+
+severity_cp3(SEV) :- comm_failure(CF)  & CF <= 10 
+                  & SEV= "Marginal".
+
+severity_cp3(SEV) :- comm_failure(CF)  & CF > 10 & CF <= 60 
+                  & SEV= "Severe".
+
+severity_cp3(SEV) :- comm_failure(CF)  & CF > 60 
+                  & SEV= "Critical".
+
++comm_failure(CF): severity_cp3(SEV) <- -+cp3(SEV).
++cb3 [cr]: cp3("Marginal") <- -+comm_status("Marginal").
+
++cb3 [cr]: cp3("Severe")   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp3-Severe",[]). 
+
++cb3 [cr]: cp3("Critical") <- !mm::run_mission(rtl). 
 
 
 //+temperature(T) : T>= 50.0 <- !high_temp.  //Placeholder - this will be done by external monitor
