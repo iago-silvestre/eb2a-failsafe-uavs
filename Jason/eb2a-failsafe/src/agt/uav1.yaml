@@ -57,6 +57,16 @@
         serviceName: /uav1/control_manager/hover
       - actionName: ehover 
         serviceName: /uav1/control_manager/ehover
+      - actionName: sethome 
+        serviceName: /uav1/mavros/cmd/set_home
+        params: #parameters
+          - current_gps
+          - yaw
+          - latitude
+          - longitude
+          - altitude 
+      - actionName: landhome 
+        serviceName: /uav1/uav_manager/land_home
       - actionName: goto_altitude #action name (from agent's perspective)
         serviceName: /uav1/control_manager/goto_altitude #service called to execute the action
         params: #parameters

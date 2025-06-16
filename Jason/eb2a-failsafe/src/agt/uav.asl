@@ -18,6 +18,7 @@ fire_pos(0.0,0.0).
 critical_p(2).
 firetemp_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 no_fire_dir_sensor.
+
 //timesincecommfailure(0.0).
 //firetemp_list([[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 
@@ -59,22 +60,41 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 //+temp(T): severity_cp0("Critical")<- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 +oppos_fire_dir(OFD) <- -no_fire_dir_sensor.
 
+/*+cb0 [cr]
+   : cp0("Marginal") & temp(T)[device(roscore1),source(percept)] & current_position(CX, CY, CZ) 
+   <- .print("Calling cp0-Marginal with CX=", CX);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T]).*/
+
 //Rules for Reaction of cb0 - Harmful Event of High Temperature
-+cb0 [cr]: cp0("Marginal") & temp(T) & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T,CX,CY]).
++cb0 [cr]: cp0("Marginal") & frl_charges(FRL)  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
 
-+cb0 [cr]: cp0("Severe")  & current_position(CX, CY, CZ) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[[CX,CY,CZ]]).  
++cb0 [cr]: cp0("Severe")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).   
 
-+cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- !mm::run_mission(rtl).  
++cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]).  
 
 +cb0 [cr]: cp0("Critical") & oppos_fire_dir(OFD) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Critical-ofd",[OFD]).  
 
 //+cb0 [cr]: cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
 
++cp0("Marginal")
+   :  frl_charges(FRL)
+   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
 
-//Rules for Reaction of cb1 - Harmful Event of Motor Failure
+
+
+
+
++cp0("Marginal")
+   :  temp(T) & current_position(CX, CY, CZ)  & current_mission(CM)
+   <- .print("Logged event of high temp: ",T," during mission ",CM," at location: ",CX," , ",CY,".").
+
++cp0("Marginal")
+   :  temp(T) & current_mission(CM)
+   <- .print("Logged event of high temp: ",T," during mission ",CM,".").
+//Rules for Reaction of cb1 - Harmful Evenotor Failure
 +cb1 [cr]: cp1("Marginal") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp1-Marginal",[]).
 
-+cb1 [cr]: cp1("Severe")   <- !mm::run_mission(rtl). 
++cb1 [cr]: cp1("Severe")   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]). 
 
 +cb1 [cr]: cp1("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","eland",[]).  
 
@@ -95,13 +115,13 @@ severity_cp2(SEV) :- batt(B)  & B <= 10
 
 +cb2 [cr]: cp1("Marginal") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp2-Marginal",[]).
 
-+cb2 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP>6  <- !mm::run_mission(rtl).
++cb2 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP>6  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]).
 
 +cb2 [cr]: cp1("Severe") & remaining_wp(RWP) & RWP<=6  <- .print(" Enough Battery to finish Mission, prioritizing completion").   
 
 +cb2 [cr]: cp1("Critical") & distance(0,0,D) & D>10 <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","eland",[]).  
 
-+cb2 [cr]: cp1("Critical") & distance(0,0,D) & D<=10 <- !mm::run_mission(rtl).  
++cb2 [cr]: cp1("Critical") & distance(0,0,D) & D<=10 <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]).  
 
 //Rules for Reaction of cb3 - Harmful Event of Comm Failure
 severity_cp3(SEV) :- comm_failure(CF)  & CF = 0        
@@ -124,7 +144,17 @@ severity_cp3(SEV) :- comm_failure(CF)  & CF > 60
 +cb3 [cr]: cp3("Critical") <- !mm::run_mission(rtl). 
 
 
++!recovering_from_cp0_severe
+   :  current_mission(CM) & current_position(CX, CY, CZ) & math.abs(CZ - 10.1) <= 0.5
+   <- .print("Increased altitude to avoid fire");
+      !mm::resume(CM).
+
++log_marginal_temp
+   :  current_mission(CM) & current_position(CX, CY, CZ)
+   <- .print("During Mission", CM, " encountered high temp at: ",CX,"  ",CY).
+
 //+temperature(T) : T>= 50.0 <- !high_temp.  //Placeholder - this will be done by external monitor
+/*
 +comm_failure(1) : true <- !comm_failure.
 +comm_failure(0) : current_mission(CM)  <- !mm::resume(CM).
 
@@ -178,7 +208,7 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
 +!high_temp
    : severity_cp0(SEV) & SEV=="Critical"
    <- .print("Critical Test");
-      !mm::run_mission(rtl).
+      !mm::run_mission(rtl).*/
 
 !start.
 
@@ -186,7 +216,7 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
    : my_ap(AP) & my_number(N) & combat_traj(CT)
     <- .wait(2000);
       +mm::my_ap(AP);
-      //embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","goto_altitude",[10.5]);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","sethome",[true,0.0,0.0,0.0,0.0]);
       .print("Started!",CT);
       !calculate_trajectory;
       !my_missions.
@@ -201,7 +231,7 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
 
 
 +!my_missions
-   :  firetemp_list(L) & my_number(N) & my_landing_position(LAX, LAY) & std_altitude(Z)
+   :  waypoints_list(L) & my_number(N) & my_landing_position(LAX, LAY) & std_altitude(Z)  //firetemp_list(L)
    <- !mm::create_mission(search, 10, []); 
       !mm::create_mission(test, 10, []); 
       +mm::mission_plan(search,L); 
@@ -450,3 +480,4 @@ all_proposals_received(CNPId,NP) :-
 +!analyzeFire.
 +!analyze_CNP.
 +!comm_failure.
++!recovering_from_cp0_severe.  

@@ -3,12 +3,12 @@ import embedded.mas.bridges.ros.RosMaster;
 
 import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
 import embedded.mas.bridges.ros.ServiceParameters;
-import jade.util.leap.ArrayList;
 import embedded.mas.bridges.ros.IRosInterface;
 
 import jason.asSyntax.Atom;
 import jason.asSyntax.ListTermImpl;
 import jason.asSyntax.NumberTermImpl;
+import jason.asSyntax.NumberTerm;
 import jason.asSemantics.Unifier;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+//import jade.util.leap.ArrayList;
 
 
 public class MyRosMaster extends RosMaster {
@@ -119,21 +120,28 @@ public class MyRosMaster extends RosMaster {
     
     @Override
 	public boolean execEmbeddedAction(String actionName, Object[] args, Unifier un) {		
-        if(actionName.equals("path")){
-            return exec_test_mrs_topic_action_light(args);           
-        }
+        
 
+        if (actionName.equals("cp0-Marginal")) {
+            //System.out.println("Logging event of cp0 - Marginal ");
+            System.out.println(args[0].toString());
+            return true;
+            }
         if(actionName.equals("cp0-Severe")){	
 
-			Atom myAtom = new Atom("ehover");
-			Object[] newArgs = new Object[]{};  // or 10.1d, depending on what's expected
-			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call
-            return true;
-			/*
-			Atom myAtom = new Atom("goto_altitude");
-			Object[] newArgs = new Object[]{10.1f};  // or 10.1d, depending on what's expected
-			super.execEmbeddedAction(myAtom, newArgs, un);  // recursive call	
-			*/		
+			Atom hover = new Atom("hover");
+			Object[] noargs = new Object[]{};  // or 10.1d, depending on what's expected
+			super.execEmbeddedAction(hover, noargs, un);  // recursive call
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // or handle it another way
+            }
+			
+			Atom gotoalt = new Atom("goto_altitude");
+			Object[] altitude = new Object[]{15.0f};  // or 10.1d, depending on what's expected
+			super.execEmbeddedAction(gotoalt, altitude, un);  // recursive call	
+		    return true;
 		   //((DefaultRos4EmbeddedMas) this.getMicrocontroller()).rosWrite("/teste","std_msgs/String",(String)args[0]);
 		}
         
@@ -156,6 +164,10 @@ public class MyRosMaster extends RosMaster {
 			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
             return true;
 		}
+
+        if(actionName.equals("path")){
+            return exec_test_mrs_topic_action_light(args);           
+        }
         /*if(actionName.equals("goto_alt")){ //handling the action "move_turtle"
 
 			ServiceParameters p = new ServiceParameters(); 
