@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-06-16T12:02:59.201877195Z</date>
-  <millis>1750075379201</millis>
-  <nanos>877195</nanos>
+  <date>2025-06-16T15:13:11.489349712Z</date>
+  <millis>1750086791489</millis>
+  <nanos>349712</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Started![[-2,-2,7.25],[2,-2,7.25],[2,2,7.25],[-2,2,7.25]]</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.206583303Z</date>
-  <millis>1750075379206</millis>
-  <nanos>583303</nanos>
+  <date>2025-06-16T15:13:11.494116157Z</date>
+  <millis>1750086791494</millis>
+  <nanos>116157</nanos>
   <sequence>1</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Calculating landing position</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.212444067Z</date>
-  <millis>1750075379212</millis>
-  <nanos>444067</nanos>
+  <date>2025-06-16T15:13:11.496399177Z</date>
+  <millis>1750086791496</millis>
+  <nanos>399177</nanos>
   <sequence>2</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Calculating area</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.217036645Z</date>
-  <millis>1750075379217</millis>
-  <nanos>36645</nanos>
+  <date>2025-06-16T15:13:11.499634461Z</date>
+  <millis>1750086791499</millis>
+  <nanos>634461</nanos>
   <sequence>3</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.219281413Z</date>
-  <millis>1750075379219</millis>
-  <nanos>281413</nanos>
+  <date>2025-06-16T15:13:11.502398594Z</date>
+  <millis>1750086791502</millis>
+  <nanos>398594</nanos>
   <sequence>4</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -62,9 +62,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.221702046Z</date>
-  <millis>1750075379221</millis>
-  <nanos>702046</nanos>
+  <date>2025-06-16T15:13:11.506951983Z</date>
+  <millis>1750086791506</millis>
+  <nanos>951983</nanos>
   <sequence>5</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -74,9 +74,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.223877837Z</date>
-  <millis>1750075379223</millis>
-  <nanos>877837</nanos>
+  <date>2025-06-16T15:13:11.509486340Z</date>
+  <millis>1750086791509</millis>
+  <nanos>486340</nanos>
   <sequence>6</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -86,9 +86,9 @@
   <message>Finished calculating waypoints</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.225772436Z</date>
-  <millis>1750075379225</millis>
-  <nanos>772436</nanos>
+  <date>2025-06-16T15:13:11.511907523Z</date>
+  <millis>1750086791511</millis>
+  <nanos>907523</nanos>
   <sequence>7</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -98,9 +98,9 @@
   <message>Waypoints list: [[-47.5,-47.5,6.25],[-47.5,-2.5,6.25],[-42.5,-2.5,6.25],[-42.5,-47.5,6.25],[-37.5,-47.5,6.25],[-37.5,-2.5,6.25],[-32.5,-2.5,6.25],[-32.5,-47.5,6.25],[-27.5,-47.5,6.25],[-27.5,-2.5,6.25],[-22.5,-2.5,6.25],[-22.5,-47.5,6.25]]</message>
 </record>
 <record>
-  <date>2025-06-16T12:02:59.236456393Z</date>
-  <millis>1750075379236</millis>
-  <nanos>456393</nanos>
+  <date>2025-06-16T15:13:11.521526976Z</date>
+  <millis>1750086791521</millis>
+  <nanos>526976</nanos>
   <sequence>8</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -109,4 +109,15 @@
   <thread>44</thread>
   <message>Mission search state is running</message>
 </record>
-</log>
+<record>
+  <date>2025-06-16T15:13:13.749894464Z</date>
+  <millis>1750086793749</millis>
+  <nanos>894464</nanos>
+  <sequence>9</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>FRL&lt;no-value&gt;</message>
+</record>

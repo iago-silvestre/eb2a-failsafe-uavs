@@ -67,7 +67,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 
 //Rules for Reaction of cb0 - Harmful Event of High Temperature
-+cb0 [cr]: cp0("Marginal") & frl_charges(FRL)  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
++cb0 [cr]: cp0("Marginal")  <- ?frl_charges(FRL);.print(FRL);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
 
 +cb0 [cr]: cp0("Severe")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).   
 
