@@ -65,6 +65,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
    <- .print("Calling cp0-Marginal with CX=", CX);
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T]).*/
 
+
 //Rules for Reaction of cb0 - Harmful Event of High Temperature
 +cb0 [cr]: cp0("Marginal") & frl_charges(FRL)  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
 
