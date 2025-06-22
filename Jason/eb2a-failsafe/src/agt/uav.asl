@@ -66,8 +66,8 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T]).*/
 
 
-//Rules for Reaction of cb0 - Harmful Event of High Temperature
-+cb0 [cr]: cp0("Marginal")  <- ?frl_charges(FRL);.print(FRL);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
+//Rules for Reaction of cb0 - Harmful Event of High Temperature .print(FRL);
++cb0 [cr]: cp0("Marginal")  <- ?frl_charges(FRL);.print("FRL = ",FRL).//embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
 
 +cb0 [cr]: cp0("Severe")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).   
 
@@ -79,7 +79,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 +cp0("Marginal")
    :  frl_charges(FRL)
-   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
+   <- .print("FRL after internal = ",FRL).//embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]). 
 
 
 
