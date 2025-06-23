@@ -49,6 +49,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
                         String lastVal = lastCPvals_bb.getOrDefault(functor, "__no_previous__");
                         if (!value.equals(lastVal)) {
+                            /*    
                             // Remove the old belief
                             String oldBeliefStr = functor + "(\"" + lastVal + "\")[device(roscore1),source(percept)]";
                             Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
@@ -58,6 +59,8 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                             String newBeliefStr = functor + "(\"" + value + "\")[device(roscore1),source(percept)]";
                             Literal newBelief = Literal.parseLiteral(newBeliefStr);
                             getTS().getAg().getBB().add(newBelief);
+                            
+                            */
 
                             // Add the associated trigger to CPM
                             Literal percept = new LiteralImpl("cb" + cpIndex);

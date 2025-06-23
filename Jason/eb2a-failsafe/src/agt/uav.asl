@@ -16,6 +16,7 @@ landing_y(0.0).
 wind_speed(-20.0).
 fire_pos(0.0,0.0).
 critical_p(2).
+test(5).
 firetemp_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 no_fire_dir_sensor.
 
@@ -47,7 +48,7 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 severity_cp0(SEV) :- temp(T)  & T < 40       //Rules for Severity Detection
                   & SEV= "None".
 
-severity_cp0(SEV) :- temp(T)  & T >= 40 & T <= 50 //& T < 70.0       //Rules for Severity Detection
+severity_cp0(SEV) :- temp(T)  & T >= 40 & T <= 50 //& T < 70.0      
                   & SEV= "Marginal".
 
 severity_cp0(SEV) :- temp(T)  & T > 50 & T < 70 
@@ -56,7 +57,8 @@ severity_cp0(SEV) :- temp(T)  & T > 50 & T < 70
 severity_cp0(SEV) :- temp(T)  & T >= 70
                   & SEV= "Critical".
 
-+temp(T): severity_cp0(SEV) <- -+cp0(SEV).
+
++temp(T): severity_cp0(SEV)  <- -+cp0(SEV).
 //+temp(T): severity_cp0("Critical")<- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 +oppos_fire_dir(OFD) <- -no_fire_dir_sensor.
 
@@ -66,8 +68,9 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T]).*/
 
 
-//Rules for Reaction of cb0 - Harmful Event of High Temperature .print(FRL);
-+cb0 [cr]: cp0("Marginal")  <- ?frl_charges(FRL);.print("FRL = ",FRL).//embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]).
+//Rules for Reaction of cb0 - Harmful Event of High Temperature 
+//+cb0 [cr]: cp0("Marginal") & test(T) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[T]).//.print("T = ",T). ?frl_charges(FRL);.print("FRL = ",FRL);
++cb0 [cr]: cp0("Marginal") <- ?critical_p(N);.print("N = ",N);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[N]).
 
 +cb0 [cr]: cp0("Severe")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).   
 
@@ -78,8 +81,8 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 //+cb0 [cr]: cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
 
 +cp0("Marginal")
-   :  frl_charges(FRL)
-   <- .print("FRL after internal = ",FRL).//embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]). 
+   <- ?test(T);
+      .print("T after internal= ",T).//embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[FRL]). 
 
 
 

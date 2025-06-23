@@ -125,7 +125,7 @@ public class MyRosMaster extends RosMaster {
 
         if (actionName.equals("cp0-Marginal")) {
             //System.out.println("Logging event of cp0 - Marginal ");
-            System.out.println(args[0].toString());
+            System.out.println("myrosmaster.java |  cp0-Marginal = " + args[0].toString());
             return true;
             }
 
