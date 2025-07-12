@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
 	tmux \
     python3-pip \
+    dos2unix \
 	python3-vcstool \
     python3-rosinstall \
     python3-rosinstall-generator \

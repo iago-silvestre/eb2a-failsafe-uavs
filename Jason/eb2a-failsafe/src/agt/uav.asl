@@ -74,7 +74,8 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 +cb0 [cr]: cp0("Severe")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[]).   
 
-+cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]).  
++cb0 [cr]: cp0("Critical") <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
+//+cb0 [cr]: cp0("Critical") & no_fire_dir_sensor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]).  
 
 +cb0 [cr]: cp0("Critical") & oppos_fire_dir(OFD) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Critical-ofd",[OFD]).  
 

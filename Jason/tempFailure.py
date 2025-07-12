@@ -49,7 +49,7 @@ class TempFailureTest:
 
             # Publish 80.0
             self.publish_temperature(80.0)
-            self.publish_temperature_sev("Critical")
+            #self.publish_temperature_sev("Critical")
             self.perception_time = time.perf_counter()
 
             # Wait for reaction

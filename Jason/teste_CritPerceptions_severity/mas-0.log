@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-06-09T03:18:42.363228169Z</date>
-  <millis>1749439122363</millis>
-  <nanos>228169</nanos>
+  <date>2025-06-23T22:57:13.863961432Z</date>
+  <millis>1750719433863</millis>
+  <nanos>961432</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -12,5 +12,1273 @@
   <method>execute</method>
   <thread>44</thread>
   <message>Started!</message>
+</record>
+<record>
+  <date>2025-06-23T22:57:35.372574422Z</date>
+  <millis>1750719455372</millis>
+  <nanos>574422</nanos>
+  <sequence>1</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={wait(1)[time(20000)]=intention 1: 
+    +!hover[source(self)] &lt;- ... .wait(20000); !hover / {X=1}
+    +!start[source(self)] &lt;- ... !hover / {}
+}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:57:45.277365978Z</date>
+  <millis>1750719465277</millis>
+  <nanos>365978</nanos>
+  <sequence>2</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:57:48.918693022Z</date>
+  <millis>1750719468918</millis>
+  <nanos>693022</nanos>
+  <sequence>3</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:57:58.902542978Z</date>
+  <millis>1750719478902</millis>
+  <nanos>542978</nanos>
+  <sequence>4</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:02.236203523Z</date>
+  <millis>1750719482236</millis>
+  <nanos>203523</nanos>
+  <sequence>5</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:12.338140946Z</date>
+  <millis>1750719492338</millis>
+  <nanos>140946</nanos>
+  <sequence>6</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:16.481083800Z</date>
+  <millis>1750719496481</millis>
+  <nanos>83800</nanos>
+  <sequence>7</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:26.580158347Z</date>
+  <millis>1750719506580</millis>
+  <nanos>158347</nanos>
+  <sequence>8</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:29.913011172Z</date>
+  <millis>1750719509913</millis>
+  <nanos>11172</nanos>
+  <sequence>9</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:39.904658625Z</date>
+  <millis>1750719519904</millis>
+  <nanos>658625</nanos>
+  <sequence>10</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:43.538606577Z</date>
+  <millis>1750719523538</millis>
+  <nanos>606577</nanos>
+  <sequence>11</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:53.528607961Z</date>
+  <millis>1750719533528</millis>
+  <nanos>607961</nanos>
+  <sequence>12</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:58:57.264816566Z</date>
+  <millis>1750719537264</millis>
+  <nanos>816566</nanos>
+  <sequence>13</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:07.253069991Z</date>
+  <millis>1750719547253</millis>
+  <nanos>69991</nanos>
+  <sequence>14</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:10.282270580Z</date>
+  <millis>1750719550282</millis>
+  <nanos>270580</nanos>
+  <sequence>15</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:20.275937623Z</date>
+  <millis>1750719560275</millis>
+  <nanos>937623</nanos>
+  <sequence>16</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:25.121652348Z</date>
+  <millis>1750719565121</millis>
+  <nanos>652348</nanos>
+  <sequence>17</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:35.114800861Z</date>
+  <millis>1750719575114</millis>
+  <nanos>800861</nanos>
+  <sequence>18</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:39.757062782Z</date>
+  <millis>1750719579757</millis>
+  <nanos>62782</nanos>
+  <sequence>19</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:49.749993822Z</date>
+  <millis>1750719589749</millis>
+  <nanos>993822</nanos>
+  <sequence>20</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T22:59:53.080378360Z</date>
+  <millis>1750719593080</millis>
+  <nanos>378360</nanos>
+  <sequence>21</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T23:00:03.072073370Z</date>
+  <millis>1750719603072</millis>
+  <nanos>73370</nanos>
+  <sequence>22</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2025-06-23T23:00:07.513596480Z</date>
+  <millis>1750719607513</millis>
+  <nanos>596480</nanos>
+  <sequence>23</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>SEVERE</level>
+  <class>jason.asSemantics.TransitionSystem</class>
+  <method>expeditedRP</method>
+  <thread>44</thread>
+  <message>*** ERROR in the LBB transition system (act). Circumstance:
+  E =[]
+  I =[]
+  A =null
+  MB=[]
+  RP=null
+  AP=null
+  SE=null
+  SO=null
+  SI=null
+  AI=null
+  AE=null
+  PA={}
+  PI={}
+  FA=[].
+Creating a new C!</message>
+  <exception>
+    <message>java.lang.NullPointerException: Cannot invoke "jason.asSemantics.Intention.peek()" because "curInt" is null</message>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expedited_deliberate</method>
+      <line>2024</line>
+    </frame>
+    <frame>
+      <class>jason.asSemantics.TransitionSystem</class>
+      <method>expeditedRP</method>
+      <line>1787</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>reasoningCycle</method>
+      <line>267</line>
+    </frame>
+    <frame>
+      <class>jason.infra.local.LocalAgArch</class>
+      <method>run</method>
+      <line>316</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+      <line>840</line>
+    </frame>
+  </exception>
 </record>
 </log>
