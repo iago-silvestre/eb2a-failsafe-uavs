@@ -136,6 +136,7 @@ public class MyRosMaster extends RosMaster {
             
             if (actionName.equals("cp0-Severe")) {
             //System.out.println("Logging event of cp0 - Marginal ");
+            System.out.println("Uav" + args[0].toString() + " logged event of Severe Temperature at CX: " + args[1].toString() + "CY: " + args[2].toString());
             System.out.println("myrosmaster.java |  cp0-Marginal arg0 = " + args[0].toString());
             System.out.println("myrosmaster.java |  cp0-Marginal arg1 = " + args[1].toString());
             System.out.println("myrosmaster.java |  cp0-Marginal arg2 = " + args[2].toString());
