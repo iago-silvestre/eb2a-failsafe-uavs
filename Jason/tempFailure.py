@@ -42,7 +42,8 @@ class TempFailureTest:
             self.publish_failure_det("0")
 
     def run(self):
-        rospy.sleep(1.0)
+        self.publish_temperature(10.0)
+        rospy.sleep(2.0)
         for i in range(20):
             if rospy.is_shutdown():
                 break

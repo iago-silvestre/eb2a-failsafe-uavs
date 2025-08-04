@@ -5,6 +5,10 @@ import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
 import embedded.mas.bridges.ros.ServiceParameters;
 import embedded.mas.bridges.ros.IRosInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jason.NoValueException;
 import jason.asSyntax.Atom;
 import jason.asSyntax.ListTermImpl;
 import jason.asSyntax.NumberTermImpl;
@@ -125,13 +129,108 @@ public class MyRosMaster extends RosMaster {
 
         if (actionName.equals("cp0-Marginal")) {
             //System.out.println("Logging event of cp0 - Marginal ");
-            System.out.println("myrosmaster.java |  cp0-Marginal = " + args[0].toString());
+            System.out.println("Uav" + args[0].toString() + " logged event of Marginal Temperature at CX: " + args[1].toString() + "CY: " + args[2].toString());
+            //Implement log in txt file
             return true;
             }
+            
+            if (actionName.equals("cp0-Severe")) {
+            //System.out.println("Logging event of cp0 - Marginal ");
+            System.out.println("myrosmaster.java |  cp0-Marginal arg0 = " + args[0].toString());
+            System.out.println("myrosmaster.java |  cp0-Marginal arg1 = " + args[1].toString());
+            System.out.println("myrosmaster.java |  cp0-Marginal arg2 = " + args[2].toString());
+                    // Cast and extract values
+            try {
+                // Extract Jason terms
+                NumberTerm nDrone = (NumberTerm) args[0];
+                NumberTerm nX = (NumberTerm) args[1];
+                NumberTerm nY = (NumberTerm) args[2];
 
-          
-        if(actionName.equals("cp0-Severe")){	
+                int droneNumber = (int) nDrone.solve();
+                double x = nX.solve();
+                double y = nY.solve();
 
+                // Build waypoints list (Jason-compatible)
+                ListTermImpl waypoints = new ListTermImpl();
+
+                ListTermImpl wp1 = new ListTermImpl();
+                wp1.add(new NumberTermImpl(x));
+                wp1.add(new NumberTermImpl(y + 5));
+                wp1.add(new NumberTermImpl(6.75));
+                waypoints.add(wp1);
+
+                ListTermImpl wp2 = new ListTermImpl();
+                wp2.add(new NumberTermImpl(x + 10));
+                wp2.add(new NumberTermImpl(y + 5));
+                wp2.add(new NumberTermImpl(6.75));
+                waypoints.add(wp2);
+
+                ListTermImpl wp3 = new ListTermImpl();
+                wp3.add(new NumberTermImpl(x + 10));
+                wp3.add(new NumberTermImpl(y));
+                wp3.add(new NumberTermImpl(6.75));
+                waypoints.add(wp3);
+
+                Object[] args2 = new Object[2];
+                args2[0] = new NumberTermImpl(droneNumber);  // keep Jason-compatible
+                args2[1] = waypoints;
+
+                return exec_test_mrs_topic_action_light(args2);
+
+            } catch (ClassCastException | NoValueException e) {
+                e.printStackTrace();
+                return false;
+            }
+            }
+
+        if (actionName.equals("cp0-Critical-ofd")) {
+            System.out.println("myrosmaster.java | cp0-Critical arg0 = " + args[0].toString());
+            System.out.println("myrosmaster.java | cp0-Critical arg1 = " + args[1].toString());
+            System.out.println("myrosmaster.java | cp0-Critical arg2 = " + args[2].toString());
+            System.out.println("myrosmaster.java | cp0-Critical arg3 = " + args[3].toString());
+
+            try {
+                // Extract Jason terms
+                NumberTerm nDrone = (NumberTerm) args[0];
+                NumberTerm nX = (NumberTerm) args[1];
+                NumberTerm nY = (NumberTerm) args[2];
+                NumberTerm nAngle = (NumberTerm) args[3];
+
+                int droneNumber = (int) nDrone.solve();
+                double x = nX.solve();
+                double y = nY.solve();
+                double angleDeg = nAngle.solve();
+
+                // Convert angle to radians
+                double angleRad = Math.toRadians(angleDeg);
+
+                // Displacement in direction of angle (e.g., 10m)
+                double distance = 10.0;
+                double xOffset = Math.cos(angleRad) * distance;
+                double yOffset = Math.sin(angleRad) * distance;
+
+                // Build waypoint
+                ListTermImpl waypoints = new ListTermImpl();
+                ListTermImpl escapePoint = new ListTermImpl();
+                escapePoint.add(new NumberTermImpl(x + xOffset));
+                escapePoint.add(new NumberTermImpl(y + yOffset));
+                escapePoint.add(new NumberTermImpl(6.75));  // Keep height fixed or use a separate arg if needed
+                waypoints.add(escapePoint);
+
+                Object[] args2 = new Object[] {
+                    new NumberTermImpl(droneNumber),
+                    waypoints
+                };
+
+                return exec_test_mrs_topic_action_light(args2);
+
+            } catch (ClassCastException | NoValueException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }  
+        if(actionName.equals("cp3-Severe")){	
+            System.out.println("Comm Failure |  Severe  = ");
 			Atom hover = new Atom("hover");
 			Object[] noargs = new Object[]{};  // or 10.1d, depending on what's expected
 			super.execEmbeddedAction(hover, noargs, un);  // recursive call
