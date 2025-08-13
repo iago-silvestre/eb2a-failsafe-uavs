@@ -1,6 +1,5 @@
 +!create_mission(Id,ExpEnergy, Args) 
    <- +mission_energy(Id,ExpEnergy,0);
-      +mission_step(Id,0);
       if ( .member(drop_when_interrupted, Args)) {
         +mission_drop_when_interrupted(Id);
       }
@@ -15,7 +14,7 @@
 
 @[atomic] +!run_mission(Id) : current_mission(Id). 
 @[atomic] +!run_mission(Id)  
-   :  not current_mission(_) &
+   :  not current_mission(_) & 
       mission_state(Id,suspended) &
       mission_step(Id,Step) &
       mission_plan(Id,Plan)  &
@@ -91,9 +90,7 @@
 +!resume(M)
    :  mission_state(M,suspended) &
       enough_energy(M)
-   <- .print("attempting to resume ",M);
-      !run_mission(M).
-
+   <- !run_mission(M).
 +!auto_resume.
 
 +!change_state(Mission, State) 

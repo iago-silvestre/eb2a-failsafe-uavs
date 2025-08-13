@@ -35,6 +35,7 @@ class FireTempNode:
 
         self.in_danger_zone = False
         self.danger_start_time = None
+        self.max_temp_in_zone = float('-inf')  # or 0.0 if you prefer
         self.temp_sum = 0.0
         self.temp_count = 0
         self.temp_above_50 = False
@@ -107,9 +108,9 @@ class FireTempNode:
 
     def path_callback(self, msg):
         self.waypoints = [(pt.position.x, pt.position.y) for pt in msg.points]
-        rospy.loginfo(f"[DEBUG] Received path with {len(self.waypoints)} waypoints:")
-        for i, (x, y) in enumerate(self.waypoints):
-            rospy.loginfo(f"  Waypoint {i}: ({x:.2f}, {y:.2f})")
+        #rospy.loginfo(f"[DEBUG] Received path with {len(self.waypoints)} waypoints:")
+        #for i, (x, y) in enumerate(self.waypoints):
+        #    rospy.loginfo(f"  Waypoint {i}: ({x:.2f}, {y:.2f})")
         self.last_waypoint_index = 0
         self.path_pub.publish(0)
 
@@ -121,7 +122,7 @@ class FireTempNode:
 
     def odom_callback(self, msg):
         current_time = rospy.Time.now()
-        if (current_time - self.last_odom_time).to_sec() < 0.5:
+        if (current_time - self.last_odom_time).to_sec() < 0.1:
             return  # Skip this message
 
         self.last_odom_time = current_time
@@ -129,16 +130,19 @@ class FireTempNode:
         y = msg.pose.pose.position.y
         z = msg.pose.pose.position.z 
 
-        FIRE_RADIUS = 5.0
+        FIRE_RADIUS = 1.0
         DANGER_RADIUS = 7.0
 
         fire_distance = ((x - self.tree_x) ** 2 +
-                        (y - self.tree_y) ** 2 +
-                        (z - self.tree_z) ** 2) ** 0.5
+                 (y - self.tree_y) ** 2 +
+                 (z - 5) ** 2) ** 0.5
 
         distance_from_edge = max(0.0, fire_distance - FIRE_RADIUS)
         temperature = max(0.0, 100.0 - distance_from_edge * 10.0)
 
+        #print(f"fire_distance : {fire_distance:.4f}")
+        #print(f"distance_from_edge : {distance_from_edge:.4f}")
+        #print(f"Temp: {temperature:.2f} ")
          # Start timer when temperature > 50 if not already started
         self.temp_pub.publish(temperature)
         if temperature > 50.0 and not self.temp_above_50:
@@ -153,21 +157,27 @@ class FireTempNode:
         if fire_distance <= DANGER_RADIUS:
             if not self.in_danger_zone:
                 self.in_danger_zone = True
+                print("[Danger Zone Enter]")
                 self.danger_start_time = rospy.Time.now()
                 self.temp_sum = 0.0
                 self.temp_count = 0
+                self.max_temp_in_zone = float('-inf')  # reset max temp
 
             self.temp_sum += temperature
             self.temp_count += 1
+            if temperature > self.max_temp_in_zone:
+                self.max_temp_in_zone = temperature
 
         else:
             if self.in_danger_zone:
                 self.in_danger_zone = False
                 avg_temp = self.temp_sum / self.temp_count if self.temp_count > 0 else 0.0
                 elapsed = (rospy.Time.now() - self.danger_start_time).to_sec()
-                print(f"[Danger Zone Exit] Time inside danger zone: {elapsed:.2f} sec, Avg temperature: {avg_temp:.2f}")
+                print(f"[Danger Zone Exit] Time inside: {elapsed:.4f} sec, "
+                    f"Avg temperature: {avg_temp:.2f}, "
+                    f"Max temperature: {self.max_temp_in_zone:.2f}")
 
-        print(f"Temp: {temperature:.2f} ")
+        
 
         # If temperature is too low, publish "none"
         if temperature < 10.0:
@@ -206,7 +216,7 @@ class FireTempNode:
     def failure_callback(self, msg):
         if msg.data == '1' and self.temp_above_50:
             elapsed = (rospy.Time.now() - self.temp_timer_start).to_sec() if self.temp_timer_start else 0.0
-            print(f"[Failure detected] Timer stopped after {elapsed:.2f} seconds with temperature > 50.")
+            print(f"[Failure detected] Timer stopped after {elapsed:.4f} seconds with temperature > 50.")
             self.temp_above_50 = False
             self.temp_timer_start = None
 

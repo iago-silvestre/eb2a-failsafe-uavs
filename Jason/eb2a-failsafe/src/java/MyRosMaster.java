@@ -26,6 +26,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class MyRosMaster extends RosMaster {
 
+    private boolean firstSevereCall = true;
+
 	public MyRosMaster(Atom id, IRosInterface microcontroller) {        
 		super(id, microcontroller);
         System.out.println("**** Iniciando MyRosMaster ****");
@@ -112,6 +114,7 @@ public class MyRosMaster extends RosMaster {
             
 
         try {
+            //System.out.println("attempting to call path = " + path);
             ((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/uav"+args[0]+"/trajectory_generation/path","mrs_msgs/Path",mapper.writeValueAsString(path));                   
             
         } catch (Exception e) {
@@ -135,12 +138,18 @@ public class MyRosMaster extends RosMaster {
             }
             
             if (actionName.equals("cp0-Severe")) {
+            /*    if (firstSevereCall) {
+                System.out.println("firstSevereCall");
+                firstSevereCall = false; // Skip first execution
+                return true; // or false, depending on how you want to handle it
+            }*/
+
             ((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
             //System.out.println("Logging event of cp0 - Marginal ");
-            System.out.println("Uav" + args[0].toString() + " logged event of Severe Temperature at CX: " + args[1].toString() + "CY: " + args[2].toString());
-            System.out.println("myrosmaster.java |  cp0-Marginal arg0 = " + args[0].toString());
-            System.out.println("myrosmaster.java |  cp0-Marginal arg1 = " + args[1].toString());
-            System.out.println("myrosmaster.java |  cp0-Marginal arg2 = " + args[2].toString());
+            //System.out.println("Uav" + args[0].toString() + " logged event of Severe Temperature at CX: " + args[1].toString() + "CY: " + args[2].toString());
+            //System.out.println("myrosmaster.java |  cp0-Marginal arg0 = " + args[0].toString());
+            //System.out.println("myrosmaster.java |  cp0-Marginal arg1 = " + args[1].toString());
+            //System.out.println("myrosmaster.java |  cp0-Marginal arg2 = " + args[2].toString());
                     // Cast and extract values
             try {
                 // Extract Jason terms
@@ -157,13 +166,13 @@ public class MyRosMaster extends RosMaster {
 
                 ListTermImpl wp1 = new ListTermImpl();
                 wp1.add(new NumberTermImpl(x));
-                wp1.add(new NumberTermImpl(y + 5));
+                wp1.add(new NumberTermImpl(y + 7));
                 wp1.add(new NumberTermImpl(6.75));
                 waypoints.add(wp1);
 
                 ListTermImpl wp2 = new ListTermImpl();
                 wp2.add(new NumberTermImpl(x + 10));
-                wp2.add(new NumberTermImpl(y + 5));
+                wp2.add(new NumberTermImpl(y + 7));
                 wp2.add(new NumberTermImpl(6.75));
                 waypoints.add(wp2);
 

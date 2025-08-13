@@ -18,7 +18,8 @@ fire_pos(0.0,0.0).
 critical_p(2).
 oppos_fire_dir(-180).
 test(5).
-//test_list([[0.0,5.0,6.25],[3.0,5.0,6.25],[6.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
+test_list([[0.0,5.0,6.25],[3.0,5.0,6.25],[6.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
+//test_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 no_fire_dir_sensor.
 //test_list([[5.0,5.0,6.25],[5.0,-5.0,6.25],[-5.0,-5.0,6.25],[-5.0,5.0,6.25],[5.0,5.0,6.25]]).
 //timesincecommfailure(0.0).
@@ -61,6 +62,12 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 
 +temp(T): severity_cp0(SEV)  <- -+cp0(SEV).
+
++cp0("Severe")   //Standard Jason Execution
+   : not lock & my_number(N) & cur_pos(CX, CY)
+   <- +lock;embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[N,CX,CY]).
+
+
 //+temp(T): severity_cp0("Critical")<- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 //+oppos_fire_dir(OFD) <- -no_fire_dir_sensor.
 
@@ -94,8 +101,8 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       .wait(10000);
       !mm::resume(CM).*/
       
-+cp0("Marginal")
-   <- .print("post critJason reaction - cp0").
+//+cp0("Marginal")
+//   <- .print("post critJason reaction - cp0").
 
 
 //Rules for Reaction of cb1 - Harmful Event motor Failure
@@ -223,11 +230,11 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
 !start.
 
 +!start
-   : my_ap(AP) & my_number(N) & combat_traj(CT)
+   : my_ap(AP) & my_number(N) 
     <- .wait(2000);
       +mm::my_ap(AP);
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","sethome",[true,0.0,0.0,0.0,0.0]);
-      .print("Started!",CT);
+      .print("Started! Calculating Traj");
       !calculate_trajectory;
       !my_missions.
 
@@ -248,6 +255,8 @@ severity_cp1(SEV) :- timesincecommfailure(T)  & T >= 10.0
       +mm::mission_plan(search,L); 
       !mm::create_mission(rtl, 10, []); 
       +mm::mission_plan(rtl,[[0,0,Z]]);
+      //-+cp0("Severe");
+      .wait(1000);
       !mm::run_mission(search).
 
 
