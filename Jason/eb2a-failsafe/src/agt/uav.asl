@@ -18,7 +18,7 @@ fire_pos(0.0,0.0).
 critical_p(2).
 oppos_fire_dir(-180).
 test(5).
-//test_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
+//test_list([[0.0,5.0,6.25],[3.0,5.0,6.25],[6.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 no_fire_dir_sensor.
 test_list([[5.0,5.0,6.25],[5.0,-5.0,6.25],[-5.0,-5.0,6.25],[-5.0,5.0,6.25],[5.0,5.0,6.25]]).
 //timesincecommfailure(0.0).
@@ -76,7 +76,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 //+cb0 [cr]: cp0("Marginal") & distance(0,0,D) <- .print("D = ",D).
 
-+cb0 [cr]: cp0("Marginal") <- ?my_number(N);?cur_pos(CX, CY);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[N,CX,CY]).   
++cb0 [cr]: cp0("Marginal") <- ?my_speed(S);?cur_pos(CX, CY);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[S,CX,CY]).   
 
 +cb0 [cr]: cp0("Severe")  <- ?my_number(N);?cur_pos(CX, CY);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[N,CX,CY]).
 

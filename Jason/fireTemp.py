@@ -33,6 +33,16 @@ class FireTempNode:
 
         self.bridge = CvBridge()
 
+        self.in_danger_zone = False
+        self.danger_start_time = None
+        self.temp_sum = 0.0
+        self.temp_count = 0
+        self.temp_above_50 = False
+        self.temp_timer_start = None
+
+        self.failure_sub = rospy.Subscriber('/agent_detected_failure_uav1', String, self.failure_callback)
+
+
         self.fire_size_pub = rospy.Publisher("fireSize", Int8, queue_size=1)
         self.subscriber_del = rospy.Subscriber('/fightFire', Int32, self.del_callback)
 
@@ -114,14 +124,50 @@ class FireTempNode:
         if (current_time - self.last_odom_time).to_sec() < 0.5:
             return  # Skip this message
 
-        self.last_odom_time = current_time  # Update the last processed time
+        self.last_odom_time = current_time
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
         z = msg.pose.pose.position.z 
 
-        fire_distance = ((x - self.tree_x) ** 2 + (y - self.tree_y) ** 2 + (z - self.tree_z) ** 2) ** 0.5
-        temperature = max(0.0, 100.0 - fire_distance * 10.0)
+        FIRE_RADIUS = 5.0
+        DANGER_RADIUS = 7.0
+
+        fire_distance = ((x - self.tree_x) ** 2 +
+                        (y - self.tree_y) ** 2 +
+                        (z - self.tree_z) ** 2) ** 0.5
+
+        distance_from_edge = max(0.0, fire_distance - FIRE_RADIUS)
+        temperature = max(0.0, 100.0 - distance_from_edge * 10.0)
+
+         # Start timer when temperature > 50 if not already started
         self.temp_pub.publish(temperature)
+        if temperature > 50.0 and not self.temp_above_50:
+            self.temp_above_50 = True
+            self.temp_timer_start = rospy.Time.now()
+        
+        # Optionally, reset timer if temp goes back below 50 (if you want that logic)
+        if temperature <= 50.0 and self.temp_above_50:
+            self.temp_above_50 = False
+            self.temp_timer_start = None
+
+        if fire_distance <= DANGER_RADIUS:
+            if not self.in_danger_zone:
+                self.in_danger_zone = True
+                self.danger_start_time = rospy.Time.now()
+                self.temp_sum = 0.0
+                self.temp_count = 0
+
+            self.temp_sum += temperature
+            self.temp_count += 1
+
+        else:
+            if self.in_danger_zone:
+                self.in_danger_zone = False
+                avg_temp = self.temp_sum / self.temp_count if self.temp_count > 0 else 0.0
+                elapsed = (rospy.Time.now() - self.danger_start_time).to_sec()
+                print(f"[Danger Zone Exit] Time inside danger zone: {elapsed:.2f} sec, Avg temperature: {avg_temp:.2f}")
+
+        print(f"Temp: {temperature:.2f} ")
 
         # If temperature is too low, publish "none"
         if temperature < 10.0:
@@ -157,6 +203,12 @@ class FireTempNode:
                 self.path_pub.publish(i + 1)
                 break
         
+    def failure_callback(self, msg):
+        if msg.data == '1' and self.temp_above_50:
+            elapsed = (rospy.Time.now() - self.temp_timer_start).to_sec() if self.temp_timer_start else 0.0
+            print(f"[Failure detected] Timer stopped after {elapsed:.2f} seconds with temperature > 50.")
+            self.temp_above_50 = False
+            self.temp_timer_start = None
 
     def image_callback(self, msg):
         try:
