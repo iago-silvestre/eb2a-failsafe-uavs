@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-09-01T11:34:19.941395513Z</date>
+  <millis>1756726459941</millis>
+  <nanos>395513</nanos>
+  <sequence>0</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Started! Calculating Traj</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.948215711Z</date>
+  <millis>1756726459948</millis>
+  <nanos>215711</nanos>
+  <sequence>1</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating landing position</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.954835801Z</date>
+  <millis>1756726459954</millis>
+  <nanos>835801</nanos>
+  <sequence>2</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating area</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.958029818Z</date>
+  <millis>1756726459958</millis>
+  <nanos>29818</nanos>
+  <sequence>3</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.962010220Z</date>
+  <millis>1756726459962</millis>
+  <nanos>10220</nanos>
+  <sequence>4</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.964293941Z</date>
+  <millis>1756726459964</millis>
+  <nanos>293941</nanos>
+  <sequence>5</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Calculating waypoints</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.966584921Z</date>
+  <millis>1756726459966</millis>
+  <nanos>584921</nanos>
+  <sequence>6</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Finished calculating waypoints</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:19.969081077Z</date>
+  <millis>1756726459969</millis>
+  <nanos>81077</nanos>
+  <sequence>7</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Waypoints list: [[-47.5,-47.5,6.25],[-47.5,-2.5,6.25],[-42.5,-2.5,6.25],[-42.5,-47.5,6.25],[-37.5,-47.5,6.25],[-37.5,-2.5,6.25],[-32.5,-2.5,6.25],[-32.5,-47.5,6.25],[-27.5,-47.5,6.25],[-27.5,-2.5,6.25],[-22.5,-2.5,6.25],[-22.5,-47.5,6.25]]</message>
+</record>
+<record>
+  <date>2025-09-01T11:34:20.991183052Z</date>
+  <millis>1756726460991</millis>
+  <nanos>183052</nanos>
+  <sequence>8</sequence>
+  <logger>jason.asSemantics.TransitionSystem.uav1</logger>
+  <level>INFO</level>
+  <class>jason.stdlib.println</class>
+  <method>execute</method>
+  <thread>44</thread>
+  <message>Mission search state is running</message>
+</record>
+</log>

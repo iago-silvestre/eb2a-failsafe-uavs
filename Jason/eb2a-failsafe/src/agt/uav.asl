@@ -51,7 +51,7 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 severity_cp0(SEV) :- temp(T)  & T < 40       //Rules for Severity Detection
                   & SEV= "None".
 
-severity_cp0(SEV) :- temp(T)  & T >= 40 & T <= 50 //& T < 70.0      
+severity_cp0(SEV) :- temp(T)  & T >= 40 & T <= 50   
                   & SEV= "Marginal".
 
 severity_cp0(SEV) :- temp(T)  & T > 50 & T < 70 
@@ -83,14 +83,34 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 //+cb0 [cr]: cp0("Marginal") & distance(0,0,D) <- .print("D = ",D).
 
-+cb0 [cr]: cp0("Marginal") <- ?my_speed(S);?cur_pos(CX, CY);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[S,CX,CY]).   
++cb0 [cr]: cp0("Marginal") 
+   <- ?my_speed(S);
+      ?cur_pos(CX, CY);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[S,CX,CY]).   
 
-+cb0 [cr]: cp0("Severe")  <- ?my_number(N);?cur_pos(CX, CY);embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[N,CX,CY]).
++cb0 [cr]: cp0("Severe")& not fire_dir(_)  //teste Reaction time
+   <- ?my_number(N);
+      ?cur_pos(CX, CY);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 
-//+cb0 [cr]: cp0("Critical") & not oppos_fire_dir(_) <-embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
-+cb0 [cr]: cp0("Critical") & not oppos_fire_dir(_) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]). //.print(" teste no ofd").
+/*
++cb0 [cr]: cp0("Severe")& not fire_dir(_) 
+   <- ?my_number(N);
+      ?cur_pos(CX, CY);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe",[N,CX,CY]).*/
 
-+cb0 [cr]: cp0("Critical") & oppos_fire_dir(_) <- ?my_number(N);?cur_pos(CX, CY);?oppos_fire_dir(OFD); embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Critical-ofd",[N,CX,CY,OFD]).  
+
+
++cb0 [cr]: cp0("Severe") & fire_dir(_) 
+   <- ?my_number(N);
+      ?cur_pos(CX, CY);
+      ?fire_dir(FD);
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Severe-fd",[N,CX,CY,FD]).  
+
++cb0 [cr]: cp0("Critical") 
+   <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","landhome",[]). //.print(" teste no ofd").
+
+
 
 //+cb0 [cr]: cp0("Critical")  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).  
 

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2025-08-13T17:42:13.605018524Z</date>
-  <millis>1755106933605</millis>
-  <nanos>18524</nanos>
+  <date>2025-08-22T17:32:55.735113534Z</date>
+  <millis>1755883975735</millis>
+  <nanos>113534</nanos>
   <sequence>0</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Started! Calculating Traj</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.619171237Z</date>
-  <millis>1755106933619</millis>
-  <nanos>171237</nanos>
+  <date>2025-08-22T17:32:55.754051069Z</date>
+  <millis>1755883975754</millis>
+  <nanos>51069</nanos>
   <sequence>1</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Calculating landing position</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.629333957Z</date>
-  <millis>1755106933629</millis>
-  <nanos>333957</nanos>
+  <date>2025-08-22T17:32:55.774241463Z</date>
+  <millis>1755883975774</millis>
+  <nanos>241463</nanos>
   <sequence>2</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Calculating area</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.651743876Z</date>
-  <millis>1755106933651</millis>
-  <nanos>743876</nanos>
+  <date>2025-08-22T17:32:55.796451175Z</date>
+  <millis>1755883975796</millis>
+  <nanos>451175</nanos>
   <sequence>3</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.663407367Z</date>
-  <millis>1755106933663</millis>
-  <nanos>407367</nanos>
+  <date>2025-08-22T17:32:55.825907720Z</date>
+  <millis>1755883975825</millis>
+  <nanos>907720</nanos>
   <sequence>4</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -62,9 +62,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.690705054Z</date>
-  <millis>1755106933690</millis>
-  <nanos>705054</nanos>
+  <date>2025-08-22T17:32:55.848338825Z</date>
+  <millis>1755883975848</millis>
+  <nanos>338825</nanos>
   <sequence>5</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -74,9 +74,9 @@
   <message>Calculating waypoints</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.702199365Z</date>
-  <millis>1755106933702</millis>
-  <nanos>199365</nanos>
+  <date>2025-08-22T17:32:55.925077792Z</date>
+  <millis>1755883975925</millis>
+  <nanos>77792</nanos>
   <sequence>6</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -86,9 +86,9 @@
   <message>Finished calculating waypoints</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:13.717556544Z</date>
-  <millis>1755106933717</millis>
-  <nanos>556544</nanos>
+  <date>2025-08-22T17:32:55.995996214Z</date>
+  <millis>1755883975995</millis>
+  <nanos>996214</nanos>
   <sequence>7</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>
@@ -98,9 +98,9 @@
   <message>Waypoints list: [[-47.5,-47.5,6.25],[-47.5,-2.5,6.25],[-42.5,-2.5,6.25],[-42.5,-47.5,6.25],[-37.5,-47.5,6.25],[-37.5,-2.5,6.25],[-32.5,-2.5,6.25],[-32.5,-47.5,6.25],[-27.5,-47.5,6.25],[-27.5,-2.5,6.25],[-22.5,-2.5,6.25],[-22.5,-47.5,6.25]]</message>
 </record>
 <record>
-  <date>2025-08-13T17:42:14.779002598Z</date>
-  <millis>1755106934779</millis>
-  <nanos>2598</nanos>
+  <date>2025-08-22T17:32:57.123862497Z</date>
+  <millis>1755883977123</millis>
+  <nanos>862497</nanos>
   <sequence>8</sequence>
   <logger>jason.asSemantics.TransitionSystem.uav1</logger>
   <level>INFO</level>

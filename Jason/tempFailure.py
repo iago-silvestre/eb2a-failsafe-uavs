@@ -30,7 +30,8 @@ class TempFailureTest:
 
     def publish_failure_det(self, value):
         msg = String(data=value)
-        self.temp_sev_pub.publish(msg)
+        self.fail_det_pub.publish(msg)
+        #self.temp_sev_pub.publish(msg)
 
     def failure_callback(self, msg):
         if self.waiting_for_reaction and msg.data.strip() == "1":
@@ -48,9 +49,9 @@ class TempFailureTest:
             if rospy.is_shutdown():
                 break
 
-            # Publish 80.0
-            self.publish_temperature(80.0)
-            #self.publish_temperature_sev("Critical")
+            # Publish 65.0
+            self.publish_temperature(65.0)
+            #self.publish_temperature_sev("Severe")
             self.perception_time = time.perf_counter()
 
             # Wait for reaction
