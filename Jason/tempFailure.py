@@ -50,7 +50,7 @@ class TempFailureTest:
                 break
 
             # Publish 65.0
-            self.publish_temperature(65.0)
+            self.publish_temperature(75.0)
             #self.publish_temperature_sev("Severe")
             self.perception_time = time.perf_counter()
 

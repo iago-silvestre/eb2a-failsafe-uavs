@@ -47,7 +47,7 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 +battery(B) : B<=30.0 & not(low_batt) <- !low_battery.
 
 
-+temp(T)[device(roscore1),source(percept)]<- -+temp(T).
+//+temp(T)[device(roscore1),source(percept)]<- -+temp(T).
 +cb0 [cr]: cp0("Severe")& not fire_dir(_) //teste Reaction time
    <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 /*

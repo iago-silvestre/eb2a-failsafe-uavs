@@ -9,13 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-//import embedded.mas.bridges.ros.MyRosMaster;
-
-import jason.asSemantics.Unifier;
-import jason.asSyntax.ASSyntax;
-import jason.asSyntax.Literal;
-import jason.asSyntax.NumberTerm;
-import jason.asSyntax.Term;
 import jason.asSyntax.*;
 import jason.asSyntax.Trigger;
 import jason.asSyntax.LiteralImpl;
@@ -47,9 +40,6 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     /** Last seen severity label for each cp */
     private final Map<Integer, String> lastSeverities = new HashMap<>();
 
-    // RosMaster added for instant trigger of Critical Severity perceptions
-    private Object rosMaster;
-
     public DemoEmbeddedAgentArch() {
         super();
 
@@ -66,11 +56,14 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
     @Override
     public Boolean[] perceiveCP() {
-
         Boolean[] percepts = new Boolean[32]; // One for each cp0 to cp31
         Circumstance C = getTS().getC();
         C.CPM.clear();
-        
+
+        for (int i = 0; i < 32; i++) {
+            percepts[i] = Boolean.FALSE;
+        }
+
         for (IDevice dev : this.devices) {
             try {
                 Collection<Literal> perceptsDevice = dev.getPercepts();
@@ -84,18 +77,11 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                 e.printStackTrace();
             }
         }
-
-
-        for (int i = 0; i < 32; i++) {
-            percepts[i] = Boolean.FALSE;
-        }
-
         BeliefBase bb = getTS().getAg().getBB();
 
         // For each configured CP with severity table
         for (Map.Entry<Integer, String> binding : cpBindings.entrySet()) {
             int cpIndex = binding.getKey();
-            
             String functor = binding.getValue();
 
             // Look for functor(term) in the belief base
@@ -110,37 +96,9 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             // If severity changed, trigger cbX
             String oldSev = lastSeverities.getOrDefault(cpIndex, "__none__");
             if (!newSev.equals(oldSev)) {
-                System.out.println("newSec: "+newSev);
-                if ("Critical".equals(newSev) ) {
-                    for (IDevice dev : this.devices) {
-                        try {
-                            System.out.println("device : "+dev);
-                            System.out.println("trying to invoke crit Reaction for : "+functor);
-                            Unifier un = new Unifier();
-                            Atom teste2 = new Atom("teste2");
-                            Object[] noargs = new Object[]{};  
-                            dev.execEmbeddedAction(teste2, noargs, un);  
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }    
-                   
-                    /*try {
-                        java.lang.reflect.Method m = rosMaster.getClass()
-                                .getMethod("execEmbeddedAction", String.class, Object[].class, jason.asSemantics.Unifier.class);
-
-                        Object[] args = new Object[]{
-                        };
-                        System.out.println("trying to invoke crit Reaction for : "+functor);
-                        m.invoke(rosMaster, "teste2", args, null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }*/
-                }
-
-
-                
+                //System.out.println("newSec: "+newSev);
                 lastSeverities.put(cpIndex, newSev);
+
                 // Remove the old belief
                 String oldBeliefStr = "cp"+cpIndex + "(\"" + oldSev + "\")[source(self)]";
                 //System.out.println("oldBelief: "+oldBeliefStr);
@@ -168,26 +126,14 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
     /** Extracts numeric value from belief base for given functor */
     private Double extractNumericValue(BeliefBase bb, String functor) {
-        try {
-            // Create a pattern like functor(X)
-            Literal pattern = ASSyntax.createLiteral(functor, ASSyntax.createVar("X"));
-            Unifier u = new Unifier();
-
-            Iterator<Literal> it = bb.getCandidateBeliefs(pattern, u);
-
-            if (it == null) {
-                return null; // no candidates at all
+        for (Literal l : bb) {
+            if (functor.equals(l.getFunctor()) &&
+                l.getArity() == 1 &&
+                l.getTerm(0).isNumeric()) {
+                try {
+                    return ((NumberTerm) l.getTerm(0)).solve();
+                } catch (Exception ignore) {}
             }
-
-            while (it.hasNext()) {
-                Literal l = it.next();
-                Term t = l.getTerm(0);
-                if (t.isNumeric()) {
-                    return ((NumberTerm) t).solve();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -200,10 +146,6 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             if (b.matches(val)) return b.label;
         }
         return "Unknown";
-    }
-
-    public void setRosMaster(Object master) {
-        this.rosMaster = master;
     }
 
 }
