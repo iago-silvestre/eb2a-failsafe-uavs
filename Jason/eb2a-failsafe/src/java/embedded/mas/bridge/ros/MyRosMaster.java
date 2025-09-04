@@ -1,4 +1,3 @@
-//package embedded.mas.bridges.ros;
 import embedded.mas.bridges.ros.RosMaster;
 
 

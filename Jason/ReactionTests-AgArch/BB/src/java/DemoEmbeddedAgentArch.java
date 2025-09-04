@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 //import embedded.mas.bridges.ros.MyRosMaster;
+import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
 
+import jason.asSemantics.Agent;
 import jason.asSemantics.Unifier;
 import jason.asSyntax.ASSyntax;
 import jason.asSyntax.Literal;
@@ -48,7 +50,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     private final Map<Integer, String> lastSeverities = new HashMap<>();
 
     // RosMaster added for instant trigger of Critical Severity perceptions
-    private Object rosMaster;
+    //private Object rosMaster;
 
     public DemoEmbeddedAgentArch() {
         super();
@@ -62,6 +64,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             new Band(70, Double.POSITIVE_INFINITY, "Critical")
         ));
         lastSeverities.put(0, "None"); // initial state
+
     }
 
     @Override
@@ -71,7 +74,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         Circumstance C = getTS().getC();
         C.CPM.clear();
         
-        for (IDevice dev : this.devices) {
+        for (IDevice dev : this.devices) {   //Instantly adding beliefs from devices to BB
             try {
                 Collection<Literal> perceptsDevice = dev.getPercepts();
                 if (perceptsDevice == null) continue;
@@ -110,35 +113,10 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             // If severity changed, trigger cbX
             String oldSev = lastSeverities.getOrDefault(cpIndex, "__none__");
             if (!newSev.equals(oldSev)) {
-                System.out.println("newSec: "+newSev);
-                if ("Critical".equals(newSev) ) {
-                    for (IDevice dev : this.devices) {
-                        try {
-                            System.out.println("device : "+dev);
-                            System.out.println("trying to invoke crit Reaction for : "+functor);
-                            Unifier un = new Unifier();
-                            Atom teste2 = new Atom("teste2");
-                            Object[] noargs = new Object[]{};  
-                            dev.execEmbeddedAction(teste2, noargs, un);  
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }    
-                   
-                    /*try {
-                        java.lang.reflect.Method m = rosMaster.getClass()
-                                .getMethod("execEmbeddedAction", String.class, Object[].class, jason.asSemantics.Unifier.class);
-
-                        Object[] args = new Object[]{
-                        };
-                        System.out.println("trying to invoke crit Reaction for : "+functor);
-                        m.invoke(rosMaster, "teste2", args, null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }*/
-                }
-
-
+                //System.out.println("newSec: "+newSev);
+                /*if ("Critical".equals(newSev)) {
+                    //((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+                }*/
                 
                 lastSeverities.put(cpIndex, newSev);
                 // Remove the old belief
@@ -170,7 +148,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     private Double extractNumericValue(BeliefBase bb, String functor) {
         try {
             // Create a pattern like functor(X)
-            Literal pattern = ASSyntax.createLiteral(functor, ASSyntax.createVar("X"));
+            Literal pattern = ASSyntax.createLiteral(functor, ASSyntax.createVar("X"));  //temp(X)
             Unifier u = new Unifier();
 
             Iterator<Literal> it = bb.getCandidateBeliefs(pattern, u);
@@ -202,8 +180,5 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         return "Unknown";
     }
 
-    public void setRosMaster(Object master) {
-        this.rosMaster = master;
-    }
 
 }
