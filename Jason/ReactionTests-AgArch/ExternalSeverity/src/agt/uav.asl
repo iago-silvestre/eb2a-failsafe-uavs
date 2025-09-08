@@ -92,6 +92,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       ?cur_pos(CX, CY);
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0-Marginal",[S,CX,CY]).   
 
+
 /*
 +cb0 [cr]: cp0("Severe")& not fire_dir(_) 
    <- ?my_number(N);

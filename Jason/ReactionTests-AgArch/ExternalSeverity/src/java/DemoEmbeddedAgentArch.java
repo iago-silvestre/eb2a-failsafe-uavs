@@ -89,7 +89,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             String oldSev = lastSeverities.getOrDefault(cpIndex, "__none__");
             if (!newSev.equals(oldSev)) {
 
-                if ("Critical".equals(newSev) && cpIndex == 1) {
+                if ("Critical".equals(newSev) && cpIndex == 0) {
                     try {
                         myRosMaster.execEmbeddedAction("teste2", new Object[]{}, null);
                     } catch (Exception e) {
@@ -109,12 +109,15 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                 Literal newBelief = Literal.parseLiteral(newBeliefStr);
                 getTS().getAg().getBB().add(newBelief);
 
-                // Trigger cbX
-                Literal percept = new LiteralImpl("cb" + cpIndex);
-                Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
-                C.CPM.put(te.getPredicateIndicator(), true);
-
-                percepts[cpIndex] = Boolean.TRUE;
+                if ("Severe".equals(newSev)) {
+                    // Trigger cbX
+                    Literal percept = new LiteralImpl("cb" + cpIndex);
+                    Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                    C.CPM.put(te.getPredicateIndicator(), true);
+                    percepts[cpIndex] = Boolean.TRUE;
+                    System.out.println("Executing through EB2A");
+                }
+                
             }
         }
 
