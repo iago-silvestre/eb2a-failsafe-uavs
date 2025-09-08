@@ -1,0 +1,145 @@
+//package embedded.mas.bridges.jacamo;
+
+import embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch;
+import embedded.mas.bridges.jacamo.IDevice;
+import embedded.mas.exception.PerceivingException;
+
+import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+//import embedded.mas.bridges.ros.MyRosMaster;
+import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
+import embedded.mas.bridges.ros.IRosInterface;
+import embedded.mas.bridges.jacamo.LiteralDevice;
+import jason.asSemantics.ConcurrentInternalAction;
+
+import jason.asSemantics.Agent;
+import jason.asSemantics.Unifier;
+import jason.asSyntax.ASSyntax;
+import jason.asSyntax.Literal;
+import jason.asSyntax.StringTerm;
+import jason.asSyntax.Term;
+import jason.asSyntax.*;
+import jason.asSyntax.Trigger;
+import jason.asSyntax.LiteralImpl;
+import jason.asSyntax.Trigger.TEOperator;
+import jason.asSyntax.Trigger.TEType;
+import jason.asSemantics.Circumstance;
+import jason.asSemantics.TransitionSystem;
+import jason.bb.BeliefBase;
+
+public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
+
+    /** Mapping of cpX → functor name */
+    private final Map<Integer, String> cpBindings = new HashMap<>();
+
+    /** Last seen severity label for each cp */
+    private final Map<Integer, String> lastSeverities = new HashMap<>();
+
+    // RosMaster added for instant trigger of Critical Severity perceptions
+    private MyRosMaster myRosMaster;
+
+    public DemoEmbeddedAgentArch() {
+        super();
+
+        // Bind cp0 directly to "cp0"
+        cpBindings.put(0, "cp0");
+        lastSeverities.put(0, "None"); // initial state
+
+        myRosMaster = new MyRosMaster(
+            new Atom("roscore1"),
+            new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>())
+        );
+    }
+
+    @Override
+    public Boolean[] perceiveCP() {
+
+        Boolean[] percepts = new Boolean[32]; // One for each cp0 to cp31
+        Circumstance C = getTS().getC();
+        C.CPM.clear();
+
+        // Step 1: Add beliefs from devices to BB
+        for (IDevice dev : this.devices) {
+            try {
+                Collection<Literal> perceptsDevice = dev.getPercepts();
+                if (perceptsDevice == null) continue;
+
+                for (Literal l : perceptsDevice) {
+                    getTS().getAg().getBB().add(l);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Arrays.fill(percepts, Boolean.FALSE);
+        BeliefBase bb = getTS().getAg().getBB();
+
+        // Step 2: For each configured CP belief, check severity directly
+        for (Map.Entry<Integer, String> binding : cpBindings.entrySet()) {
+            int cpIndex = binding.getKey();
+            String functor = binding.getValue(); // e.g., "cp0"
+
+            String newSev = extractSeverity(bb, functor);
+            if (newSev == null) continue;
+
+            String oldSev = lastSeverities.getOrDefault(cpIndex, "__none__");
+            if (!newSev.equals(oldSev)) {
+
+                if ("Critical".equals(newSev) && cpIndex == 1) {
+                    try {
+                        myRosMaster.execEmbeddedAction("teste2", new Object[]{}, null);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                lastSeverities.put(cpIndex, newSev);
+
+                // Remove old cbX belief
+                String oldBeliefStr = "cb" + cpIndex + "(\"" + oldSev + "\")[source(self)]";
+                Literal oldBelief = Literal.parseLiteral(oldBeliefStr);
+                getTS().getAg().getBB().remove(oldBelief);
+
+                // Add new cbX belief
+                String newBeliefStr ="cb" + cpIndex + "(\"" + newSev + "\")[source(self)]";
+                Literal newBelief = Literal.parseLiteral(newBeliefStr);
+                getTS().getAg().getBB().add(newBelief);
+
+                // Trigger cbX
+                Literal percept = new LiteralImpl("cb" + cpIndex);
+                Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                C.CPM.put(te.getPredicateIndicator(), true);
+
+                percepts[cpIndex] = Boolean.TRUE;
+            }
+        }
+
+        return percepts;
+    }
+
+    /** Extracts severity string directly from a cpX("Severity") belief */
+    private String extractSeverity(BeliefBase bb, String functor) {
+        try {
+            Literal pattern = ASSyntax.createLiteral(functor, ASSyntax.createVar("S"));
+            Unifier u = new Unifier();
+
+            Iterator<Literal> it = bb.getCandidateBeliefs(pattern, u);
+            if (it == null) return null;
+
+            while (it.hasNext()) {
+                Literal l = it.next();
+                Term t = l.getTerm(0);
+                if (t.isString()) {
+                    return ((StringTerm) t).getString();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}

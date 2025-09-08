@@ -50,8 +50,8 @@ class TempFailureTest:
                 break
 
             # Publish 65.0
-            self.publish_temperature(75.0)
-            #self.publish_temperature_sev("Severe")
+            #self.publish_temperature(75.0)
+            self.publish_temperature_sev("Severe")
             self.perception_time = time.perf_counter()
 
             # Wait for reaction
@@ -65,7 +65,7 @@ class TempFailureTest:
             # Publish 0.0 to reset
             self.publish_temperature(0.0)
             self.publish_temperature_sev("None")
-            rospy.sleep(random.uniform(2.0, 4.0))
+            rospy.sleep(random.uniform(2.0, 10.0))
 
             # Wait briefly before next round
             rospy.sleep(1.0)

@@ -1,4 +1,4 @@
-package embedded.mas.bridges.jacamo;
+//package embedded.mas.bridges.jacamo;
 
 import embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch;
 import embedded.mas.bridges.jacamo.IDevice;
@@ -11,6 +11,9 @@ import java.util.Map;
 
 //import embedded.mas.bridges.ros.MyRosMaster;
 import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
+import embedded.mas.bridges.ros.IRosInterface;
+import embedded.mas.bridges.jacamo.LiteralDevice;
+import jason.asSemantics.ConcurrentInternalAction;
 
 import jason.asSemantics.Agent;
 import jason.asSemantics.Unifier;
@@ -50,8 +53,9 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     private final Map<Integer, String> lastSeverities = new HashMap<>();
 
     // RosMaster added for instant trigger of Critical Severity perceptions
-    //private Object rosMaster;
+    private MyRosMaster myRosMaster;
 
+ 
     public DemoEmbeddedAgentArch() {
         super();
 
@@ -64,8 +68,13 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             new Band(70, Double.POSITIVE_INFINITY, "Critical")
         ));
         lastSeverities.put(0, "None"); // initial state
-
+        
+        myRosMaster = new MyRosMaster(
+        new Atom("roscore1"),
+        new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>())
+        );
     }
+
 
     @Override
     public Boolean[] perceiveCP() {
@@ -114,9 +123,13 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             String oldSev = lastSeverities.getOrDefault(cpIndex, "__none__");
             if (!newSev.equals(oldSev)) {
                 //System.out.println("newSec: "+newSev);
-                /*if ("Critical".equals(newSev)) {
-                    //((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
-                }*/
+                if ("Critical".equals(newSev)) {
+                    try {
+                        myRosMaster.execEmbeddedAction("teste2", new Object[]{}, null);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 
                 lastSeverities.put(cpIndex, newSev);
                 // Remove the old belief
