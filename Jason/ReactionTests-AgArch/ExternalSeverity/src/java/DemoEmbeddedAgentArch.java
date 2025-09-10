@@ -48,10 +48,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         cpBindings.put(0, "cp0");
         lastSeverities.put(0, "None"); // initial state
 
-        myRosMaster = new MyRosMaster(
-            new Atom("roscore1"),
-            new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>())
-        );
+        myRosMaster = new MyRosMaster(new Atom("roscore1"),new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>()) );
     }
 
     @Override
