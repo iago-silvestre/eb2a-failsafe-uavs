@@ -17,7 +17,6 @@ wind_speed(-20.0).
 fire_pos(0.0,0.0).
 critical_p(2).
 oppos_fire_dir(-180).
-test(5).
 test_list([[0.0,5.0,6.25],[3.0,5.0,6.25],[6.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 //test_list([[0.0,5.0,6.25],[20.0,5.0,6.25],[40.0,5.0,6.25]]).
 no_fire_dir_sensor.
@@ -51,14 +50,23 @@ distance(X,Y,D) :- current_position(CX, CY, CZ) & D=math.sqrt( (CX-X)**2 + (CY-Y
 +cb0 [cr]: cp0("Severe")& not fire_dir(_) //teste Reaction time
    <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","teste2",[]).
 
-+testeC3 [cr]: true //teste Reaction time
-   <- .print("testeC3").
+   
++testeC1 [cr]: cp0("teste") //teste Reaction time
+   <- .print("Agent testeC1");
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","testeC1",[]).
 
-+testeC11 [cr]: true //teste Reaction time
-   <- .print("testeC11").
++testeC2 [cr]: cp0("teste") //teste Reaction time
+   <- .print("Agent testeC2");
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","testeC2",[]).
 
-+testeC2 [cr]: true //teste Reaction time
-   <- .print("testeC2").
++testeC3 [cr]: cp0("teste") //teste Reaction time
+   <- .print("Agent testeC3");
+      embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","testeC3",[]).
+
+
+
+
+
 /*
 severity_cp0(SEV) :- temp(T)  & T < 40       //Rules for Severity Detection
                   & SEV= "None".
