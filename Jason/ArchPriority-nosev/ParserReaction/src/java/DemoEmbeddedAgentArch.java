@@ -1,0 +1,222 @@
+//package embedded.mas.bridges.jacamo;
+
+import embedded.mas.bridges.jacamo.DefaultEmbeddedAgArch;
+import embedded.mas.bridges.jacamo.IDevice;
+import embedded.mas.exception.PerceivingException;
+
+import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+//import embedded.mas.bridges.ros.MyRosMaster;
+import embedded.mas.bridges.ros.DefaultRos4EmbeddedMas;
+import embedded.mas.bridges.ros.IRosInterface;
+import embedded.mas.bridges.jacamo.LiteralDevice;
+import jason.asSemantics.ConcurrentInternalAction;
+
+import jason.asSemantics.Agent;
+import jason.asSemantics.Event;
+import jason.asSemantics.Unifier;
+import jason.asSyntax.ASSyntax;
+import jason.asSyntax.Literal;
+import jason.asSyntax.StringTerm;
+import jason.asSyntax.Term;
+import jason.asSyntax.*;
+import jason.asSyntax.Trigger;
+import jason.asSyntax.LiteralImpl;
+import jason.asSyntax.Trigger.TEOperator;
+import jason.asSyntax.Trigger.TEType;
+import jason.asSemantics.Circumstance;
+import jason.asSemantics.TransitionSystem;
+import jason.bb.BeliefBase;
+
+public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
+
+    /** Mapping of cpX → functor name */
+    private final Map<Integer, String> cpBindings = new LinkedHashMap<>();
+
+    /** Last seen severity label for each cp */
+    private final Map<Integer, String> lastVals = new HashMap<>();
+
+    // RosMaster added for instant trigger of Critical Severity perceptions
+    private MyRosMaster myRosMaster;
+    /** Mapping of cp functor -> reaction string (e.g., "cp1" -> "react_cp1") */
+    private final Map<String, String> cpReactions = new HashMap<>();
+
+
+    private static final Map<String, Integer> cpToPriority = new HashMap<>();
+    static {
+        Map.of(
+            5, List.of("cp9"),
+            4, List.of("cp8", "cp7", "cp0"),
+            3, List.of("cp2", "cp4"),
+            2, List.of("cp3", "cp5"),
+            1, List.of("cp6", "cp1")
+        ).forEach((prio, cps) -> cps.forEach(cp -> cpToPriority.put(cp, prio)));
+    }
+
+    public DemoEmbeddedAgentArch() {
+        super();
+
+        // Bind cp0 directly to "cp0"
+        cpToPriority.entrySet().stream()
+        .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue())) // Descending priority
+        .forEach(entry -> {
+            String cp = entry.getKey(); // e.g., "cp7"
+            try {
+                int cpIndex = Integer.parseInt(cp.replace("cp", ""));
+                cpBindings.put(cpIndex, cp);
+                lastVals.put(cpIndex, "None");
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid CP key format: " + cp);
+            }
+        });
+
+        // Configure reactions for each CP functor (used for bypass, CPM entries and intentions)
+        cpReactions.put("cp0", "teste2"); // keep existing bypass for cpIndex==0
+        cpReactions.put("cp1", "react_cp1");
+        cpReactions.put("cp2", "react_cp2");
+        cpReactions.put("cp3", "react_cp3");
+        cpReactions.put("cp4", "react_cp4");
+        cpReactions.put("cp5", "cp5_catastrophic");
+        cpReactions.put("cp6", "react_cp6");
+        cpReactions.put("cp7", "react_cp7");
+        cpReactions.put("cp8", "react_cp8");
+        cpReactions.put("cp9", "react_cp9");
+
+        myRosMaster = new MyRosMaster(new Atom("roscore1"),new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>()) );
+    
+        
+    
+    }
+
+    /** Helper: assign priority based on cp functor and severity */
+    private int getPriority(String functor) {
+        return cpToPriority.getOrDefault(functor, 3);
+    }
+
+    /** Small container for CP entries to be inserted in CPM later */
+    private static class CPEntry {
+        int cpIndex;
+        String functor;
+        int priority;
+
+        CPEntry(int cpIndex, String functor, int priority) {
+            this.cpIndex = cpIndex;
+            this.functor = functor;
+            this.priority = priority;
+        }
+    }
+
+    @Override
+    public Boolean[] perceiveCP() {
+
+        Boolean[] percepts = new Boolean[32]; // One for each cp0 to cp31
+        Circumstance C = getTS().getC();
+        C.CPM.clear();
+
+        // Step 1: Add beliefs from devices to BB
+        for (IDevice dev : this.devices) {
+            try {
+                Collection<Literal> perceptsDevice = dev.getPercepts();
+                if (perceptsDevice == null) continue;
+
+                for (Literal l : perceptsDevice) {
+                    getTS().getAg().getBB().add(l);
+                    //System.out.println("l added:" +l);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Arrays.fill(percepts, Boolean.FALSE);
+        BeliefBase bb = getTS().getAg().getBB();
+
+        // Temporary list to collect cp entries (with priorities) and be inserted in CPM after loop
+        List<CPEntry> tempList = new ArrayList<>();
+
+        // Step 2: For each configured CP belief, check severity directly
+        for (Map.Entry<Integer, String> binding : cpBindings.entrySet()) {
+            int cpIndex = binding.getKey();
+            String functor = binding.getValue(); // e.g., "cp0"
+            //System.out.println("checking for func: "+functor);
+
+            String newVal = extractVal(bb, functor);
+            if (newVal == null) continue;
+            //System.out.println("newVal: "+newVal);
+            String oldVal = lastVals.getOrDefault(cpIndex, "__none__");
+            
+            if (!newVal.equals(oldVal)) {
+                // keep current dedup behavior based on severity change
+                lastVals.put(cpIndex, newVal);
+                // severity is no longer considered for routing; we use priority only
+                // If you kept the old signature, you can call getPriority(functor, newVal) — the second arg is ignored
+                int priority = getPriority(functor);
+
+                // Lookup reaction string for this functor. Fallback to a default goal name if not configured.
+                String reaction = cpReactions.getOrDefault(functor, "handle_" + functor);
+
+                if (priority == 5) {
+                    // Catastrophic → BYPASS using the configured reaction string
+                    try {
+                        // Execute a bypass embedded action named as the reaction.
+                        myRosMaster.execEmbeddedAction(reaction, new Object[]{}, null);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (priority == 3 || priority == 4) {
+                    // Major/Hazardous → collect to be inserted into CPM (will be sorted later)
+                    // store the reaction string instead of the raw functor
+                    tempList.add(new CPEntry(cpIndex, reaction, priority));
+                    System.out.println("added in tempList cpIndex: " + cpIndex + " with prio: " + priority + " reaction: " + reaction);
+                } else { // priority 1 or 2
+                    // No effect/Minor → add an intention to the agent
+                    // This posts an internal event to achieve a goal named as the reaction string
+                    // Adjust the goal name to whatever plan head you will handle in .asl (e.g., +!react_cp1)
+                    Trigger goal = new Trigger(TEOperator.add, TEType.achieve, ASSyntax.createLiteral(reaction));
+                    getTS().getC().addEvent(new Event(goal, null));
+                }
+            }
+
+        }
+
+        // Step 3: Sort collected CPs by priority (highest first) and update CPM
+        tempList.sort((a, b) -> Integer.compare(b.priority, a.priority));
+        for (CPEntry entry : tempList) {
+            // The original code added a Trigger for cbX into C.CPM
+            Literal percept = new LiteralImpl("cb" + entry.cpIndex);
+            Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+            C.CPM.put(te.getPredicateIndicator(), true);
+        }
+
+        if (C.CPM.size() != 0) {
+            System.out.println("C.CPM : "+C.CPM);
+        }
+
+        return percepts;
+    }
+
+    /** Extracts value string directly from a cpX("S") belief */
+    private String extractVal(BeliefBase bb, String functor) {
+        try {
+            Literal pattern = ASSyntax.createLiteral(functor, ASSyntax.createVar("S"));
+            Unifier u = new Unifier();
+
+            Iterator<Literal> it = bb.getCandidateBeliefs(pattern, u);
+            if (it == null) return null;
+
+            while (it.hasNext()) {
+                Literal l = it.next();
+                Term t = l.getTerm(0);
+                if (t.isString()) {
+                    return ((StringTerm) t).getString();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}

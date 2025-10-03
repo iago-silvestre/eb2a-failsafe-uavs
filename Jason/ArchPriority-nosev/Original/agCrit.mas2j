@@ -1,0 +1,20 @@
+
+/* 
+   MAS2J configuration file for UAV system
+   Converted from JCM format
+*/
+
+MAS uav {
+    infrastructure: Local
+
+    agents:
+        uav1 uav.asl [beliefs="my_number(1), my_frame_id(\"world\")"]
+            agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent
+            //agentArchClass embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch;
+            agentArchClass DemoEmbeddedAgentArch;          
+        autopilot1 autopilot.asl [beliefs="my_number(1)"]
+            agentClass embedded.mas.bridges.jacamo.CyberPhysicalAgent
+            //agentArchClass embedded.mas.bridges.jacamo.DemoEmbeddedAgentArch;
+            agentArchClass DemoEmbeddedAgentArch;   
+    aslSourcePath: "src/agt";
+}

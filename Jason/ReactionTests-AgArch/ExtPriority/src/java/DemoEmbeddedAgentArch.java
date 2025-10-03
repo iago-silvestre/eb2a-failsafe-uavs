@@ -59,21 +59,21 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
     /** Helper: assign priority based on cp functor and severity */
     private int getPriority(String functor, String severity) {
-        if ("cp0".equals(functor)) { // Example mapping for temperature (cp0)
+        if ("cp0".equals(functor)) { // Example mapping for temp (cp0)
             switch (severity) {
-                case "Marginal": return 2;   
-                case "Severe":   return 3;
-                case "Critical": return 4;
+                case "Marginal": return 2;    // Minor
+                case "Severe":   return 3;    // Major
+                case "Critical": return 4;    // Hazardous
             }
         }
 
-        /*if ("cp3".equals(functor)) { // Example mapping for motorFailure (cp3)
+        if ("cp3".equals(functor)) { // Example mapping for motorFailure (cp3)
             switch (severity) {
                 case "Marginal": return 3;
                 case "Severe":   return 4;  // Hazardous
                 case "Critical": return 5;  //Catastrophic
             }
-        }*/
+        }
 
         // Default mapping for other cpX (can be adjusted later)
         switch (severity) {
@@ -162,6 +162,8 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                 // Determine priority and collect for CPM insertion later
                 int priority = getPriority(functor, newSev);
                 tempList.add(new CPEntry(cpIndex, functor, newSev, priority));
+
+                
                 if ("teste".equals(newSev)) {
                     System.out.println("Priority Test | Multiple EOI in same cycle");
                     String newBeliefStrcp1 ="cp1(\"Marginal\")[source(self)]";
