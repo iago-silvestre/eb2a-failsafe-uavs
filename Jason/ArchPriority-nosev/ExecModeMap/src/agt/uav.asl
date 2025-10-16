@@ -143,17 +143,33 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 +!setMaxSpeed(S) // Does not work, gets overriden by MRS MPC Tracker
 	<- .set_fcu_param("MPC_XY_VEL_MAX", [0, S]).
 
++!react_cp0 : my_number(N) <- ?my_number(N);.print("N:", N).
+
 +react_cp1 [cr] : my_number(N) <- ?my_number(N);.print("N:", N).
+
+
++!cp0_Minor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0_Minor",[]).
+
++cp1_Major [cr]  <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp1_Major",[]). 
+
+
+
+
 
 /*+react_cp1 [cr] : true
    <- ?my_number(N);
       ?cur_pos(CX, CY);
       .print("Fire detected by Drone: ",N," in X: ",CX," , Y:",CY).*/
 
-!start2.
+//!start2.
 
 +!start2
 <- !test.
+
++!test
+<- //.print("testing!");
+   .wait(100);
+   !test.
 
 +!start
    : my_ap(AP) & my_number(N) 
@@ -187,10 +203,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       .wait(1000).
       //!test.
 
-+!test
-<- .print("testing!");
-   .wait(100);
-   !test.
+
       
 +!my_missions
    :  waypoints_list(L) & my_number(N) & not (N==1)

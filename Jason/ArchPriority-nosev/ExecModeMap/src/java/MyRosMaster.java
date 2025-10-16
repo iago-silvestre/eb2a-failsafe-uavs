@@ -138,7 +138,14 @@ public class MyRosMaster extends RosMaster {
             //Implement log in txt file
             return true;
             }
-            
+
+        if (actionName.equals("cp2_catastrophic")) {
+            System.out.println("InternalAction of cp2 - Catastrophic ");
+            //System.out.println("Uav" + args[0].toString() + " logged event of Marginal Temperature at CX: " + args[1].toString() + "CY: " + args[2].toString());
+            //Implement log in txt file
+            return true;
+            }    
+
             if (actionName.equals("cp0-Severe")) {
             /*    if (firstSevereCall) {
                 System.out.println("firstSevereCall");
@@ -280,6 +287,23 @@ public class MyRosMaster extends RosMaster {
             return true;
 		}
 
+        if (actionName.equals("cp0_Minor")) {
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+            System.out.println("cp0_Minor");
+            return true;
+		}
+
+        if (actionName.equals("cp1_Major")) {
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+            System.out.println("cp1_Major");
+            return true;
+		}
+
+        if (actionName.equals("cp2_Catastrophic")) {
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+            System.out.println("cp2_Catastrophic");
+            return true;
+		}
         if (actionName.equals("testeC1")) {
             try {
                 for (int i = 1; i <= 10; i++) {   // 10 × 500ms = 5000ms = 5s

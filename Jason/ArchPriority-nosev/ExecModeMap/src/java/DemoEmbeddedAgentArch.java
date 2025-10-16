@@ -46,11 +46,11 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     private static final Map<String, Integer> cpToPriority = new HashMap<>();
     static {
         Map.of(
-            5, List.of("cp9","cp2"),
-            4, List.of("cp8", "cp7", "cp1"),
-            3, List.of( "cp4"),
-            2, List.of("cp3", "cp5"),
-            1, List.of("cp6", "cp0")
+            5, List.of("cp2"),             //Catastrophic
+            4, List.of("cpTeste" ),                   //Hazardous
+            3, List.of("cp1"),                  //Major
+            2, List.of("cp0"),            //Minor
+            1, List.of("cpTeste")             //No Effect
         ).forEach((prio, cps) -> cps.forEach(cp -> cpToPriority.put(cp, prio)));
     }
 
@@ -66,16 +66,16 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     /** Mapping of cp functor -> reaction string (e.g., "cp1" -> "react_cp1") */
     private static final Map<String, String> cpReactions = new HashMap<>();
     static {
-        cpReactions.put("cp0", "teste2"); // keep existing bypass for cpIndex==0
-        cpReactions.put("cp1", "react_cp1");
-        cpReactions.put("cp2", "react_cp2");
-        cpReactions.put("cp3", "react_cp3");
-        cpReactions.put("cp4", "react_cp4");
-        cpReactions.put("cp5", "cp5_catastrophic");
+        cpReactions.put("cp0", "cp0_Minor");    // !react_cp0
+        cpReactions.put("cp1", "cp1_Major");    // react_cp1 [cr]
+        cpReactions.put("cp2", "cp2_Catastrophic");  //  internalAction(cp2-Catastrophic)
+        cpReactions.put("cp3", "react_cp3");    
+        cpReactions.put("cp4", "failsafe_2");
+        cpReactions.put("cp5", "react_cp5");
         cpReactions.put("cp6", "react_cp6");
-        cpReactions.put("cp7", "react_cp7");
+        cpReactions.put("cp7", "failsafe_2");
         cpReactions.put("cp8", "react_cp8");
-        cpReactions.put("cp9", "react_cp9");
+        cpReactions.put("cp9", "cp9_catastrophic");
     }
 
     public DemoEmbeddedAgentArch() {
@@ -161,32 +161,34 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             if (!newVal.equals(oldVal)) {
                 // keep current dedup behavior based on severity change
                 lastVals.put(cpIndex, newVal);
-                // severity is no longer considered for routing; we use priority only
-                // If you kept the old signature, you can call getPriority(functor, newVal) — the second arg is ignored
-                int priority = getPriority(functor);
 
+
+                // severity is no longer considered for routing; we use priority only
+                int priority = getPriority(functor);
                 // Lookup reaction string for this functor. Fallback to a default goal name if not configured.
                 String reaction = cpReactions.getOrDefault(functor, "handle_" + functor);
                 String mode = priorityToMode.get(priority);
+                // Depending on Mode the reaction will be triggered in different manners
+                // Bypass  -> Direct bypass and call .defaultEmbeddedInternalAction("roscore1",reaction,[]);
+                // EB2A    -> adds to CPM -> expedited deliberate of EB2A will select plans and run them
+                // Std     -> adds a standard !intention on the Agent, reaction is solved through Standard RC
                 if ("Bypass".equals(mode)) {
                     // Catastrophic → BYPASS using the configured reaction string
                     try {
-                        System.out.println("Bypass : "+reaction);
+                        //System.out.println("Bypass : "+reaction);
                         // Execute a bypass embedded action named as the reaction.
                         myRosMaster.execEmbeddedAction(reaction, new Object[]{}, null);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else if ("Expedited-RC".equals(mode)) {
-                    System.out.println("Expedited-RC : "+reaction);
+                    //System.out.println("Expedited-RC : "+reaction);
                     // Major/Hazardous → collect to be inserted into CPM (will be sorted later)
                     // store the reaction string instead of the raw functor
                     tempList.add(new CPEntry(cpIndex, reaction, priority));
-                    System.out.println("added in tempList cpIndex: " + cpIndex + " with prio: " + priority + " reaction: " + reaction);
-                    Intention newInt = new Intention();
-                    getTS().getC().addRunningIntention(newInt);
+                    //System.out.println("added in tempList cpIndex: " + cpIndex + " with prio: " + priority + " reaction: " + reaction);
                 } else { // priority 1 or 2
-                    System.out.println("Standard-RC : "+reaction);
+                    //System.out.println("Standard-RC : "+reaction);
                     // No effect/Minor → add an intention to the agent
                     // This posts an internal event to achieve a goal named as the reaction string
                     // Adjust the goal name to whatever plan head you will handle in .asl (e.g., +!react_cp1)
@@ -207,9 +209,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             C.CPM.put(te.getPredicateIndicator(), true);
         }
 
-        if (C.CPM.size() != 0) {
-            System.out.println("C.CPM : "+C.CPM);
-        }
+        
 
         return percepts;
     }
