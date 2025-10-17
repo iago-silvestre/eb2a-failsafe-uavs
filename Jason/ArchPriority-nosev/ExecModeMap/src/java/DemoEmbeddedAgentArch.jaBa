@@ -184,9 +184,10 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                 } else if ("Expedited-RC".equals(mode)) {
                     //System.out.println("Expedited-RC : "+reaction);
                     // Major/Hazardous → collect to be inserted into CPM (will be sorted later)
-                    // store the reaction string instead of the raw functor
-                    tempList.add(new CPEntry(cpIndex, reaction, priority));
-                    //System.out.println("added in tempList cpIndex: " + cpIndex + " with prio: " + priority + " reaction: " + reaction);
+                    Literal percept = new LiteralImpl(reaction);
+                    Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                    C.CPM.put(te.getPredicateIndicator(), true);
+                    //tempList.add(new CPEntry(cpIndex, reaction, priority)); For now lets rollback to direct CPM insert
                 } else { // priority 1 or 2
                     //System.out.println("Standard-RC : "+reaction);
                     // No effect/Minor → add an intention to the agent
@@ -200,14 +201,14 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         }
 
         // Step 3: Sort collected CPs by priority (highest first) and update CPM
-        tempList.sort((a, b) -> Integer.compare(b.priority, a.priority));
+        /*tempList.sort((a, b) -> Integer.compare(b.priority, a.priority));
         for (CPEntry entry : tempList) {
             // The original code added a Trigger for cbX into C.CPM
             //Literal percept = new LiteralImpl("cb" + entry.cpIndex);
             Literal percept = new LiteralImpl(entry.functor);
             Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
             C.CPM.put(te.getPredicateIndicator(), true);
-        }
+        }*/
 
         
 

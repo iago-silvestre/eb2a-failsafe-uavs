@@ -147,6 +147,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
 
 +react_cp1 [cr] : my_number(N) <- ?my_number(N);.print("N:", N).
 
++cp0(_) <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0_Minor",[]).
 
 +!cp0_Minor <- embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","cp0_Minor",[]).
 
@@ -161,13 +162,13 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       ?cur_pos(CX, CY);
       .print("Fire detected by Drone: ",N," in X: ",CX," , Y:",CY).*/
 
-//!start2.
+!start.
 
 +!start2
 <- !test.
 
 +!test
-<- //.print("testing!");
+<- .print("testing!");
    .wait(100);
    !test.
 
@@ -178,7 +179,8 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       embedded.mas.bridges.jacamo.defaultEmbeddedInternalAction("roscore1","sethome",[true,0.0,0.0,0.0,0.0]);
       .print("Started! Calculating Traj");
       !calculate_trajectory;
-      !my_missions.
+      !my_missions;
+      !test.
 
 +fireSize(0)
    : current_mission(combat_fire)

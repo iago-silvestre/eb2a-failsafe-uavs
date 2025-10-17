@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class MyRosMaster extends RosMaster {
 
     private boolean firstSevereCall = true;
+    private int lastResponseIndex = 0;
 
 	public MyRosMaster(Atom id, IRosInterface microcontroller) {        
 		super(id, microcontroller);
@@ -288,19 +289,28 @@ public class MyRosMaster extends RosMaster {
 		}
 
         if (actionName.equals("cp0_Minor")) {
-			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+            String response = Integer.toString(lastResponseIndex);
+            lastResponseIndex++;  // increment for each reaction
+            System.out.println(response);
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String",response);
             System.out.println("cp0_Minor");
             return true;
 		}
 
         if (actionName.equals("cp1_Major")) {
-			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+			String response = Integer.toString(lastResponseIndex);
+            lastResponseIndex++;  // increment for each reaction
+            System.out.println(response);
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String",response);
             System.out.println("cp1_Major");
             return true;
 		}
 
         if (actionName.equals("cp2_Catastrophic")) {
-			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String","1");
+			String response = Integer.toString(lastResponseIndex);
+            lastResponseIndex++;  // increment for each reaction
+            System.out.println(response);
+			((DefaultRos4EmbeddedMas) microcontroller).rosWrite("/agent_detected_failure_uav1","std_msgs/String",response);
             System.out.println("cp2_Catastrophic");
             return true;
 		}

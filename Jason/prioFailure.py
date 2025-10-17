@@ -3,20 +3,21 @@ import rospy
 import time
 import random
 from std_msgs.msg import Float64, String
+import statistics
 
 class TempFailureTest:
     def __init__(self):
         rospy.init_node('temp_failure_test', anonymous=True)
 
         self.temp_pub = rospy.Publisher('/uav1/fire_temperature', Float64, queue_size=1)
-        self.temp_sev_pub = rospy.Publisher('/uav1/cp1', String, queue_size=1)
+        self.temp_sev_pub = rospy.Publisher('/uav1/cp0', String, queue_size=1)
         rospy.Subscriber('/agent_detected_failure_uav1', String, self.failure_callback)
         self.fail_det_pub = rospy.Publisher('/agent_detected_failure_uav1', String, queue_size=1)
 
         self.reaction_received = False
         self.waiting_for_reaction = False
         self.perception_time = None
-
+        
         self.reaction_times = []
 
     def publish_temperature(self, value):
@@ -45,10 +46,11 @@ class TempFailureTest:
     def run(self):
         self.publish_temperature(10.0)
         rospy.sleep(2.0)
-        for i in range(20):
+        for i in range(100):
             if rospy.is_shutdown():
                 break
             self.publish_temperature_sev(str(i))
+            rospy.sleep(0.001) 
             self.perception_time = time.perf_counter()
 
             # Wait for reaction
@@ -56,10 +58,10 @@ class TempFailureTest:
             self.waiting_for_reaction = True
             start = time.perf_counter()
             while not rospy.is_shutdown() and not self.reaction_received and time.perf_counter() - start < 10:
-                rospy.sleep(0.01)
+                time.sleep(0)
             self.waiting_for_reaction = False
 
-            rospy.sleep(random.uniform(2.0, 10.0))
+            #rospy.sleep(random.uniform(2.0, 10.0))
 
             # Wait briefly before next round
             rospy.sleep(1.0)
@@ -79,15 +81,18 @@ class TempFailureTest:
                 min_delay = min(delays)
                 max_delay = max(delays)
                 avg_delay = sum(delays) / len(delays)
+                std_delay = statistics.stdev(delays) if len(delays) > 1 else 0.0
 
                 f.write(f"\nTotal events: {len(delays)}\n")
                 f.write(f"Min delay: {min_delay:.2f} ms\n")
                 f.write(f"Max delay: {max_delay:.2f} ms\n")
                 f.write(f"Avg delay: {avg_delay:.2f} ms\n")
+                f.write(f"Std dev: {std_delay:.2f} ms\n")
 
                 rospy.loginfo(
                     f"Reaction stats -> Min: {min_delay:.2f} ms, "
-                    f"Max: {max_delay:.2f} ms, Avg: {avg_delay:.2f} ms"
+                    f"Max: {max_delay:.2f} ms, Avg: {avg_delay:.2f} ms, "
+                    f"Std: {std_delay:.2f} ms"
                 )
             else:
                 f.write("No reaction times recorded.\n")
