@@ -42,7 +42,11 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
     // RosMaster added for instant trigger of Critical Severity perceptions
     private MyRosMaster myRosMaster;
-    
+
+
+    private Integer cpIterationCounter = null;
+    private Integer nextCPTrigger = null;
+    private Integer cpCount = null;
 
     private static final Map<String, Integer> cpToPriority = new HashMap<>();
     static {
@@ -147,58 +151,64 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
         // Temporary list to collect cp entries (with priorities) and be inserted in CPM after loop
         List<CPEntry> tempList = new ArrayList<>();
+        if (this.cpIterationCounter == null) {
+            this.cpIterationCounter = 0;
+            this.nextCPTrigger = 250 + new java.util.Random().nextInt(250);
+            this.cpCount = 0;
+        }
 
-        // Step 2: For each configured CP belief, check severity directly
+        this.cpIterationCounter++;
+        if (this.cpIterationCounter >= this.nextCPTrigger && this.cpCount < 100) {
+            String perceptName = "cp2";  // simplified belief
+            Literal cpLiteral = ASSyntax.createLiteral(perceptName);
+            bb.add(cpLiteral);
+            System.out.println("begin: " + getCurrentTime());
+            //System.out.println("Created percept: " + perceptName + " at " + getCurrentTime());
+
+            this.cpIterationCounter = 0;
+            this.nextCPTrigger = 10 + new java.util.Random().nextInt(20);  // 100 + rand(200)
+            this.cpCount++;
+        }
+
+        // Check and handle CP0 belief
+        // Loop over all cpBindings
         for (Map.Entry<Integer, String> binding : cpBindings.entrySet()) {
-            int cpIndex = binding.getKey();
             String functor = binding.getValue(); // e.g., "cp0"
-            //System.out.println("checking for func: "+functor);
 
-            String newVal = extractVal(bb, functor);
-            if (newVal == null) continue;
-            //System.out.println("newVal: "+newVal);
-            String oldVal = lastVals.getOrDefault(cpIndex, "__none__");
-            
-            if (!newVal.equals(oldVal)) {
-                // keep current dedup behavior based on severity change
-                lastVals.put(cpIndex, newVal);
+            if (!hasBelief(bb, functor)) continue;
 
+            int priority = getPriority(functor);
+            String reaction = cpReactions.getOrDefault(functor, "handle_" + functor);
+            String mode = priorityToMode.get(priority);
 
-                // severity is no longer considered for routing; we use priority only
-                int priority = getPriority(functor);
-                // Lookup reaction string for this functor. Fallback to a default goal name if not configured.
-                String reaction = cpReactions.getOrDefault(functor, "handle_" + functor);
-                String mode = priorityToMode.get(priority);
-                // Depending on Mode the reaction will be triggered in different manners
-                // Bypass  -> Direct bypass and call .defaultEmbeddedInternalAction("roscore1",reaction,[]);
-                // EB2A    -> adds to CPM -> expedited deliberate of EB2A will select plans and run them
-                // Std     -> adds a standard !intention on the Agent, reaction is solved through Standard RC
-                if ("Bypass".equals(mode)) {
-                    // Catastrophic → BYPASS using the configured reaction string
-                    try {
-                        //System.out.println("Bypass : "+reaction);
-                        // Execute a bypass embedded action named as the reaction.
+            try {
+                switch (mode) {
+                    case "Bypass":
+                        //System.out.println("begin: " + getCurrentTime());
                         myRosMaster.execEmbeddedAction(reaction, new Object[]{}, null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else if ("Expedited-RC".equals(mode)) {
-                    //System.out.println("Expedited-RC : "+reaction);
-                    // Major/Hazardous → collect to be inserted into CPM (will be sorted later)
-                    Literal percept = new LiteralImpl(reaction);
-                    Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
-                    C.CPM.put(te.getPredicateIndicator(), true);
-                    //tempList.add(new CPEntry(cpIndex, reaction, priority)); For now lets rollback to direct CPM insert
-                } else { // priority 1 or 2
-                    //System.out.println("Standard-RC : "+reaction);
-                    // No effect/Minor → add an intention to the agent
-                    // This posts an internal event to achieve a goal named as the reaction string
-                    // Adjust the goal name to whatever plan head you will handle in .asl (e.g., +!react_cp1)
-                    Trigger goal = new Trigger(TEOperator.add, TEType.achieve, ASSyntax.createLiteral(reaction));
-                    getTS().getC().addEvent(new Event(goal, null));
+                        //System.out.println("Catastrophic mode execution begin at " + getCurrentTime());
+                        break;
+
+                    case "Expedited-RC":
+                        //System.out.println("begin: " + getCurrentTime());
+                        Literal percept = new LiteralImpl(reaction);
+                        Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
+                        C.CPM.put(te.getPredicateIndicator(), true);
+                        //System.out.println("Major mode execution begin at " + getCurrentTime());
+                        break;
+
+                    default: // Standard-RC
+                        //System.out.println("begin: " + getCurrentTime());
+                        Trigger goal = new Trigger(TEOperator.add, TEType.achieve, ASSyntax.createLiteral(reaction));
+                        getTS().getC().addEvent(new Event(goal, null));
+                        
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
+            // Remove the belief after execution
+            bb.remove(ASSyntax.createLiteral(functor));
         }
 
         // Step 3: Sort collected CPs by priority (highest first) and update CPM
@@ -214,6 +224,22 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         
 
         return percepts;
+    }
+
+    private String getCurrentTime() {
+        return java.time.LocalDateTime.now()
+            .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSSSSS"));
+    }
+
+    private boolean hasBelief(BeliefBase bb, String functor) {
+        try {
+            Literal pattern = ASSyntax.createLiteral(functor);
+            Iterator<Literal> it = bb.getCandidateBeliefs(pattern, null);
+            return it != null && it.hasNext();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /** Extracts value string directly from a cpX("S") belief */
