@@ -101,8 +101,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
         });
 
         myRosMaster = new MyRosMaster(new Atom("roscore1"),new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>()) );
-        //myRosMaster = new MyRosMaster(new Atom("roscore1"),new DefaultRos4EmbeddedMas("ws://0.0.0.0:9090", new ArrayList<>(), new ArrayList<>()) );
-        
+
     
     }
 
@@ -159,11 +158,10 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
         this.cpIterationCounter++;
         if (this.cpIterationCounter >= this.nextCPTrigger && this.cpCount < 100) {
-            String perceptName = "cp2";  // simplified belief
+            String perceptName = "cp0";  // simplified belief
             Literal cpLiteral = ASSyntax.createLiteral(perceptName);
             bb.add(cpLiteral);
             System.out.println("begin: " + getCurrentTime());
-            //System.out.println("Created percept: " + perceptName + " at " + getCurrentTime());
 
             this.cpIterationCounter = 0;
             this.nextCPTrigger = 10 + new java.util.Random().nextInt(20);  // 100 + rand(200)
@@ -199,6 +197,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
 
                     default: // Standard-RC
                         //System.out.println("begin: " + getCurrentTime());
+                        //System.out.println("Std ");
                         Trigger goal = new Trigger(TEOperator.add, TEType.achieve, ASSyntax.createLiteral(reaction));
                         getTS().getC().addEvent(new Event(goal, null));
                         
