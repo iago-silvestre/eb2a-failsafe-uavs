@@ -55,11 +55,11 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     private static final Map<String, Integer> cpToPriority = new HashMap<>();
     static {
         Map.of(
-            5, List.of("cp2"),             //Catastrophic
-            4, List.of("cpTeste" ),                   //Hazardous
+            5, List.of("cp0"),             //Catastrophic
+            4, List.of("cp3" ),                   //Hazardous
             3, List.of("cp1"),                  //Major
-            2, List.of("cp0"),            //Minor
-            1, List.of("cpTeste")             //No Effect
+            2, List.of("cp2"),            //Minor
+            1, List.of("cp4")             //No Effect
         ).forEach((prio, cps) -> cps.forEach(cp -> cpToPriority.put(cp, prio)));
     }
 

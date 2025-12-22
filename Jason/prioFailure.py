@@ -20,6 +20,8 @@ class TempFailureTest:
         
         self.reaction_times = []
 
+        self.count=0
+
     def publish_temperature(self, value):
         msg = Float64(data=value)
         self.temp_pub.publish(msg)
@@ -41,7 +43,7 @@ class TempFailureTest:
             self.reaction_times.append((self.perception_time, reaction_time, delay_ms))
             self.reaction_received = True
             rospy.loginfo(f"Reaction received. Delay: {delay_ms:.2f} ms")
-            self.publish_failure_det("0")
+            #self.publish_failure_det("0")
 
     def run(self):
         self.publish_temperature(10.0)
@@ -61,10 +63,10 @@ class TempFailureTest:
                 time.sleep(0)
             self.waiting_for_reaction = False
 
-            #rospy.sleep(random.uniform(2.0, 10.0))
+            rospy.sleep(random.uniform(2.0, 5.0))
 
             # Wait briefly before next round
-            rospy.sleep(1.0)
+            #rospy.sleep(1)
 
         self.save_reaction_times()
         rospy.loginfo("Finished temperature tests.")

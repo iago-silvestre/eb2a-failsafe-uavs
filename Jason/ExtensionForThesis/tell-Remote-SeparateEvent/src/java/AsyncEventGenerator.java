@@ -6,16 +6,8 @@ public class AsyncEventGenerator implements Runnable {
     private final Random rng = new Random();
     private volatile boolean running = true;
 
-    private long nextEventTimeNs;
-
     public AsyncEventGenerator(DemoEmbeddedAgentArchStdB arch) {
         this.arch = arch;
-        scheduleNextEvent();
-    }
-
-    private void scheduleNextEvent() {
-        long delayNs = (1_000 + rng.nextInt(2_000)) * 1_000_000L;
-        nextEventTimeNs = System.nanoTime() + delayNs;
     }
 
     public void stop() {
@@ -25,22 +17,18 @@ public class AsyncEventGenerator implements Runnable {
     @Override
     public void run() {
         while (running) {
+            try {
+                // sleep 1–3 seconds
+                int sleepMs = 1000 + rng.nextInt(2000);
+                Thread.sleep(sleepMs);
 
-            long now = System.nanoTime();
-
-            if (now >= nextEventTimeNs) {
+                // signal event
                 arch.injectCp0Event();
-                scheduleNextEvent();
-            }
 
-            // very short sleep to avoid busy spin
-            Thread.onSpinWait();
-            /*try {
-                //Thread.sleep(1);
-                Thread.onSpinWait();
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 break;
-            }*/
+            }
         }
     }
 }

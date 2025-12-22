@@ -56,8 +56,8 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
     static {
         Map.of(
             5, List.of("cp2"),             //Catastrophic
-            4, List.of("cp0" ),                   //Hazardous
-            3, List.of("cp1"),                  //Major
+            4, List.of("cp1" ),                   //Hazardous
+            3, List.of("cp0"),                  //Major
             2, List.of("cp3"),            //Minor
             1, List.of("cpTeste")             //No Effect
         ).forEach((prio, cps) -> cps.forEach(cp -> cpToPriority.put(cp, prio)));
@@ -255,7 +255,7 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
                         Literal percept = new LiteralImpl(reaction);
                         Trigger te = new Trigger(TEOperator.add, TEType.belief, percept);
                         C.CPM.put(te.getPredicateIndicator(), true);
-                        //System.out.println("Major mode execution begin at " + getCurrentTime());
+                        //System.out.println("Expedited-RC" );
                         break;
 
                     default: // Standard-RC

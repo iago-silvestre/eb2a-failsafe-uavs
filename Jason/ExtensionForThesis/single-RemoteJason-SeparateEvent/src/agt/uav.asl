@@ -164,7 +164,7 @@ severity_cp0(SEV) :- temp(T)  & T >= 70
       ?cur_pos(CX, CY);
       .print("Fire detected by Drone: ",N," in X: ",CX," , Y:",CY).*/
 
-//!start.
+!start2.
 
 +!start2
 <- !test.
