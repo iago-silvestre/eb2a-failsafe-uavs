@@ -98,9 +98,9 @@ public class LocalAgArch extends AgArch implements Runnable, Serializable {
     private static final Map<String, Integer> cpToPriority = new HashMap<>();
     static {
         Map.of(
-            5, List.of("cp4"),             //Catastrophic
+            5, List.of("cp0"),             //Catastrophic
             4, List.of("cp3" ),                   //Hazardous
-            3, List.of("cp0"),                  //Major
+            3, List.of("cp4"),                  //Major
             2, List.of("cp2"),            //Minor
             1, List.of("cp1")             //No Effect
         ).forEach((prio, cps) -> cps.forEach(cp -> cpToPriority.put(cp, prio)));

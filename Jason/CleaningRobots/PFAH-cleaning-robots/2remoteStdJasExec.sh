@@ -33,9 +33,10 @@ do
 		#echo " "
 #		more reacTimes.log
 		mv reacTimes.log $runId-$i.reacTimes.log.txt
+		#mv reacTimes.log $k-$i-remote.reacTimes.log.txt
 		mv mas-0.log mas-0.log.$i
 		echo " "
-		#echo 1 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+		echo 1 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 		#echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
 		sleep 3
 	done
@@ -46,5 +47,6 @@ do
 	echo "End '$runId' "
 done
 mv rs* results
+#mv $k-* results
 rm build.gradle
 echo "Experiment FINISHED"

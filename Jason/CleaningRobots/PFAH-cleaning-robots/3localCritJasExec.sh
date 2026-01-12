@@ -11,7 +11,7 @@ count=$((count - 1))
 cp MarsEnvCritical.jaBAA MarsEnvCritical.java
 cp buildLC.gradle build.gradle
 
-for ((k=0; k<=0; k++))
+for ((k=5; k<=5; k++))
 do
 	runId="lc$k"
 	cp runs/$runId ./marsPrjCritical.mas2j
@@ -29,7 +29,8 @@ do
 		echo "Elapsed time (in seconds): $elapsed_time " >> reacTimes.log
 		echo " "
 #		more reacTimes.log
-		mv reacTimes.log EB2A-$runId-$i.reacTimes.log.txt
+		mv reacTimes.log Bypass-$runId-$i.reacTimes.log.txt
+		#mv reacTimes.log $k-$i-Bypass.reacTimes.log.txt
 		mv mas-0.log mas-0.log.$i
 		echo " "
 		#sleep 5
@@ -42,7 +43,7 @@ do
 	rm mas-*
 	echo "End '$runId' "
 done
-mv EB2A-lc* results
+mv Bypass-* results
 rm MarsEnvCritical.java
 rm build.gradle
 echo "Experiment FINISHED"
