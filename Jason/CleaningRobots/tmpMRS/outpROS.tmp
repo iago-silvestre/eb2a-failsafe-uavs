@@ -1,0 +1,4 @@
+[rosrun] Couldn't find executable named example_node.py below /root/catkin_ws/src/eb2a-failsafe-uavs/Jason/teste_CritPerceptions_severity/catkin_ws/src/my_ros_package
+[rosrun] Found the following, but they're either not files,
+[rosrun] or not executable:
+[rosrun]   /root/catkin_ws/src/eb2a-failsafe-uavs/Jason/teste_CritPerceptions_severity/catkin_ws/src/my_ros_package/scripts/example_node.py

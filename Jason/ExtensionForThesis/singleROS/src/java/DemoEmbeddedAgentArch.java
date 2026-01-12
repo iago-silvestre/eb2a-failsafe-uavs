@@ -187,7 +187,6 @@ public class DemoEmbeddedAgentArch extends DefaultEmbeddedAgArch {
             this.nextCPTrigger = 10 + new java.util.Random().nextInt(20);  // 100 + rand(200)
             this.cpCount++;
         }
-
         */
         /*if (this.cpIterationCounter == null) {
             this.cpIterationCounter = 0;
