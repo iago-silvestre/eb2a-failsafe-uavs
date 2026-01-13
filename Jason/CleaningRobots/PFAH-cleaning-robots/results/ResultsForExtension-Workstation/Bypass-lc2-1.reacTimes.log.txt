@@ -27,7 +27,7 @@ Qtd reaction: 38
 24th reacTime: 52590
 25th reacTime: 36890
 26th reacTime: 37050
-27th reacTime: 42717357
+27th reacTime: 36691
 28th reacTime: 34780
 29th reacTime: 30370
 30th reacTime: 35910
