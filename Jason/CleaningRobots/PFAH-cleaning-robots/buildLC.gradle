@@ -20,7 +20,8 @@ repositories {
     //maven { url "https://jade.tilab.com/maven/" }
 
     //flatDir { dirs 'lib' }
-    flatDir { dirs "${System.getProperty('user.home')}/Agents/jason/build/libs"}
+    //flatDir { dirs "${System.getProperty('user.home')}/Agents/jason/build/libs"}
+    flatDir { dirs "${System.getProperty('user.home')}/catkin_ws/src/eb2a-failsafe-uavs/Jason/jason/build/libs"}
     //implementation files('libs/a.jar', 'libs/b.jar')
 }
 

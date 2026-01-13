@@ -11,7 +11,7 @@ count=$((count - 1))
 cp MarsEnvCritical.jaBAA MarsEnvCritical.java
 cp buildLC.gradle build.gradle
 
-for ((k=5; k<=5; k++))
+for ((k=0; k<=0; k++))
 do
 	runId="lc$k"
 	cp runs/$runId ./marsPrjCritical.mas2j
@@ -35,7 +35,7 @@ do
 		echo " "
 		#sleep 5
 		#echo 1 | sudo tee /proc/sys/vm/drop_caches > /dev/null
-		sleep 3
+		sleep 5
 	done
 #	python3 parseStdJ.py $count > $runId.log.txt
 #	more $runId.log.txt
