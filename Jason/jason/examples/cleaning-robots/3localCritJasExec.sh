@@ -10,35 +10,27 @@ count=$1
 count=$((count - 1))
 cp MarsEnvCritical.jaBAA MarsEnvCritical.java
 
-for ((k=0; k<=5; k++))
+for ((k=5; k<=5; k++)) #k<=5 for complete test
 do
 	runId="lc$k"
 	cp runs/$runId ./marsPrjCritical.mas2j
-	echo "  "
 	echo "Begin '$runId' "
 	for ((i=0; i<=count; i++))
 	do
 		echo "RUN $runId - $i/$count"
+		sleep 1
 		start_time=$(date +%s)
-#		./gradlew runIndif -q --console=plain  > outp.tmp  
-		jason marsPrjCritical.mas2j > /dev/null #> $runId-$i.tmp 
+		jason marsPrjCritical.mas2j > /dev/null
 		end_time=$(date +%s)
 		elapsed_time=$((end_time - start_time))
 		echo "Elapsed time: $elapsed_time s"
-		echo " "
-#		more reacTimes.log
-		mv reacTimes.log $runId-$i.reacTimes.log.txt
-		mv mas-0.log mas-0.log.$i
-		echo " "
-		#sleep 5
-		echo 1 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+		echo "Elapsed time (in seconds): $elapsed_time " >> reacTimes.log
+		mv reacTimes.log EB2A-$runId-$i.reacTimes.log.txt
+		sleep 1
 	done
-#	python3 parseStdJ.py $count > $runId.log.txt
-#	more $runId.log.txt
-#	tar czvf $runId.tar.gz mas-* 
 	rm mas-*
 	echo "End '$runId' "
 done
-mv lc* results
+mv EB2A-lc* results
 rm MarsEnvCritical.java
 echo "Experiment FINISHED"

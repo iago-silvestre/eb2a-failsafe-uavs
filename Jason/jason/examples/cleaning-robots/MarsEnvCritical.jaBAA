@@ -64,11 +64,14 @@ public class MarsEnvCritical extends Environment {
     public synchronized void setFlag(boolean value) {
         flagCvEv = value;
     }
-
+    private int count = 0; 
     public synchronized boolean getSetFlag() {
-        if(flagCvEv){
-            flagCvEv = false;
-            return true;
+        count++;
+        if (count % 1 == 0) {
+            if(flagCvEv){
+                flagCvEv = false;
+                return true;
+            }
         }
         return false;
     }
@@ -79,8 +82,8 @@ public class MarsEnvCritical extends Environment {
         setKPerc(Integer.parseInt(args[1]));
 
         model = new MarsModel(); 
-        // view  = new MarsView(model);
-        // model.setView(view);
+        //view  = new MarsView(model);
+        //model.setView(view);
         updatePercepts();
 
         // LBB: implementation of a new thread for the critical perceptions
@@ -209,9 +212,10 @@ public class MarsEnvCritical extends Environment {
         // long t_curr = System.nanoTime(); //LB: current time
         // logger.info("LBB manualAction " + String.valueOf(0) + " time (ms): " + String.valueOf(t_curr - t_init));   
         //synchronized (cbsArray) {
-            cbsArray[0] = Boolean.FALSE; // reset perception after the action
-        //}
         reaction_times.add(System.nanoTime()); //LB: saves perception time
+        cbsArray[0] = Boolean.FALSE; // reset perception after the action
+        //}
+        //logger.info(" doing criticalAction ");
     }
 
     /** creates the agents perception based on the MarsModel */
@@ -416,7 +420,8 @@ public class MarsEnvCritical extends Environment {
                     // //stepFinished(step, time, byTimeOut); //FIX? see in the example if this is needed
                     // lock.unlock();
                     startNewStep();
-                    Thread.sleep(timeout);
+                    Thread.sleep(200);
+                    //Thread.sleep(timeout);
                 }
             } catch (InterruptedException e) {
             } catch (Exception e) {

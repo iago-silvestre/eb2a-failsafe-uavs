@@ -15,9 +15,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import jason.asSemantics.Tuple;
+import jason.asSyntax.LogicalFormula;
+import jason.asSyntax.Plan;
 import jason.asSyntax.ASSyntax;
 import jason.asSyntax.Atom;
 import jason.asSyntax.Literal;
+import jason.asSyntax.PlanBody;
+import jason.asSyntax.PredicateIndicator;
 import jason.asSyntax.Term;
 import jason.asSyntax.Trigger;
 import jason.asSyntax.Trigger.TEOperator;
@@ -33,6 +38,15 @@ public class Circumstance implements Serializable, ToDOM {
     private   Queue<Intention>         I;
     protected ActionExec               A;
     private   Queue<Message>           MB;
+
+    // Next three for Expedited-Jason:
+    public Map<PredicateIndicator, Boolean> CPM; 
+    // public Map<PredicateIndicator, List<Plan>> CLM;
+    public List<PlanBody> CRL;
+    // Old version:
+    // public List<Tuple<Boolean, PlanBody>> CRT; 
+    // public List<Tuple<Integer, Tuple<Integer, LogicalFormula>>> CRTx; 
+
     protected List<Option>             RP;
     protected List<Option>             AP;
     protected Event                    SE;
@@ -91,6 +105,10 @@ public class Circumstance implements Serializable, ToDOM {
         PI = new ConcurrentHashMap<>();
         PE = new ConcurrentHashMap<>();
         FA = new ConcurrentLinkedQueue<>();
+
+        CPM = new ConcurrentHashMap<>();
+        // CLM = new ConcurrentHashMap<>();
+        CRL = new ArrayList<>(); 
     }
 
     /** set null for A, RP, AP, SE, SO, and SI */
@@ -1159,5 +1177,4 @@ public class Circumstance implements Serializable, ToDOM {
         s.append("  FA="+FA+".");
         return s.toString();
     }
-
 }

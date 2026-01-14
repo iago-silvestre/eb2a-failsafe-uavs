@@ -386,14 +386,14 @@ public class Environment {
      * LBB: Reset CBS on the environment. 
      */
     public void resetCBS() {
-        // cbsArray[0] = Boolean.FALSE;
-        // cbsArray[1] = Boolean.FALSE;
-        // cbsArray[2] = Boolean.FALSE;
-        // cbsArray[3] = Boolean.FALSE;
-        // cbsArray[4] = Boolean.FALSE;
-        // cbsArray[5] = Boolean.FALSE;
-        // cbsArray[6] = Boolean.FALSE;
-        // cbsArray[7] = Boolean.FALSE;
+        cbsArray[0] = Boolean.FALSE;
+        cbsArray[1] = Boolean.FALSE;
+        cbsArray[2] = Boolean.FALSE;
+        cbsArray[3] = Boolean.FALSE;
+        cbsArray[4] = Boolean.FALSE;
+        cbsArray[5] = Boolean.FALSE;
+        cbsArray[6] = Boolean.FALSE;
+        cbsArray[7] = Boolean.FALSE;
         return;
     }
     /**

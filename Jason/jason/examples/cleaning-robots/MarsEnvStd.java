@@ -67,8 +67,8 @@ public class MarsEnvStd extends Environment {
         setKPerc(Integer.parseInt(args[1]));
 
         model = new MarsModel(); 
-        // view  = new MarsView(model);
-        // model.setView(view);
+        //view  = new MarsView(model);
+        //model.setView(view);
         updatePercepts();
 
         // LBB: implementation of a new thread for the critical perceptions
@@ -185,6 +185,7 @@ public class MarsEnvStd extends Environment {
 
         try { //LB comment: this sleep was originally here with 200ms
             Thread.sleep(sleepT);
+            //Thread.sleep(200);
             //stepCtd = stepCtd + (sleepT/5); //1 step is 5ms
         } catch (Exception e) {}
 
