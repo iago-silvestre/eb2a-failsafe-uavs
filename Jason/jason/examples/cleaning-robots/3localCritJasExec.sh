@@ -10,7 +10,7 @@ count=$1
 count=$((count - 1))
 cp MarsEnvCritical.jaBAA MarsEnvCritical.java
 
-for ((k=5; k<=5; k++)) #k<=5 for complete test
+for ((k=0; k<=5; k++)) #k<=5 for complete test
 do
 	runId="lc$k"
 	cp runs/$runId ./marsPrjCritical.mas2j
@@ -25,12 +25,12 @@ do
 		elapsed_time=$((end_time - start_time))
 		echo "Elapsed time: $elapsed_time s"
 		echo "Elapsed time (in seconds): $elapsed_time " >> reacTimes.log
-		mv reacTimes.log EB2A-$runId-$i.reacTimes.log.txt
+		mv reacTimes.log Bypass-$runId-$i.reacTimes.log.txt
 		sleep 1
 	done
 	rm mas-*
 	echo "End '$runId' "
 done
-mv EB2A-lc* results
+mv Bypass-lc* results
 rm MarsEnvCritical.java
 echo "Experiment FINISHED"
